@@ -52,7 +52,7 @@ const Testimonials = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg sm:text-xl text-gray-400 font-light"
+            className="text-lg sm:text-xl text-gray-400 font-light capitalize"
           >
             See how Promohomex is bringing peace of mind to thousands of property buyers across Bharat.
           </motion.p>

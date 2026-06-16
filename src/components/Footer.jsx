@@ -70,12 +70,6 @@ const Footer = () => {
                   <li><Link to="/terms" className="text-base text-gray-300 hover:text-brand-yellow transition-colors">Terms of Service</Link></li>
                 </ul>
               </div>
-              <div className="mt-12 md:mt-0">
-                <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Ecosystem</h3>
-                <ul className="mt-4 space-y-4">
-                  <li><a href="https://plotyards.com" target="_blank" rel="noopener noreferrer" className="text-base text-gray-300 hover:text-brand-yellow transition-colors">Plotyards Marketplace</a></li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>

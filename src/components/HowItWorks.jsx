@@ -35,7 +35,7 @@ const HowItWorks = () => {
           <h3 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white">
             How It Works
           </h3>
-          <p className="mt-6 max-w-2xl mx-auto text-xl text-gray-400 font-light">
+          <p className="mt-6 max-w-2xl mx-auto text-xl text-gray-400 font-light capitalize">
             We've simplified the entire process so you can sit back and watch your home come to life.
           </p>
         </div>

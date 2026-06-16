@@ -39,7 +39,7 @@ const Hero = ({ onRegisterClick }) => {
             </span>
           </h1>
           
-          <p className="mt-4 text-lg sm:text-2xl text-gray-300 max-w-2xl mb-8 sm:mb-10 font-light">
+          <p className="mt-4 text-lg sm:text-2xl text-gray-300 max-w-2xl mb-8 sm:mb-10 font-light capitalize">
             Empowering homebuyers with transparent, timely updates about your property's progress and value appreciation.
           </p>
           

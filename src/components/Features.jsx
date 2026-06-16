@@ -64,7 +64,7 @@ const Features = () => {
           <h3 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6">
             Why Promohomex?
           </h3>
-          <p className="max-w-3xl mx-auto text-xl text-gray-400 font-light">
+          <p className="max-w-3xl mx-auto text-xl text-gray-400 font-light capitalize">
             We bridge the communication gap in real estate, offering unparalleled benefits and peace of mind to homebuyers.
           </p>
         </motion.div>

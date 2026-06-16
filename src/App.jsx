@@ -10,6 +10,7 @@ import RegistrationForm from './components/RegistrationForm';
 import Footer from './components/Footer';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
+import Popup from './components/Popup';
 
 const Home = ({ scrollToRegistration }) => (
   <main className="flex-grow">
@@ -59,6 +60,7 @@ function App() {
       </Routes>
 
       <Footer />
+      <Popup />
     </div>
   );
 }
