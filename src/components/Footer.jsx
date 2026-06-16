@@ -57,7 +57,7 @@ const Footer = () => {
                 <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Support</h3>
                 <ul className="mt-4 space-y-4">
                   <li><a href="#register" onClick={(e) => scrollToSection(e, 'register')} className="text-base text-gray-300 hover:text-brand-yellow transition-colors cursor-pointer">Contact Us</a></li>
-                  <li><a href="https://wa.me/918287697756" target="_blank" rel="noopener noreferrer" className="text-base text-gray-300 hover:text-brand-yellow transition-colors">WhatsApp Help</a></li>
+                  <li><a href="https://wa.me/919870534978" target="_blank" rel="noopener noreferrer" className="text-base text-gray-300 hover:text-brand-yellow transition-colors">WhatsApp Help</a></li>
                   <li><a href="#faqs" onClick={(e) => scrollToSection(e, 'faqs')} className="text-base text-gray-300 hover:text-brand-yellow transition-colors cursor-pointer">FAQs</a></li>
                 </ul>
               </div>

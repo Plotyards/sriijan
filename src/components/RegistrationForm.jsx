@@ -71,7 +71,7 @@ const RegistrationForm = () => {
 - *Unit Number:* ${formData.unitNumber}`;
 
     const encodedMessage = encodeURIComponent(message);
-    const whatsappNumber = '918287697756'; 
+    const whatsappNumber = '919870534978'; 
     
     // 3. Redirect to WhatsApp
     window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
