@@ -5,13 +5,20 @@ import Logo from './Logo';
 
 const Hero = ({ onRegisterClick }) => {
   return (
-    <div className="relative min-h-[90vh] overflow-hidden bg-gray-900 text-white flex items-center">
-      {/* Modern animated gradient background */}
+    <div className="relative min-h-[90vh] overflow-hidden bg-gray-950 text-white flex items-center pb-20 lg:pb-0">
+      {/* Modern animated gradient and premium construction background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-brand-red opacity-20"></div>
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-brand-yellow rounded-full mix-blend-multiply filter blur-[128px] opacity-40 animate-blob"></div>
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-red rounded-full mix-blend-multiply filter blur-[128px] opacity-40 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-32 left-20 w-[500px] h-[500px] bg-brand-red-light rounded-full mix-blend-multiply filter blur-[128px] opacity-40 animate-blob animation-delay-4000"></div>
+        {/* Adjusted background image opacity and blend mode for a clearer premium look */}
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541888081-30913c32e93a?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-50 mix-blend-luminosity animate-[kenburns_30s_ease-out_infinite_alternate]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/80 via-[#0a0a0a]/40 to-[#0a0a0a]"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/60 to-transparent"></div>
+        
+        {/* Premium Noise Overlay */}
+        <div className="absolute inset-0 opacity-[0.04] mix-blend-overlay z-0 pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
+        
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-brand-yellow rounded-full mix-blend-screen filter blur-[128px] opacity-20 animate-blob"></div>
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-red rounded-full mix-blend-screen filter blur-[128px] opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-32 left-20 w-[500px] h-[500px] bg-brand-red-light rounded-full mix-blend-screen filter blur-[128px] opacity-20 animate-blob animation-delay-4000"></div>
       </div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -26,34 +33,35 @@ const Hero = ({ onRegisterClick }) => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6 text-brand-yellow font-medium text-xs sm:text-sm tracking-wide"
+            className="inline-flex items-center px-5 py-2.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 mb-8 text-brand-yellow font-medium text-xs sm:text-sm tracking-widest uppercase shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
           >
-            <span className="w-2 h-2 rounded-full bg-brand-yellow mr-2 animate-pulse"></span>
-            Bharat’s First Construction Tracking Platform
+            <span className="w-2 h-2 rounded-full bg-brand-yellow mr-3 animate-pulse shadow-[0_0_10px_rgba(226,157,34,0.8)]"></span>
+            Bharat’s First Tracking Platform
           </motion.div>
           
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 sm:mb-8 leading-[1.1]">
+          <h1 className="text-5xl sm:text-7xl lg:text-[5rem] font-black tracking-tight mb-6 sm:mb-8 leading-[1.05] drop-shadow-2xl">
             Tracking Homes. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-yellow to-yellow-200">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#e29d22] via-[#ffd685] to-[#e29d22] bg-[length:200%_auto] animate-[shimmer_4s_linear_infinite]">
               Building Trust.
             </span>
           </h1>
           
-          <p className="mt-4 text-lg sm:text-2xl text-gray-300 max-w-2xl mb-8 sm:mb-10 font-light capitalize">
+          <p className="mt-4 text-lg sm:text-2xl text-gray-300/90 max-w-2xl mb-10 sm:mb-12 font-light leading-relaxed tracking-wide">
             Empowering homebuyers with transparent, timely updates about your property's progress and value appreciation.
           </p>
           
           <motion.div 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-block relative group mt-2"
           >
+            <div className="absolute -inset-1.5 bg-gradient-to-r from-brand-yellow/60 to-[#ffd685]/60 rounded-full blur-lg opacity-40 group-hover:opacity-70 transition duration-700"></div>
             <button 
               onClick={onRegisterClick}
-              className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-[0_0_40px_rgba(226,157,34,0.4)] text-base sm:text-lg font-medium text-gray-900 bg-brand-yellow hover:bg-brand-yellow-light transition-all duration-300"
+              className="relative overflow-hidden inline-flex items-center px-10 sm:px-12 py-4 sm:py-5 rounded-full text-base sm:text-lg font-bold text-gray-900 bg-gradient-to-r from-brand-yellow via-[#ffcd61] to-brand-yellow bg-[length:200%_auto] group-hover:bg-right transition-all duration-500 shadow-[0_8px_30px_rgba(226,157,34,0.4)] border border-[#ffcd61]/50"
             >
-              Start Tracking Now
-              <ArrowRight className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />
+              <span className="relative z-10 tracking-wide">Start Tracking Now</span>
+              <ArrowRight className="ml-3 h-5 w-5 text-gray-900 relative z-10 transition-transform group-hover:translate-x-1" aria-hidden="true" />
             </button>
           </motion.div>
         </motion.div>

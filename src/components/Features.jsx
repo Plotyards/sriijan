@@ -46,12 +46,14 @@ const cardVariants = {
 
 const Features = () => {
   return (
-    <div id="features" className="py-24 bg-gray-900 overflow-hidden relative">
+    <div id="features" className="py-24 bg-[#050505] overflow-hidden relative border-t border-[#111]">
+      {/* Premium Noise Overlay */}
+      <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay z-0 pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         
         {/* Decorative elements */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-yellow/10 rounded-full blur-[120px] pointer-events-none"></div>
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-brand-red/20 rounded-full blur-[100px] pointer-events-none"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-yellow/5 rounded-full blur-[120px] pointer-events-none"></div>
 
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -60,11 +62,11 @@ const Features = () => {
           transition={{ duration: 0.6 }}
           className="relative text-center"
         >
-          <h2 className="text-sm font-bold tracking-widest text-brand-yellow uppercase mb-3">Our Core Value</h2>
-          <h3 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6">
+          <h2 className="text-sm font-bold tracking-widest text-[#e29d22] uppercase mb-3">Our Core Value</h2>
+          <h3 className="text-4xl md:text-5xl font-black tracking-tight text-white mb-6 drop-shadow-xl">
             Why Promohomex?
           </h3>
-          <p className="max-w-3xl mx-auto text-xl text-gray-400 font-light capitalize">
+          <p className="max-w-3xl mx-auto text-lg sm:text-xl text-gray-400 font-light leading-relaxed">
             We bridge the communication gap in real estate, offering unparalleled benefits and peace of mind to homebuyers.
           </p>
         </motion.div>

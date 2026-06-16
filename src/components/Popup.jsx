@@ -33,25 +33,28 @@ const Popup = () => {
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-          className="fixed bottom-24 md:bottom-6 left-4 right-4 md:left-6 md:right-auto z-50 max-w-sm bg-white rounded-xl shadow-2xl border-l-4 border-brand-yellow overflow-hidden"
+          className="fixed bottom-36 md:bottom-10 left-4 right-4 md:left-6 md:right-auto z-50 max-w-sm bg-[#111]/90 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-white/10 overflow-hidden"
         >
+          {/* Subtle top gradient border */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-yellow via-brand-red to-brand-yellow"></div>
+          
           <div className="relative p-5">
             <button
               onClick={() => setIsVisible(false)}
-              className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
+              className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors cursor-pointer bg-white/5 hover:bg-white/10 rounded-full p-1"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
             <div className="flex items-start gap-4 mt-1">
-              <div className="bg-yellow-100 p-2.5 rounded-full flex-shrink-0 mt-1">
-                <TrendingUp className="w-6 h-6 text-brand-yellow" />
+              <div className="bg-gradient-to-br from-brand-yellow/20 to-brand-red/20 border border-brand-yellow/30 p-2.5 rounded-xl flex-shrink-0 mt-1 shadow-[0_0_15px_rgba(226,157,34,0.15)]">
+                <TrendingUp className="w-5 h-5 text-brand-yellow" />
               </div>
               <div className="pr-4">
-                <h4 className="font-bold text-gray-900 text-lg mb-1 leading-tight">
+                <h4 className="font-bold text-white text-base mb-1.5 leading-tight tracking-wide">
                   Join The Community!
                 </h4>
-                <p className="text-gray-600 font-medium capitalize">
-                  10,000 Buyers Are Tracking Their Property
+                <p className="text-gray-400 font-light text-sm leading-relaxed capitalize">
+                  10,000+ Buyers Are Tracking Their Property
                 </p>
               </div>
             </div>

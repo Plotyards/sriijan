@@ -24,27 +24,28 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <div id="how-it-works" className="py-24 bg-gray-900 relative overflow-hidden">
+    <div id="how-it-works" className="py-24 bg-[#0a0a0a] relative overflow-hidden">
+      {/* Premium Noise Overlay */}
+      <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay z-0 pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
+
       {/* Decorative background blobs */}
-      <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-brand-red/10 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-brand-yellow/10 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-brand-yellow/5 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-[#e29d22]/5 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-20">
-          <h2 className="text-sm font-bold tracking-widest text-brand-yellow uppercase mb-3">The Process</h2>
-          <h3 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white">
+          <h2 className="text-sm font-bold tracking-widest text-[#e29d22] uppercase mb-3">The Process</h2>
+          <h3 className="text-4xl md:text-5xl font-black tracking-tight text-white drop-shadow-xl">
             How It Works
           </h3>
-          <p className="mt-6 max-w-2xl mx-auto text-xl text-gray-400 font-light capitalize">
+          <p className="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-gray-400 font-light leading-relaxed">
             We've simplified the entire process so you can sit back and watch your home come to life.
           </p>
         </div>
 
         <div className="relative">
           {/* Connecting line for desktop */}
-          <div className="hidden lg:block absolute top-1/2 left-0 w-full h-1 bg-white/10 -translate-y-1/2 rounded-full">
-            <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-brand-yellow via-brand-red to-brand-yellow opacity-50"></div>
-          </div>
+          <div className="hidden lg:block absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#ffcd61]/30 to-transparent -translate-y-1/2 rounded-full"></div>
 
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-8">
             {steps.map((step, index) => (

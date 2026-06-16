@@ -51,3 +51,14 @@
     transform: translate(0px, 0px) scale(1);
   }
 }
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(200%) skewX(-12deg);
+  }
+}
+
+@keyframes kenburns {
+  0% { transform: scale(1.05); }
+  100% { transform: scale(1.1); }
+}

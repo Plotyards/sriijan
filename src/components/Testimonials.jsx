@@ -24,7 +24,10 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <div id="testimonials" className="py-16 sm:py-24 bg-gray-900 relative overflow-hidden">
+    <div id="testimonials" className="py-16 sm:py-24 bg-[#0a0a0a] relative overflow-hidden border-t border-[#111]">
+      {/* Premium Noise Overlay */}
+      <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay z-0 pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
+
       {/* Background elements */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-yellow/5 rounded-full blur-[120px] pointer-events-none"></div>
 
@@ -34,7 +37,7 @@ const Testimonials = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6 text-brand-yellow font-medium text-xs sm:text-sm tracking-wide"
+            className="inline-flex items-center px-5 py-2 rounded-full bg-white/5 border border-white/5 mb-6 text-[#ffcd61] font-medium text-xs sm:text-sm tracking-widest uppercase shadow-sm"
           >
             Trusted by Homebuyers
           </motion.div>
@@ -43,7 +46,7 @@ const Testimonials = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-6"
+            className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight mb-6 drop-shadow-xl"
           >
             Don't just take our word for it.
           </motion.h2>
@@ -52,7 +55,7 @@ const Testimonials = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg sm:text-xl text-gray-400 font-light capitalize"
+            className="text-lg sm:text-xl text-gray-400 font-light leading-relaxed"
           >
             See how Promohomex is bringing peace of mind to thousands of property buyers across Bharat.
           </motion.p>

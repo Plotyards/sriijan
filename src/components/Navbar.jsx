@@ -46,9 +46,10 @@ const Navbar = ({ onRegisterClick }) => {
         <div className="flex items-center">
           <button 
             onClick={handleTrackClick} 
-            className="bg-brand-red hover:bg-brand-red-dark text-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-brand-red/30 transform hover:-translate-y-0.5 whitespace-nowrap"
+            className="relative overflow-hidden group bg-gradient-to-r from-brand-red to-[#c00000] text-white px-5 sm:px-6 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 shadow-[0_0_20px_rgba(155,0,0,0.4)] hover:shadow-[0_0_25px_rgba(226,157,34,0.5)] transform hover:-translate-y-0.5 whitespace-nowrap border border-white/20"
           >
-            Track Property
+            <span className="relative z-10">Track Property</span>
+            <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
           </button>
         </div>
       </div>
