@@ -29,7 +29,7 @@ const Hero = ({ onRegisterClick }) => {
             className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6 text-brand-yellow font-medium text-xs sm:text-sm tracking-wide"
           >
             <span className="w-2 h-2 rounded-full bg-brand-yellow mr-2 animate-pulse"></span>
-            India's First Transparent Construction Platform
+            Bharat’s First Construction Tracking Platform
           </motion.div>
           
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 sm:mb-8 leading-[1.1]">

@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
 import Popup from './components/Popup';
+import MobileBottomNav from './components/MobileBottomNav';
 
 const Home = ({ scrollToRegistration }) => (
   <main className="flex-grow">
@@ -50,7 +51,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col font-sans selection:bg-brand-yellow/30">
+    <div className="min-h-screen bg-gray-50 flex flex-col font-sans selection:bg-brand-yellow/30 pb-20 md:pb-0">
       <Navbar onRegisterClick={scrollToRegistration} />
 
       <Routes>
@@ -61,6 +62,7 @@ function App() {
 
       <Footer />
       <Popup />
+      <MobileBottomNav />
     </div>
   );
 }

@@ -33,7 +33,7 @@ const Popup = () => {
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-          className="fixed bottom-6 left-6 z-50 max-w-sm w-full bg-white rounded-xl shadow-2xl border-l-4 border-brand-yellow overflow-hidden"
+          className="fixed bottom-24 md:bottom-6 left-4 right-4 md:left-6 md:right-auto z-50 max-w-sm bg-white rounded-xl shadow-2xl border-l-4 border-brand-yellow overflow-hidden"
         >
           <div className="relative p-5">
             <button
