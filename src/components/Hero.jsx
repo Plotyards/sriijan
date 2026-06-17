@@ -36,7 +36,7 @@ const Hero = ({ onRegisterClick }) => {
             className="inline-flex items-center px-5 py-2.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 mb-8 text-brand-yellow font-medium text-xs sm:text-sm tracking-widest uppercase shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
           >
             <span className="w-2 h-2 rounded-full bg-brand-yellow mr-3 animate-pulse shadow-[0_0_10px_rgba(226,157,34,0.8)]"></span>
-            Bharat’s First Tracking Platform
+            Bharat’s First Construction Tracking Platform
           </motion.div>
           
           <h1 className="text-5xl sm:text-7xl lg:text-[5rem] font-black tracking-tight mb-6 sm:mb-8 leading-[1.05] drop-shadow-2xl">
