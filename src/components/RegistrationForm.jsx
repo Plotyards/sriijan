@@ -1,28 +1,40 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { useApp } from '../context/AppContext';
+import { CheckCircle2, ArrowRight, ShieldCheck, Sparkles, UserCheck, Lock, AlertCircle, Building2, LogIn, UserPlus } from 'lucide-react';
+import AuthModal from './AuthModal';
 
 const RegistrationForm = () => {
+  const navigate = useNavigate();
+  const { addNewPropertyBooking, currentUser } = useApp();
+
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [authModalTab, setAuthModalTab] = useState('buyer_signup');
+  const [formError, setFormError] = useState('');
+
   const [formData, setFormData] = useState({
-    name: '',
-    mobile: '',
-    email: '',
+    name: currentUser?.name || '',
+    mobile: currentUser?.phone || '',
+    email: currentUser?.email || '',
     projectName: '',
-    unitNumber: ''
+    tower: '',
+    unitNumber: '',
+    bookedPrice: '12500000'
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Smooth 3D Tilt Effect
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  
+
   const springConfig = { damping: 25, stiffness: 150, mass: 0.5 };
   const x = useSpring(mouseX, springConfig);
   const y = useSpring(mouseY, springConfig);
-  
-  // Very subtle tilt for a large form
-  const rotateX = useTransform(y, [-500, 500], [5, -5]);
-  const rotateY = useTransform(x, [-500, 500], [-5, 5]);
+
+  const rotateX = useTransform(y, [-500, 500], [3, -3]);
+  const rotateY = useTransform(x, [-500, 500], [-3, 3]);
 
   function handleMouse(event) {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -33,162 +45,327 @@ const RegistrationForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    if (formError) setFormError('');
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    
-    // 1. Background Database/Google Sheet Save (Hidden from URL)
-    try {
-      // TODO: Replace this with your actual Google Apps Script Web App URL or Webhook
-      const dbWebhookUrl = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE"; 
-      
-      // We only execute if the URL is set
-      if (dbWebhookUrl !== "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE") {
-        await fetch(dbWebhookUrl, {
-          method: 'POST',
-          mode: 'no-cors', // Prevents CORS issues with Google Apps Script
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData)
-        });
-      }
-    } catch (error) {
-      console.error("Error saving to database:", error);
-      // We proceed to WhatsApp even if background save fails silently
+    setFormError('');
+
+    if (!currentUser || !currentUser.isLoggedIn) {
+      setAuthModalTab('buyer_signup');
+      setIsAuthModalOpen(true);
+      return;
     }
 
-    // 2. Construct WhatsApp message
-    const message = `Hello Promohomex Team! I would like to register for construction updates. 
-    
-*Details:*
-- *Name:* ${formData.name}
-- *Mobile:* ${formData.mobile}
-- *Email:* ${formData.email}
-- *Project Name:* ${formData.projectName}
-- *Unit Number:* ${formData.unitNumber}`;
+    if (!formData.name.trim()) {
+      setFormError("Please enter your full name.");
+      return;
+    }
+    if (!formData.email.trim() || !formData.email.includes('@')) {
+      setFormError("Please enter a valid email address.");
+      return;
+    }
+    if (!formData.projectName.trim() || !formData.unitNumber.trim()) {
+      setFormError("Please fill in your Project Name and Unit Number.");
+      return;
+    }
 
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappNumber = '919870534978'; 
-    
-    // 3. Redirect to WhatsApp
-    window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
-    
-    // Reset Form
-    setIsSubmitting(false);
-    setFormData({ name: '', mobile: '', email: '', projectName: '', unitNumber: '' });
+    // Direct Property Registration (No payment required on this form)
+    setIsSubmitting(true);
+    addNewPropertyBooking({
+      fullName: formData.name,
+      phone: formData.mobile,
+      email: formData.email,
+      projectName: formData.projectName,
+      tower: formData.tower || 'Tower A',
+      unitNo: formData.unitNumber,
+      bookedPrice: formData.bookedPrice,
+      paymentStatus: 'Registered',
+      paymentAmount: 0,
+      transactionId: 'REG-' + Date.now()
+    });
+
+    setTimeout(() => {
+      setIsSubmitting(false);
+      navigate('/dashboard');
+    }, 400);
   };
 
   return (
-    <div id="register" className="bg-gray-900 py-16 sm:py-24 lg:py-32 relative overflow-hidden perspective-[2000px]">
-      {/* Decorative background elements */}
-      <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-red rounded-full opacity-20 blur-[100px]"></div>
-      <div className="absolute bottom-0 right-0 translate-x-1/3 translate-y-1/3 w-[800px] h-[800px] bg-brand-yellow rounded-full opacity-10 blur-[120px]"></div>
+    <div id="register" className="bg-slate-50 py-16 sm:py-24 relative overflow-hidden border-b border-slate-200">
+      {/* Soft Ambient Light */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-amber-300/20 rounded-full blur-[140px] pointer-events-none"></div>
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
-        
-        <motion.div 
+        <motion.div
           style={{ rotateX, rotateY, z: 100, transformStyle: "preserve-3d" }}
           onMouseMove={handleMouse}
           onMouseLeave={() => {
             mouseX.set(0);
             mouseY.set(0);
           }}
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="w-full bg-gray-800/40 backdrop-blur-3xl rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] overflow-hidden border border-white/10 transform-style-3d"
+          className="w-full bg-white/90 backdrop-blur-3xl rounded-3xl shadow-[0_30px_90px_rgba(0,0,0,0.12)] overflow-hidden border border-white/90 relative"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-5 h-full relative z-10" style={{ transform: "translateZ(30px)" }}>
-            
-            {/* Form Info Section */}
-            <div className="lg:col-span-2 bg-gradient-to-br from-brand-red to-brand-red-dark backdrop-blur-md p-6 sm:p-10 text-white flex flex-col justify-between shadow-[20px_0_50px_rgba(0,0,0,0.3)] relative z-20 border-r border-white/10">
-              <div>
-                <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-4 text-white drop-shadow-md">Start Tracking</h3>
-                <p className="text-red-100/80 font-light mb-8 sm:mb-10 text-sm sm:text-base leading-relaxed">
-                  Fill in your details to get securely connected with our support team on WhatsApp and start receiving your property updates.
+          {/* Frosted Glass Lock Overlay when User is NOT Logged In */}
+          {(!currentUser || !currentUser.isLoggedIn) && (
+            <div className="absolute inset-0 z-40 bg-slate-950/85 backdrop-blur-xl p-8 flex flex-col items-center justify-center text-center text-white border border-white/10 space-y-5 transition-all">
+              <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-amber-500/30 to-amber-600/10 text-amber-400 border border-amber-500/40 flex items-center justify-center shadow-[0_0_50px_rgba(245,158,11,0.25)] animate-pulse">
+                <Lock size={38} />
+              </div>
+
+              <div className="max-w-md space-y-2">
+                <span className="inline-flex items-center gap-1.5 text-amber-400 font-extrabold text-[11px] uppercase tracking-widest bg-amber-500/10 px-3.5 py-1 rounded-full border border-amber-500/30">
+                  <ShieldCheck size={13} /> Authentication Required
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                  Sign Up Before Registering Property
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-300 font-medium leading-relaxed">
+                  Please create a buyer account or sign in first to link and register your booked property to your personal dashboard.
                 </p>
-                <div className="space-y-6 sm:space-y-8 hidden sm:block">
-                  <div className="flex items-start group cursor-default">
-                    <div className="flex-shrink-0 bg-white/10 p-3 rounded-2xl border border-white/10 shadow-inner backdrop-blur-sm">
-                      <svg className="w-6 h-6 text-brand-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                      </svg>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center gap-3 pt-2 w-full max-w-sm">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setAuthModalTab('buyer_signup');
+                    setIsAuthModalOpen(true);
+                  }}
+                  className="w-full py-3.5 px-5 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 rounded-2xl font-black text-xs sm:text-sm transition-all shadow-lg shadow-amber-500/25 border border-amber-300 flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <UserPlus size={18} /> Sign Up <ArrowRight size={16} />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setAuthModalTab('buyer_login');
+                    setIsAuthModalOpen(true);
+                  }}
+                  className="w-full py-3.5 px-5 bg-slate-900 hover:bg-slate-800 text-white rounded-2xl font-black text-xs sm:text-sm transition-all border border-slate-700 flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <LogIn size={18} /> Sign In
+                </button>
+              </div>
+            </div>
+          )}
+
+          <div className="grid grid-cols-1 lg:grid-cols-5 h-full">
+            {/* Left Info Panel (Spatial Dark Glass Panel) */}
+            <div className="lg:col-span-2 bg-slate-950/95 backdrop-blur-3xl p-8 sm:p-10 text-white flex flex-col justify-between relative overflow-hidden border-r border-white/10">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/20 rounded-full blur-[80px] pointer-events-none"></div>
+
+              <div className="relative z-10">
+                <span className="inline-flex items-center gap-1.5 text-amber-400 font-extrabold text-[11px] uppercase tracking-widest bg-amber-500/10 px-3.5 py-1.5 rounded-full border border-amber-500/30 shadow-xs">
+                  <Sparkles size={14} className="animate-pulse" /> Instant Dashboard Access
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-black mt-4 text-white tracking-tight leading-tight">
+                  Register Your <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500">
+                    Booked Property
+                  </span>
+                </h3>
+                <p className="mt-3 text-xs sm:text-sm text-slate-300 leading-relaxed font-medium">
+                  Enter your property booking details to unlock your personalized construction tracking timeline, ROI analytics, drone surveys, and document vault.
+                </p>
+
+                <div className="mt-8 space-y-3.5">
+                  <div className="flex items-start gap-3.5 bg-slate-900/80 p-3.5 rounded-2xl border border-slate-800 backdrop-blur-sm">
+                    <div className="p-2 rounded-xl bg-amber-500 text-slate-950 font-black shrink-0">
+                      <CheckCircle2 size={18} />
                     </div>
-                    <div className="ml-5">
-                      <p className="text-sm font-medium text-brand-yellow uppercase tracking-widest mb-1">WhatsApp Updates</p>
-                      <p className="text-lg font-bold text-white">Direct to your phone</p>
+                    <div>
+                      <p className="text-xs font-black uppercase text-amber-400 tracking-wider">STAGE PROGRESS</p>
+                      <p className="text-xs font-semibold text-slate-200 mt-0.5">Monthly site photos & drone surveys</p>
                     </div>
                   </div>
-                  <div className="flex items-start group cursor-default">
-                    <div className="flex-shrink-0 bg-white/10 p-3 rounded-2xl border border-white/10 shadow-inner backdrop-blur-sm">
-                      <svg className="w-6 h-6 text-brand-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                      </svg>
+
+                  <div className="flex items-start gap-3.5 bg-slate-900/80 p-3.5 rounded-2xl border border-slate-800 backdrop-blur-sm">
+                    <div className="p-2 rounded-xl bg-amber-500 text-slate-950 font-black shrink-0">
+                      <CheckCircle2 size={18} />
                     </div>
-                    <div className="ml-5">
-                      <p className="text-sm font-medium text-brand-yellow uppercase tracking-widest mb-1">Secure & Private</p>
-                      <p className="text-lg font-bold text-white">Verified buyer data</p>
+                    <div>
+                      <p className="text-xs font-black uppercase text-amber-400 tracking-wider">INVESTMENT GROWTH</p>
+                      <p className="text-xs font-semibold text-slate-200 mt-0.5">Live market resale price updates</p>
                     </div>
                   </div>
                 </div>
               </div>
+
+              <div className="relative z-10 mt-8 pt-4 border-t border-slate-800 text-[11px] text-slate-400 font-semibold flex items-center gap-2">
+                <ShieldCheck size={16} className="text-emerald-400" /> 256-Bit Encrypted Builder Verified Portal
+              </div>
             </div>
 
-            {/* Form Input Section */}
-            <div className="lg:col-span-3 p-6 sm:p-10 relative z-10" style={{ transform: "translateZ(10px)" }}>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {/* Form Inputs Section */}
+            <div className="lg:col-span-3 p-8 sm:p-10 bg-white">
+              {currentUser?.isLoggedIn && (
+                <div className="mb-6 p-3 rounded-2xl bg-amber-50 border border-amber-200/80 text-amber-900 flex items-center justify-between text-xs font-bold shadow-xs">
+                  <span className="flex items-center gap-2">
+                    <UserCheck size={16} className="text-amber-600" />
+                    Auto-filled details from your account ({currentUser.name})
+                  </span>
+                  <span className="text-[10px] bg-amber-200/60 px-2 py-0.5 rounded text-amber-900 font-bold uppercase">
+                    Profile Linked
+                  </span>
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {formError && (
+                  <div className="p-3 bg-red-50 border border-red-200 text-red-700 rounded-2xl text-xs font-bold flex items-center gap-2">
+                    <AlertCircle size={16} className="shrink-0" /> {formError}
+                  </div>
+                )}
+
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div className="sm:col-span-2">
-                    <label htmlFor="name" className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Full Name</label>
-                    <input type="text" name="name" id="name" required value={formData.name} onChange={handleChange} 
-                      className="block w-full rounded-xl bg-white/5 border border-white/10 py-3.5 px-4 text-white placeholder-gray-500 outline-none transition-all focus:bg-white/10 focus:border-brand-red focus:ring-1 focus:ring-brand-red shadow-inner" 
-                      placeholder="John Doe" />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="mobile" className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Mobile Number</label>
-                    <input type="tel" name="mobile" id="mobile" required value={formData.mobile} onChange={handleChange} 
-                      className="block w-full rounded-xl bg-white/5 border border-white/10 py-3.5 px-4 text-white placeholder-gray-500 outline-none transition-all focus:bg-white/10 focus:border-brand-red focus:ring-1 focus:ring-brand-red shadow-inner" 
-                      placeholder="+91 98765 43210" />
-                  </div>
-
-                  <div>
-                    <label htmlFor="email" className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Email Address</label>
-                    <input type="email" name="email" id="email" required value={formData.email} onChange={handleChange} 
-                      className="block w-full rounded-xl bg-white/5 border border-white/10 py-3.5 px-4 text-white placeholder-gray-500 outline-none transition-all focus:bg-white/10 focus:border-brand-red focus:ring-1 focus:ring-brand-red shadow-inner" 
-                      placeholder="john@example.com" />
+                    <label htmlFor="name" className="block text-[11px] font-black text-slate-700 uppercase tracking-widest mb-1">
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-semibold placeholder-slate-400 outline-none focus:border-amber-500 focus:bg-white focus:ring-2 focus:ring-amber-500/20 transition-all"
+                      placeholder="e.g. Nikhil Jangra"
+                    />
                   </div>
 
                   <div>
-                    <label htmlFor="projectName" className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Project Name</label>
-                    <input type="text" name="projectName" id="projectName" required value={formData.projectName} onChange={handleChange} 
-                      className="block w-full rounded-xl bg-white/5 border border-white/10 py-3.5 px-4 text-white placeholder-gray-500 outline-none transition-all focus:bg-white/10 focus:border-brand-red focus:ring-1 focus:ring-brand-red shadow-inner" 
-                      placeholder="e.g. Plotyards Valley" />
+                    <label htmlFor="mobile" className="block text-[11px] font-black text-slate-700 uppercase tracking-widest mb-1">
+                      Mobile Phone
+                    </label>
+                    <input
+                      type="tel"
+                      name="mobile"
+                      id="mobile"
+                      required
+                      value={formData.mobile}
+                      onChange={handleChange}
+                      className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-semibold placeholder-slate-400 outline-none focus:border-amber-500 focus:bg-white focus:ring-2 focus:ring-amber-500/20 transition-all"
+                      placeholder="+91 98705 34978"
+                    />
                   </div>
 
                   <div>
-                    <label htmlFor="unitNumber" className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Unit Number</label>
-                    <input type="text" name="unitNumber" id="unitNumber" required value={formData.unitNumber} onChange={handleChange} 
-                      className="block w-full rounded-xl bg-white/5 border border-white/10 py-3.5 px-4 text-white placeholder-gray-500 outline-none transition-all focus:bg-white/10 focus:border-brand-red focus:ring-1 focus:ring-brand-red shadow-inner" 
-                      placeholder="e.g. A-102" />
+                    <label htmlFor="email" className="block text-[11px] font-black text-slate-700 uppercase tracking-widest mb-1">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-semibold placeholder-slate-400 outline-none focus:border-amber-500 focus:bg-white focus:ring-2 focus:ring-amber-500/20 transition-all"
+                      placeholder="nikhil@example.com"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="projectName" className="block text-[11px] font-black text-slate-700 uppercase tracking-widest mb-1">
+                      Project Name
+                    </label>
+                    <input
+                      type="text"
+                      name="projectName"
+                      id="projectName"
+                      required
+                      value={formData.projectName}
+                      onChange={handleChange}
+                      className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-semibold placeholder-slate-400 outline-none focus:border-amber-500 focus:bg-white focus:ring-2 focus:ring-amber-500/20 transition-all"
+                      placeholder="e.g. Promohomex Grand Residency"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="tower" className="block text-[11px] font-black text-slate-700 uppercase tracking-widest mb-1">
+                      Tower / Block
+                    </label>
+                    <input
+                      type="text"
+                      name="tower"
+                      id="tower"
+                      required
+                      value={formData.tower}
+                      onChange={handleChange}
+                      className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-semibold placeholder-slate-400 outline-none focus:border-amber-500 focus:bg-white focus:ring-2 focus:ring-amber-500/20 transition-all"
+                      placeholder="e.g. Tower B"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="unitNumber" className="block text-[11px] font-black text-slate-700 uppercase tracking-widest mb-1">
+                      Unit Number
+                    </label>
+                    <input
+                      type="text"
+                      name="unitNumber"
+                      id="unitNumber"
+                      required
+                      value={formData.unitNumber}
+                      onChange={handleChange}
+                      className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-semibold placeholder-slate-400 outline-none focus:border-amber-500 focus:bg-white focus:ring-2 focus:ring-amber-500/20 transition-all"
+                      placeholder="e.g. Unit 1402"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="bookedPrice" className="block text-[11px] font-black text-slate-700 uppercase tracking-widest mb-1">
+                      Booked Price (₹ Rupees)
+                    </label>
+                    <input
+                      type="number"
+                      name="bookedPrice"
+                      id="bookedPrice"
+                      required
+                      value={formData.bookedPrice}
+                      onChange={handleChange}
+                      className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-semibold placeholder-slate-400 outline-none focus:border-amber-500 focus:bg-white focus:ring-2 focus:ring-amber-500/20 transition-all"
+                      placeholder="12500000"
+                    />
                   </div>
                 </div>
 
-                <div className="pt-6">
-                  <button type="submit" disabled={isSubmitting} 
-                    className="w-full flex justify-center items-center py-4 px-8 border border-transparent rounded-full shadow-[0_0_20px_rgba(155,0,0,0.3)] text-lg font-bold tracking-wide text-white bg-gradient-to-r from-brand-red to-brand-red-light hover:from-brand-red-light hover:to-brand-red focus:outline-none transition-all duration-300 transform hover:-translate-y-1 disabled:opacity-70">
-                    {isSubmitting ? 'Processing...' : 'Connect on WhatsApp'}
+                <div className="pt-3 space-y-2.5">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-4 px-6 rounded-2xl font-black text-xs sm:text-sm tracking-wide text-slate-950 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 hover:from-amber-400 hover:to-amber-500 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-amber-500/25 border border-amber-400 cursor-pointer disabled:opacity-50"
+                  >
+                    {isSubmitting ? 'Creating Dashboard...' : (
+                      <>
+                        <Building2 size={17} /> Register Property & Track Live <ArrowRight size={17} />
+                      </>
+                    )}
                   </button>
-                  <p className="mt-4 text-center text-xs font-medium text-gray-500">By registering, you agree to our <a href="#" className="text-brand-yellow hover:text-white transition-colors">terms of service</a>.</p>
+
+                  <p className="text-center text-[11px] font-semibold text-slate-500">
+                    Instant property registration with RERA digital vault & automated valuation reports.
+                  </p>
                 </div>
               </form>
             </div>
           </div>
         </motion.div>
       </div>
+
+      {/* Auth Modal for Lock Overlay Action Buttons */}
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        initialTab={authModalTab}
+      />
     </div>
   );
 };

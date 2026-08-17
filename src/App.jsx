@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { AppProvider } from './context/AppContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import HowItWorks from './components/HowItWorks';
@@ -13,6 +14,10 @@ import TermsOfService from './components/TermsOfService';
 import Popup from './components/Popup';
 import MobileBottomNav from './components/MobileBottomNav';
 
+import BuyerDashboard from './pages/BuyerDashboard';
+import AdminPanel from './pages/AdminPanel';
+import AuthPage from './pages/AuthPage';
+
 const Home = ({ scrollToRegistration }) => (
   <main className="flex-grow">
     <Hero onRegisterClick={scrollToRegistration} />
@@ -24,7 +29,7 @@ const Home = ({ scrollToRegistration }) => (
   </main>
 );
 
-function App() {
+function AppContent() {
   const location = useLocation();
 
   useEffect(() => {
@@ -41,8 +46,6 @@ function App() {
   }, [location.state]);
 
   const scrollToRegistration = () => {
-    // If not on home page, we would typically redirect first, but since the button is mostly on Home, it's fine.
-    // Let's just scroll if we are on the homepage.
     const element = document.getElementById('register');
     if (element) {
       const y = element.getBoundingClientRect().top + window.scrollY - 100;
@@ -51,19 +54,33 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col font-sans selection:bg-brand-yellow/30 pb-20 md:pb-0">
+    <div className="min-h-screen bg-slate-50 flex flex-col font-sans selection:bg-amber-500/30 pb-20 md:pb-0">
       <Navbar onRegisterClick={scrollToRegistration} />
 
       <Routes>
         <Route path="/" element={<Home scrollToRegistration={scrollToRegistration} />} />
+        <Route path="/login" element={<AuthPage />} />
+        <Route path="/signup" element={<AuthPage />} />
+        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/dashboard/*" element={<BuyerDashboard />} />
+        <Route path="/admin/*" element={<AdminPanel />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<TermsOfService />} />
+        <Route path="*" element={<Home scrollToRegistration={scrollToRegistration} />} />
       </Routes>
 
       <Footer />
       <Popup />
       <MobileBottomNav />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <AppProvider>
+      <AppContent />
+    </AppProvider>
   );
 }
 

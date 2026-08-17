@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 
@@ -20,63 +19,53 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-900 text-white border-t border-gray-800">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+    <footer className="bg-slate-950 text-slate-300 border-t border-slate-800 relative overflow-hidden">
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 relative z-10">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-          <div className="space-y-8 xl:col-span-1">
+          <div className="space-y-6 xl:col-span-1">
             <Link to="/" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})} className="flex items-center gap-3">
-              <Logo className="scale-75 origin-left" />
+              <Logo variant="dark" size="normal" />
             </Link>
-            <p className="text-gray-400 text-base">
+            <p className="text-slate-400 text-sm font-medium leading-relaxed">
               Tracking Homes. Building Trust.<br />
-              Bharat's Construction Platform.
+              Bharat's Premier Property Construction & Investment Tracking Platform.
             </p>
-            <div className="flex space-x-6">
-              {/* Social placeholders */}
-              <a href="#" className="text-gray-400 hover:text-brand-yellow transition-colors">
-                <span className="sr-only">Facebook</span>
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" /></svg>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-brand-yellow transition-colors">
-                <span className="sr-only">Instagram</span>
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fillRule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clipRule="evenodd" /></svg>
-              </a>
-            </div>
           </div>
           <div className="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Platform</h3>
-                <ul className="mt-4 space-y-4">
-                  <li><a href="#how-it-works" onClick={(e) => scrollToSection(e, 'how-it-works')} className="text-base text-gray-300 hover:text-brand-yellow transition-colors cursor-pointer">How it Works</a></li>
-                  <li><a href="#features" onClick={(e) => scrollToSection(e, 'features')} className="text-base text-gray-300 hover:text-brand-yellow transition-colors cursor-pointer">Features</a></li>
-                  <li><a href="#testimonials" onClick={(e) => scrollToSection(e, 'testimonials')} className="text-base text-gray-300 hover:text-brand-yellow transition-colors cursor-pointer">Testimonials</a></li>
+                <h3 className="text-xs font-black text-amber-400 tracking-widest uppercase">Platform</h3>
+                <ul className="mt-4 space-y-3 text-sm font-bold">
+                  <li><a href="#how-it-works" onClick={(e) => scrollToSection(e, 'how-it-works')} className="text-slate-300 hover:text-amber-400 transition-colors">How it Works</a></li>
+                  <li><a href="#features" onClick={(e) => scrollToSection(e, 'features')} className="text-slate-300 hover:text-amber-400 transition-colors">Features</a></li>
+                  <li><a href="#testimonials" onClick={(e) => scrollToSection(e, 'testimonials')} className="text-slate-300 hover:text-amber-400 transition-colors">Testimonials</a></li>
                 </ul>
               </div>
               <div className="mt-12 md:mt-0">
-                <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Support</h3>
-                <ul className="mt-4 space-y-4">
-                  <li><a href="#register" onClick={(e) => scrollToSection(e, 'register')} className="text-base text-gray-300 hover:text-brand-yellow transition-colors cursor-pointer">Contact Us</a></li>
-                  <li><a href="https://wa.me/919870534978" target="_blank" rel="noopener noreferrer" className="text-base text-gray-300 hover:text-brand-yellow transition-colors">WhatsApp Help</a></li>
-                  <li><a href="#faqs" onClick={(e) => scrollToSection(e, 'faqs')} className="text-base text-gray-300 hover:text-brand-yellow transition-colors cursor-pointer">FAQs</a></li>
+                <h3 className="text-xs font-black text-amber-400 tracking-widest uppercase">Support & WhatsApp</h3>
+                <ul className="mt-4 space-y-3 text-sm font-bold">
+                  <li><a href="#register" onClick={(e) => scrollToSection(e, 'register')} className="text-slate-300 hover:text-amber-400 transition-colors">Register Property</a></li>
+                  <li><a href="https://wa.me/919870534978" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-amber-400 transition-colors">WhatsApp Concierge (+91 98705 34978)</a></li>
+                  <li><a href="#faqs" onClick={(e) => scrollToSection(e, 'faqs')} className="text-slate-300 hover:text-amber-400 transition-colors">FAQs</a></li>
                 </ul>
               </div>
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Legal</h3>
-                <ul className="mt-4 space-y-4">
-                  <li><Link to="/privacy" className="text-base text-gray-300 hover:text-brand-yellow transition-colors">Privacy Policy</Link></li>
-                  <li><Link to="/terms" className="text-base text-gray-300 hover:text-brand-yellow transition-colors">Terms of Service</Link></li>
+                <h3 className="text-xs font-black text-amber-400 tracking-widest uppercase">Legal & Compliance</h3>
+                <ul className="mt-4 space-y-3 text-sm font-bold">
+                  <li><Link to="/privacy" className="text-slate-300 hover:text-amber-400 transition-colors">Privacy Policy</Link></li>
+                  <li><Link to="/terms" className="text-slate-300 hover:text-amber-400 transition-colors">Terms of Service</Link></li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
-        <div className="mt-12 border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-base text-gray-400 xl:text-center">
-            &copy; 2026 Promohomex. All rights reserved.
-          </p>
+        <div className="mt-12 border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-400 font-medium">
+          <p>&copy; 2026 Promohomex Platform. All rights reserved.</p>
+          <p className="mt-2 md:mt-0 font-extrabold text-amber-400 tracking-wider">CONSTRUCTION • TRACKED • LIVE</p>
         </div>
       </div>
     </footer>
