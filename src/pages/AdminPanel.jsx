@@ -267,7 +267,7 @@ const AdminPanel = () => {
           </div>
 
           {/* Right: Active Property Context Card */}
-          <div className="w-full lg:w-auto bg-slate-800/80 border border-slate-700/80 p-4 sm:p-5 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-lg min-w-[320px]">
+          <div className="w-full lg:w-auto bg-slate-800/80 border border-slate-700/80 p-4 sm:p-5 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-lg max-w-full">
             <div className="space-y-1.5 min-w-0">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>

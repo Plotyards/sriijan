@@ -201,7 +201,7 @@ const BuyerDashboard = () => {
         {/* Property Selector, Notification Bell & Buyer Logout */}
         <div className="flex items-center gap-3 self-end md:self-auto flex-wrap">
           {/* Spatial Property Selector (Filtered for Logged-In Buyer) */}
-          <div className="w-64">
+          <div className="w-full sm:w-64">
             <SpatialSelect
               value={currentActiveProperty.id}
               onChange={(newVal) => setActivePropertyId(newVal)}

@@ -105,15 +105,15 @@ const AuthModal = ({ isOpen, onClose, initialTab = 'buyer_login' }) => {
     navigate('/dashboard');
   };
 
-  const handleAdminSubmit = (e) => {
+  const handleAdminSubmit = async (e) => {
     e.preventDefault();
     setAdminError('');
-    const res = loginAdmin(adminEmail, adminPassword);
-    if (res.success) {
+    const res = await loginAdmin(adminEmail, adminPassword);
+    if (res && res.success) {
       onClose();
       navigate('/admin');
     } else {
-      setAdminError(res.error || 'Invalid Admin Credentials!');
+      setAdminError(res?.error || 'Invalid Admin Credentials!');
     }
   };
 
