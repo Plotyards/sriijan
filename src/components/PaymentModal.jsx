@@ -98,13 +98,13 @@ const PaymentModal = ({ isOpen, onClose, onSuccess, propertyDetails }) => {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xl">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-xl overflow-y-auto">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.25, ease: "easeOut" }}
-          className="relative w-full max-w-xl bg-white/98 backdrop-blur-3xl rounded-3xl shadow-[0_30px_90px_rgba(0,0,0,0.4)] border border-white/90 text-slate-900 overflow-hidden"
+          className="relative w-full max-w-xl max-h-[90vh] bg-white/98 backdrop-blur-3xl rounded-3xl shadow-[0_30px_90px_rgba(0,0,0,0.4)] border border-white/90 text-slate-900 overflow-hidden flex flex-col my-auto"
         >
           {/* Top Bar Header */}
           <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 text-white p-5 px-6 flex items-center justify-between border-b border-white/10 relative overflow-hidden">
@@ -158,7 +158,7 @@ const PaymentModal = ({ isOpen, onClose, onSuccess, propertyDetails }) => {
           )}
 
           {!isProcessing && !isSuccess && (
-            <div className="p-6 space-y-6">
+            <div className="p-4 sm:p-6 space-y-5 overflow-y-auto max-h-[calc(90vh-100px)]">
               {/* Order Amount Summary Card */}
               <div className="bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-amber-500/10 border border-amber-500/30 p-4 rounded-2xl flex items-center justify-between shadow-xs">
                 <div>

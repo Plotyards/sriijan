@@ -112,7 +112,7 @@ const RegistrationForm = () => {
         >
           {/* Frosted Glass Lock Overlay when User is NOT Logged In */}
           {(!currentUser || !currentUser.isLoggedIn) && (
-            <div className="absolute inset-0 z-40 bg-slate-950/85 backdrop-blur-xl p-8 flex flex-col items-center justify-center text-center text-white border border-white/10 space-y-5 transition-all">
+            <div className="absolute inset-0 z-40 bg-slate-950/85 backdrop-blur-xl p-4 sm:p-8 flex flex-col items-center justify-center text-center text-white border border-white/10 space-y-4 sm:space-y-5 transition-all overflow-y-auto">
               <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-amber-500/30 to-amber-600/10 text-amber-400 border border-amber-500/40 flex items-center justify-center shadow-[0_0_50px_rgba(245,158,11,0.25)] animate-pulse">
                 <Lock size={38} />
               </div>

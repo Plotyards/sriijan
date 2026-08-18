@@ -202,7 +202,7 @@ const Navbar = () => {
               initial={{ opacity: 0, y: -10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              className="md:hidden mt-3 bg-white/95 backdrop-blur-2xl rounded-3xl p-5 shadow-2xl border border-slate-200 text-slate-900 text-xs space-y-4 pointer-events-auto absolute top-16 left-4 right-4"
+              className="lg:hidden mt-3 bg-white/95 backdrop-blur-2xl rounded-3xl p-5 shadow-2xl border border-slate-200 text-slate-900 text-xs space-y-4 pointer-events-auto absolute top-16 left-4 right-4 z-50 max-h-[85vh] overflow-y-auto"
             >
               <div className="flex justify-between items-center pb-3 border-b border-slate-100">
                 <Logo size="small" />
