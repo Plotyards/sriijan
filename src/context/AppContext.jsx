@@ -82,13 +82,15 @@ export const AppProvider = ({ children }) => {
           setActivePropertyId(savedActive);
         }
       }
-      const mongoUsers = await apiService.fetchUsers();
-      if (mongoUsers && Array.isArray(mongoUsers) && mongoUsers.length > 0) {
-        setUsersDB(mongoUsers);
+      if (isAdminAuthenticated) {
+        const mongoUsers = await apiService.fetchUsers();
+        if (mongoUsers && Array.isArray(mongoUsers) && mongoUsers.length > 0) {
+          setUsersDB(mongoUsers);
+        }
       }
     };
     syncMongoData();
-  }, []);
+  }, [isAdminAuthenticated]);
 
   useEffect(() => {
     if (activePropertyId) {

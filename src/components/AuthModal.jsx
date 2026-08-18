@@ -121,81 +121,82 @@ const AuthModal = ({ isOpen, onClose, initialTab = 'buyer_login' }) => {
     <AnimatePresence>
       <div 
         onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
-        className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md"
+        className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-md overflow-y-auto"
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden text-slate-900"
+          className="relative w-full max-w-md max-h-[90vh] bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden text-slate-900 flex flex-col my-auto"
         >
           {/* Header */}
-          <div className="bg-slate-950 text-white p-6 pb-5 relative overflow-hidden">
+          <div className="bg-slate-950 text-white p-4 sm:p-6 pb-4 relative overflow-hidden shrink-0">
             <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
 
             <button
               type="button"
               onClick={onClose}
-              className="absolute top-4 right-4 z-50 p-2.5 rounded-full bg-slate-800/90 hover:bg-slate-700 text-slate-300 hover:text-white transition-all cursor-pointer border border-white/10 shadow-md"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 z-50 p-2 sm:p-2.5 rounded-full bg-slate-800/90 hover:bg-slate-700 text-slate-300 hover:text-white transition-all cursor-pointer border border-white/10 shadow-md"
               title="Close modal"
             >
-              <X size={18} />
+              <X size={16} className="sm:w-[18px] sm:h-[18px]" />
             </button>
 
-            <div className="flex items-center gap-2 mb-1.5 relative z-10">
-              <span className="bg-amber-500/20 text-amber-400 text-[10px] font-black px-2.5 py-0.5 rounded-full border border-amber-500/30 flex items-center gap-1 uppercase tracking-wider">
-                <Sparkles size={12} /> Promohomex Real Portal Auth
+            <div className="flex items-center gap-2 mb-1 relative z-10">
+              <span className="bg-amber-500/20 text-amber-400 text-[9px] sm:text-[10px] font-black px-2 sm:px-2.5 py-0.5 rounded-full border border-amber-500/30 flex items-center gap-1 uppercase tracking-wider">
+                <Sparkles size={11} /> Promohomex Real Portal Auth
               </span>
             </div>
-            <h2 className="text-xl font-black text-white relative z-10">
+            <h2 className="text-lg sm:text-xl font-black text-white relative z-10 pr-8">
               {activeTab === 'buyer_signup' ? 'Create Real Buyer Account' : (activeTab === 'admin_login' ? 'Builder Admin Portal' : 'Buyer Sign In')}
             </h2>
-            <p className="text-xs text-slate-400 font-medium mt-0.5 relative z-10">
+            <p className="text-[11px] sm:text-xs text-slate-400 font-medium mt-0.5 relative z-10">
               Access real-time construction tracking, document vaults & property valuations.
             </p>
 
             {/* Role / Auth Tabs */}
-            <div className="grid grid-cols-3 gap-1 mt-4 p-1 bg-slate-900 rounded-2xl border border-slate-800 text-[11px] font-extrabold relative z-10">
+            <div className="grid grid-cols-3 gap-1 mt-3 p-1 bg-slate-900 rounded-2xl border border-slate-800 text-[10px] sm:text-[11px] font-extrabold relative z-10">
               <button
                 type="button"
                 onClick={() => setActiveTab('buyer_login')}
-                className={`py-2 rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer ${
+                className={`py-1.5 sm:py-2 rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer ${
                   activeTab === 'buyer_login'
                     ? 'bg-amber-500 text-slate-950 font-black shadow-sm'
                     : 'text-slate-400 hover:text-white'
                 }`}
               >
-                <User size={13} /> Buyer Login
+                <User size={12} /> Login
               </button>
 
               <button
                 type="button"
                 onClick={() => setActiveTab('buyer_signup')}
-                className={`py-2 rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer ${
+                className={`py-1.5 sm:py-2 rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer ${
                   activeTab === 'buyer_signup'
                     ? 'bg-amber-500 text-slate-950 font-black shadow-sm'
                     : 'text-slate-400 hover:text-white'
                 }`}
               >
-                <UserPlus size={13} /> Sign Up
+                <UserPlus size={12} /> Sign Up
               </button>
 
               <button
                 type="button"
                 onClick={() => setActiveTab('admin_login')}
-                className={`py-2 rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer ${
+                className={`py-1.5 sm:py-2 rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer ${
                   activeTab === 'admin_login'
                     ? 'bg-white text-slate-950 font-black shadow-sm'
                     : 'text-slate-400 hover:text-white'
                 }`}
               >
-                <Shield size={13} className={activeTab === 'admin_login' ? 'text-amber-600' : ''} /> Admin
+                <Shield size={12} className={activeTab === 'admin_login' ? 'text-amber-600' : ''} /> Admin
               </button>
             </div>
           </div>
 
           {/* Form Content */}
-          <div className="p-6">
+          <div className="p-4 sm:p-6 overflow-y-auto max-h-[calc(90vh-160px)]">
+
             {/* BUYER LOGIN TAB */}
             {activeTab === 'buyer_login' && (
               <div className="space-y-4">
