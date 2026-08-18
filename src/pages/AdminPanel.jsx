@@ -387,7 +387,7 @@ const AdminPanel = () => {
       </div>
 
       {/* Admin Tab Contents */}
-      <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xs border border-slate-200/80">
+      <div className="bg-white rounded-3xl p-4 sm:p-8 shadow-xs border border-slate-200/80">
 
         {/* TAB 0: All Properties Directory with Search & Pagination */}
         {activeAdminTab === 'directory' && (
@@ -656,7 +656,7 @@ const AdminPanel = () => {
 
               <button
                 type="submit"
-                className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs px-5 py-3 rounded-xl transition-colors shadow-sm flex items-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs px-5 py-3 rounded-xl transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
               >
                 <RefreshCw size={15} /> Save & Publish Progress Update
               </button>
@@ -697,7 +697,7 @@ const AdminPanel = () => {
 
               <button
                 type="submit"
-                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-5 py-3 rounded-xl transition-colors shadow-sm flex items-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-5 py-3 rounded-xl transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
               >
                 <TrendingUp size={15} /> Publish Price Revision & Alert Buyer
               </button>
@@ -745,7 +745,7 @@ const AdminPanel = () => {
 
               <button
                 type="submit"
-                className="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-5 py-3 rounded-xl transition-colors shadow-sm flex items-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-5 py-3 rounded-xl transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Upload size={15} /> Upload Photo to Gallery
               </button>
@@ -782,7 +782,7 @@ const AdminPanel = () => {
 
               <button
                 type="submit"
-                className="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-5 py-3 rounded-xl transition-colors shadow-sm flex items-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-5 py-3 rounded-xl transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
               >
                 <FilePlus size={15} /> Issue & Encrypt into Buyer Vault
               </button>
@@ -830,7 +830,7 @@ const AdminPanel = () => {
 
               <button
                 type="submit"
-                className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs px-5 py-3 rounded-xl transition-colors shadow-sm flex items-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs px-5 py-3 rounded-xl transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Bell size={15} /> Send Push Notification
               </button>
@@ -872,7 +872,7 @@ const AdminPanel = () => {
                         approveBuyerProperty(prop.id);
                         showToast(`Verified booking for ${prop.owner.name}!`);
                       }}
-                      className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-colors flex items-center gap-1.5 shadow-sm cursor-pointer"
+                      className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
                     >
                       <ShieldCheck size={16} /> Approve & Verify Booking
                     </button>
