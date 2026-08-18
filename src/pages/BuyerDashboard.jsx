@@ -18,36 +18,99 @@ const BuyerDashboard = () => {
   const [isNotifOpen, setIsNotifOpen] = useState(false);
 
   // Buyer Login Form State
-  const [buyerEmail, setBuyerEmail] = useState('nikhil.jangra@example.com');
-  const [buyerPassword, setBuyerPassword] = useState('buyer123');
+  const [buyerEmail, setBuyerEmail] = useState('');
+  const [buyerPassword, setBuyerPassword] = useState('');
   const [authError, setAuthError] = useState('');
 
-  const handleBuyerLoginSubmit = (e) => {
+  const handleBuyerLoginSubmit = async (e) => {
     e.preventDefault();
     setAuthError('');
     if (!buyerEmail) {
       setAuthError('Please enter your registered buyer email address');
       return;
     }
-    loginUser(buyerEmail, buyerPassword);
+    const res = await loginUser(buyerEmail, buyerPassword);
+    if (res && !res.success) {
+      setAuthError(res.error || 'Failed to log in. Please check your credentials.');
+    }
   };
 
-  // If no property is active, render fallback
-  if (!activeProperty) {
+  // If no user is logged in, show Buyer Login Guard Card
+  if (!currentUser || !currentUser.isLoggedIn) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
-        <div className="text-center bg-white p-8 rounded-2xl shadow border max-w-md">
-          <Building2 size={40} className="mx-auto text-amber-500 mb-3" />
-          <h2 className="text-xl font-bold text-slate-900">No Property Selected</h2>
-          <p className="text-xs text-slate-500 mt-2">Please register or select a property from the top bar.</p>
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center pt-28 pb-16 px-4">
+        <div className="max-w-md w-full bg-white rounded-3xl p-8 shadow-2xl border border-slate-200 text-slate-900 space-y-6">
+          <div className="text-center space-y-2">
+            <div className="w-16 h-16 bg-amber-500 text-slate-950 rounded-2xl flex items-center justify-center mx-auto shadow-lg font-black">
+              <Building2 size={32} />
+            </div>
+            <h2 className="text-2xl font-black text-slate-900">Buyer Dashboard Login</h2>
+            <p className="text-xs text-slate-500 font-medium">
+              Enter your registered buyer email & password to view your property tracking dashboard.
+            </p>
+          </div>
+
+          {authError && (
+            <div className="p-3 bg-red-50 border border-red-200 text-red-700 rounded-xl text-xs font-bold flex items-center gap-2">
+              <AlertCircle size={16} /> {authError}
+            </div>
+          )}
+
+          <form onSubmit={handleBuyerLoginSubmit} className="space-y-4">
+            <div>
+              <label className="block text-xs font-black text-slate-700 uppercase tracking-wider mb-1">
+                Registered Email Address
+              </label>
+              <input
+                type="email"
+                required
+                value={buyerEmail}
+                onChange={(e) => setBuyerEmail(e.target.value)}
+                className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-amber-500 focus:bg-white"
+                placeholder="your.email@example.com"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-black text-slate-700 uppercase tracking-wider mb-1">
+                Password
+              </label>
+              <input
+                type="password"
+                required
+                value={buyerPassword}
+                onChange={(e) => setBuyerPassword(e.target.value)}
+                className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-amber-500 focus:bg-white"
+                placeholder="••••••••"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black rounded-xl text-xs shadow-lg shadow-amber-500/20 border border-amber-400 flex items-center justify-center gap-2 cursor-pointer transition-all"
+            >
+              Log In To My Dashboard <ArrowRight size={16} />
+            </button>
+          </form>
+          
+          <div className="text-center pt-2 border-t border-slate-100">
+            <p className="text-xs text-slate-500 font-medium">
+              Don't have an account yet?{' '}
+              <button 
+                onClick={() => navigate('/')} 
+                className="font-bold text-amber-600 hover:underline cursor-pointer"
+              >
+                Sign Up & Register Property
+              </button>
+            </p>
+          </div>
         </div>
       </div>
     );
   }
 
-  // Filter properties so buyer sees their own booked properties (or all properties if guest)
+  // Filter properties so logged-in buyer sees ONLY their own booked properties
   const buyerProperties = properties.filter((p) => {
-    if (!currentUser || !currentUser.email) return true;
     return p.owner && p.owner.email && p.owner.email.toLowerCase() === currentUser.email.toLowerCase();
   });
 
