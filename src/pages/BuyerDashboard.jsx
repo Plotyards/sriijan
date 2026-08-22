@@ -5,16 +5,17 @@ import ConstructionProgress from '../components/dashboard/ConstructionProgress';
 import InvestmentDashboard from '../components/dashboard/InvestmentDashboard';
 import DocumentVault from '../components/dashboard/DocumentVault';
 import MarketInsights from '../components/dashboard/MarketInsights';
+import MobileTypeHandlingDashboard from '../components/dashboard/MobileTypeHandlingDashboard';
 import NotificationsModal from '../components/dashboard/NotificationsModal';
 
 import SpatialSelect from '../components/common/SpatialSelect';
 
-import { Building2, TrendingUp, FileText, Compass, Bell, ShieldCheck, User, Lock, LogOut, UserCheck, AlertCircle, ArrowRight } from 'lucide-react';
+import { Building2, TrendingUp, FileText, Compass, Bell, ShieldCheck, User, Lock, LogOut, UserCheck, AlertCircle, ArrowRight, Layers } from 'lucide-react';
 
 const BuyerDashboard = () => {
   const navigate = useNavigate();
   const { activeProperty, properties, activePropertyId, setActivePropertyId, notifications, currentUser, loginUser, logoutUser } = useApp();
-  const [activeTab, setActiveTab] = useState('progress');
+  const [activeTab, setActiveTab] = useState('types');
   const [isNotifOpen, setIsNotifOpen] = useState(false);
 
   // Buyer Login Form State
@@ -168,6 +169,7 @@ const BuyerDashboard = () => {
   const unreadCount = notifications.filter(n => !n.read).length;
 
   const tabs = [
+    { id: 'types', label: 'Property Types & Operations', icon: Layers },
     { id: 'progress', label: 'Construction Progress', icon: Building2 },
     { id: 'investment', label: 'Investment Dashboard', icon: TrendingUp },
     { id: 'documents', label: 'Property Documents', icon: FileText },
@@ -239,8 +241,8 @@ const BuyerDashboard = () => {
         </div>
       </div>
 
-      {/* Spatial Navigation Tabs Bar */}
-      <div className="spatial-glass p-2 rounded-2xl border border-white/80 shadow-xs flex items-center gap-2 overflow-x-auto scrollbar-none relative z-20">
+      {/* Spatial Navigation Tabs Bar: Responsive Grid Template */}
+      <div className="spatial-glass p-2 rounded-2xl border border-white/80 shadow-xs grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 w-full overflow-hidden relative z-20">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -248,14 +250,14 @@ const BuyerDashboard = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-black whitespace-nowrap transition-all cursor-pointer ${
+              className={`flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-black transition-all cursor-pointer w-full text-center overflow-hidden ${
                 isActive
                   ? 'bg-slate-950 text-white font-black shadow-md border border-slate-900 scale-[1.01]'
                   : 'text-slate-600 hover:text-slate-950 hover:bg-white/60 font-bold'
               }`}
             >
-              <Icon size={16} className={isActive ? 'text-amber-400' : 'text-slate-500'} />
-              {tab.label}
+              <Icon size={15} className={`shrink-0 ${isActive ? 'text-amber-400' : 'text-slate-500'}`} />
+              <span className="truncate">{tab.label}</span>
             </button>
           );
         })}
@@ -263,6 +265,7 @@ const BuyerDashboard = () => {
 
       {/* Active Tab View Rendering */}
       <div className="transition-all duration-300">
+        {activeTab === 'types' && <MobileTypeHandlingDashboard />}
         {activeTab === 'progress' && <ConstructionProgress />}
         {activeTab === 'investment' && <InvestmentDashboard />}
         {activeTab === 'documents' && <DocumentVault />}

@@ -309,63 +309,63 @@ const AdminPanel = () => {
         </div>
       </div>
 
-      {/* 4 Spatial Glass Summary Stat Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white/80 backdrop-blur-2xl p-5 rounded-3xl border border-white/80 shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-4">
-          <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-amber-500/20 to-amber-600/5 text-amber-600 flex items-center justify-center font-black border border-amber-500/30 shrink-0 shadow-inner">
-            <Building2 size={24} />
+      {/* 4 High-Contrast Mobile-Responsive Stat Cards */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-white p-4 sm:p-5 rounded-3xl border border-amber-500/20 shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3">
+          <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center font-black shrink-0 shadow-md">
+            <Building2 size={22} />
           </div>
           <div>
-            <div className="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider">Properties Managed</div>
-            <div className="text-2xl font-black text-slate-900 mt-0.5">{totalPropertiesCount} Units</div>
-            <div className="text-[11px] text-emerald-600 font-bold mt-0.5">Active tracking enabled</div>
+            <div className="text-[10px] sm:text-[11px] font-black text-slate-500 uppercase tracking-wider">Properties</div>
+            <div className="text-xl sm:text-2xl font-black text-slate-900 mt-0.5">{totalPropertiesCount} Units</div>
+            <div className="text-[10px] text-emerald-600 font-bold mt-0.5">Active Tracking</div>
           </div>
         </div>
 
-        <div className="bg-white/80 backdrop-blur-2xl p-5 rounded-3xl border border-white/80 shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-4">
-          <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/5 text-emerald-600 flex items-center justify-center font-black border border-emerald-500/30 shrink-0 shadow-inner">
-            <TrendingUp size={24} />
+        <div className="bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-white p-4 sm:p-5 rounded-3xl border border-emerald-500/20 shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3">
+          <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-2xl bg-emerald-600 text-white flex items-center justify-center font-black shrink-0 shadow-md">
+            <TrendingUp size={22} />
           </div>
           <div>
-            <div className="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider">Total Asset Value</div>
-            <div className="text-2xl font-black text-slate-900 mt-0.5">₹{totalAssetValueCr} Cr</div>
-            <div className="text-[11px] text-amber-600 font-bold mt-0.5">Tracked on Promohomex</div>
+            <div className="text-[10px] sm:text-[11px] font-black text-slate-500 uppercase tracking-wider">Asset Value</div>
+            <div className="text-xl sm:text-2xl font-black text-slate-900 mt-0.5">₹{totalAssetValueCr} Cr</div>
+            <div className="text-[10px] text-amber-600 font-bold mt-0.5">Tracked Portfolio</div>
           </div>
         </div>
 
-        <div className="bg-white/80 backdrop-blur-2xl p-5 rounded-3xl border border-white/80 shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-4">
-          <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-600/5 text-blue-600 flex items-center justify-center font-black border border-blue-500/30 shrink-0 shadow-inner">
-            <ShieldCheck size={24} />
+        <div className="bg-gradient-to-br from-blue-500/10 via-blue-500/5 to-white p-4 sm:p-5 rounded-3xl border border-blue-500/20 shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3">
+          <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-2xl bg-blue-600 text-white flex items-center justify-center font-black shrink-0 shadow-md">
+            <ShieldCheck size={22} />
           </div>
           <div>
-            <div className="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider">Pending Verifications</div>
-            <div className="text-2xl font-black text-amber-600 mt-0.5">{pendingApprovalsCount} Bookings</div>
-            <div className="text-[11px] text-slate-500 font-medium mt-0.5">Requires builder sign-off</div>
+            <div className="text-[10px] sm:text-[11px] font-black text-slate-500 uppercase tracking-wider">Pending Sign-off</div>
+            <div className="text-xl sm:text-2xl font-black text-amber-600 mt-0.5">{pendingApprovalsCount} Bookings</div>
+            <div className="text-[10px] text-slate-500 font-medium mt-0.5">Requires Approval</div>
           </div>
         </div>
 
-        <div className="bg-white/80 backdrop-blur-2xl p-5 rounded-3xl border border-white/80 shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-4">
-          <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-600/5 text-purple-600 flex items-center justify-center font-black border border-purple-500/30 shrink-0 shadow-inner">
-            <UserCheck size={24} />
+        <div className="bg-gradient-to-br from-purple-500/10 via-purple-500/5 to-white p-4 sm:p-5 rounded-3xl border border-purple-500/20 shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3 col-span-2 sm:col-span-1">
+          <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-2xl bg-purple-600 text-white flex items-center justify-center font-black shrink-0 shadow-md">
+            <UserCheck size={22} />
           </div>
           <div className="min-w-0">
-            <div className="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider">Active Target Buyer</div>
-            <div className="text-lg font-black text-slate-900 mt-0.5 truncate">{activeProperty.owner.name}</div>
-            <div className="text-[11px] text-slate-500 font-medium truncate">{activeProperty.owner.phone}</div>
+            <div className="text-[10px] sm:text-[11px] font-black text-slate-500 uppercase tracking-wider">Target Buyer</div>
+            <div className="text-base sm:text-lg font-black text-slate-900 mt-0.5 truncate">{activeProperty.owner.name}</div>
+            <div className="text-[10px] text-slate-500 font-bold truncate">{activeProperty.owner.phone}</div>
           </div>
         </div>
       </div>
 
-      {/* Google Material Navigation Tabs Bar */}
-      <div className="bg-white p-2 rounded-2xl border border-slate-200/80 shadow-xs flex items-center gap-2 overflow-x-auto scrollbar-none">
+      {/* Admin Navigation Tabs Bar: Responsive Grid Template */}
+      <div className="bg-white p-2 rounded-2xl border border-slate-200/80 shadow-xs grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2 w-full overflow-hidden">
         {[
-          { id: 'directory', label: 'All Properties Directory', icon: Search },
-          { id: 'progress', label: 'Construction Stages', icon: Building2 },
-          { id: 'prices', label: 'Price & Valuation', icon: TrendingUp },
-          { id: 'media', label: 'Photo & Drone Media', icon: Upload },
-          { id: 'documents', label: 'Document Vault', icon: FilePlus },
-          { id: 'broadcast', label: 'Push Notifications', icon: Bell },
-          { id: 'approvals', label: 'Buyer Approvals', icon: UserCheck }
+          { id: 'directory', label: 'All Properties', icon: Search },
+          { id: 'progress', label: 'Stages', icon: Building2 },
+          { id: 'prices', label: 'Price & ROI', icon: TrendingUp },
+          { id: 'media', label: 'Photos & Drone', icon: Upload },
+          { id: 'documents', label: 'Vault', icon: FilePlus },
+          { id: 'broadcast', label: 'Notifications', icon: Bell },
+          { id: 'approvals', label: 'Approvals', icon: UserCheck }
         ].map((tab) => {
           const Icon = tab.icon;
           const isActive = activeAdminTab === tab.id;
@@ -373,14 +373,14 @@ const AdminPanel = () => {
             <button
               key={tab.id}
               onClick={() => setActiveAdminTab(tab.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-black whitespace-nowrap transition-all cursor-pointer ${
+              className={`flex items-center justify-center gap-1.5 px-2.5 py-2.5 rounded-xl text-xs font-black transition-all cursor-pointer w-full text-center overflow-hidden ${
                 isActive
-                  ? 'bg-slate-950 text-white font-black shadow-md border border-slate-900'
+                  ? 'bg-slate-950 text-white font-black shadow-md border border-slate-900 scale-[1.01]'
                   : 'text-slate-600 hover:text-slate-950 hover:bg-slate-100 font-bold'
               }`}
             >
-              <Icon size={15} className={isActive ? 'text-amber-400' : 'text-slate-500'} />
-              {tab.label}
+              <Icon size={14} className={`shrink-0 ${isActive ? 'text-amber-400' : 'text-slate-500'}`} />
+              <span className="truncate">{tab.label}</span>
             </button>
           );
         })}
@@ -457,7 +457,7 @@ const AdminPanel = () => {
               </div>
             </div>
 
-            {/* Paginated Property Table */}
+            {/* Paginated Property View: Mobile Cards (sm:hidden) & Desktop Table (hidden sm:block) */}
             {paginatedProperties.length === 0 ? (
               <div className="text-center py-14 bg-slate-50 rounded-3xl border border-dashed border-slate-300">
                 <Building2 size={44} className="mx-auto text-slate-300 mb-2" />
@@ -465,102 +465,196 @@ const AdminPanel = () => {
                 <p className="text-xs text-slate-400 mt-1">Try searching with a different unit number, owner name or clear filter.</p>
               </div>
             ) : (
-              <div className="bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-xs">
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left text-xs text-slate-700 border-collapse min-w-[750px]">
-                    <thead>
-                      <tr className="bg-slate-100/80 text-slate-700 uppercase tracking-wider text-[10px] font-black border-b border-slate-200/90">
-                        <th className="py-3.5 px-5">Unit & Project</th>
-                        <th className="py-3.5 px-5">Owner Name</th>
-                        <th className="py-3.5 px-5">Contact Info</th>
-                        <th className="py-3.5 px-5">Booked Price</th>
-                        <th className="py-3.5 px-5">Resale Market Price</th>
-                        <th className="py-3.5 px-5">Status</th>
-                        <th className="py-3.5 px-5 text-right">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100">
-                      {paginatedProperties.map((prop) => {
-                        const isCurrentlyActive = prop.id === activePropertyId;
-                        const ownerInitials = prop.owner.name.split(' ').map(n => n[0]).join('').slice(0, 2);
+              <div>
+                {/* 📱 MOBILE VIEW: High-Contrast Touch Cards */}
+                <div className="block lg:hidden space-y-4">
+                  {paginatedProperties.map((prop) => {
+                    const isCurrentlyActive = prop.id === activePropertyId;
+                    const ownerInitials = prop.owner.name.split(' ').map(n => n[0]).join('').slice(0, 2);
 
-                        return (
-                          <tr
-                            key={prop.id}
-                            className={`hover:bg-slate-50/80 transition-colors ${
-                              isCurrentlyActive ? 'bg-amber-50/50 font-semibold' : ''
-                            }`}
+                    return (
+                      <div
+                        key={prop.id}
+                        className={`p-5 rounded-3xl border transition-all space-y-4 shadow-sm ${
+                          isCurrentlyActive
+                            ? 'bg-amber-500/10 border-amber-500/40 ring-2 ring-amber-500/20'
+                            : 'bg-white border-slate-200 hover:border-amber-400'
+                        }`}
+                      >
+                        {/* Header: Name & Status */}
+                        <div className="flex items-start justify-between gap-2">
+                          <div>
+                            <span className="text-[10px] font-black text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200 uppercase tracking-wider">
+                              Tower: {prop.tower} • Unit: {prop.unitNo}
+                            </span>
+                            <h4 className="text-base font-black text-slate-900 mt-1">{prop.name}</h4>
+                          </div>
+
+                          <span className={`text-[10px] font-black px-2.5 py-1 rounded-full border shrink-0 ${
+                            prop.verificationStatus === 'Verified'
+                              ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                              : 'bg-amber-50 text-amber-800 border-amber-200'
+                          }`}>
+                            {prop.verificationStatus}
+                          </span>
+                        </div>
+
+                        {/* Owner & Contact Info */}
+                        <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-between gap-3">
+                          <div className="flex items-center gap-3 min-w-0">
+                            <div className="w-10 h-10 rounded-full bg-amber-500 text-slate-950 font-black flex items-center justify-center border border-amber-400 text-xs shrink-0 shadow-sm">
+                              {ownerInitials}
+                            </div>
+                            <div className="min-w-0">
+                              <div className="font-black text-slate-900 text-xs truncate">{prop.owner.name}</div>
+                              <div className="text-[11px] text-slate-600 font-bold truncate">{prop.owner.phone}</div>
+                              <div className="text-[10px] text-slate-400 font-medium truncate">{prop.owner.email}</div>
+                            </div>
+                          </div>
+
+                          <a
+                            href={`tel:${prop.owner.phone}`}
+                            className="p-2.5 bg-emerald-600 text-white rounded-xl font-bold text-xs shrink-0 shadow-xs active:scale-95"
+                            title="Call Owner"
                           >
-                            {/* Unit & Project */}
-                            <td className="py-4 px-5">
-                              <div className="font-black text-slate-900 text-sm">{prop.name}</div>
-                              <div className="text-slate-500 mt-0.5 font-medium">
-                                Unit: <span className="font-black text-amber-700">{prop.unitNo}</span> ({prop.tower})
-                              </div>
-                            </td>
+                            📞
+                          </a>
+                        </div>
 
-                            {/* Owner Name */}
-                            <td className="py-4 px-5">
-                              <div className="flex items-center gap-2.5">
-                                <div className="w-8 h-8 rounded-full bg-amber-500/15 text-amber-900 font-black flex items-center justify-center border border-amber-500/30 text-xs shrink-0">
-                                  {ownerInitials}
-                                </div>
-                                <div>
-                                  <div className="font-black text-slate-900">{prop.owner.name}</div>
-                                  <div className="text-[10px] text-slate-400 font-bold">ID: {prop.id}</div>
-                                </div>
-                              </div>
-                            </td>
-
-                            {/* Contact Info */}
-                            <td className="py-4 px-5">
-                              <div className="font-bold text-slate-800">{prop.owner.email}</div>
-                              <div className="text-[11px] text-slate-500 font-medium">{prop.owner.phone}</div>
-                            </td>
-
-                            {/* Booked Price */}
-                            <td className="py-4 px-5 font-black text-slate-900 text-xs">
+                        {/* Financial Metrics */}
+                        <div className="grid grid-cols-2 gap-3 pt-1">
+                          <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100">
+                            <div className="text-[10px] text-slate-400 uppercase font-black">Booked Price</div>
+                            <div className="text-sm font-black text-slate-900 mt-0.5">
                               ₹{(prop.financials.bookedPrice / 10000000).toFixed(2)} Cr
-                            </td>
+                            </div>
+                          </div>
+                          <div className="p-3 bg-emerald-50/70 rounded-2xl border border-emerald-200/80">
+                            <div className="text-[10px] text-emerald-700 uppercase font-black">Resale Value</div>
+                            <div className="text-sm font-black text-emerald-800 mt-0.5">
+                              ₹{(prop.financials.resaleMarketPrice / 10000000).toFixed(2)} Cr
+                            </div>
+                          </div>
+                        </div>
 
-                            {/* Resale Market Price */}
-                            <td className="py-4 px-5">
-                              <span className="font-black text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200/80 inline-block text-xs">
-                                ₹{(prop.financials.resaleMarketPrice / 10000000).toFixed(2)} Cr
-                              </span>
-                            </td>
+                        {/* Action Button */}
+                        <div className="pt-2">
+                          {isCurrentlyActive ? (
+                            <div className="w-full py-3 bg-amber-500 text-slate-950 font-black text-xs rounded-2xl text-center shadow-md border border-amber-400 flex items-center justify-center gap-1.5">
+                              <CheckCircle2 size={16} /> Active Target Project Selected
+                            </div>
+                          ) : (
+                            <button
+                              onClick={() => selectPropertyToManage(prop.id, 'progress')}
+                              className="w-full py-3 bg-slate-950 hover:bg-slate-800 text-white font-black text-xs rounded-2xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                            >
+                              Select & Manage Property <ArrowRight size={15} className="text-amber-400" />
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
 
-                            {/* Status */}
-                            <td className="py-4 px-5">
-                              <span className={`text-[10px] font-black px-2.5 py-1 rounded-full border ${
-                                prop.verificationStatus === 'Verified'
-                                  ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
-                                  : 'bg-amber-50 text-amber-800 border-amber-200'
-                              }`}>
-                                {prop.verificationStatus}
-                              </span>
-                            </td>
+                {/* 🖥️ DESKTOP TABLE VIEW (hidden on mobile) */}
+                <div className="hidden lg:block bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-xs">
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-xs text-slate-700 border-collapse min-w-[750px]">
+                      <thead>
+                        <tr className="bg-slate-100/80 text-slate-700 uppercase tracking-wider text-[10px] font-black border-b border-slate-200/90">
+                          <th className="py-3.5 px-5">Unit & Project</th>
+                          <th className="py-3.5 px-5">Owner Name</th>
+                          <th className="py-3.5 px-5">Contact Info</th>
+                          <th className="py-3.5 px-5">Booked Price</th>
+                          <th className="py-3.5 px-5">Resale Market Price</th>
+                          <th className="py-3.5 px-5">Status</th>
+                          <th className="py-3.5 px-5 text-right">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100">
+                        {paginatedProperties.map((prop) => {
+                          const isCurrentlyActive = prop.id === activePropertyId;
+                          const ownerInitials = prop.owner.name.split(' ').map(n => n[0]).join('').slice(0, 2);
 
-                            {/* Action Button */}
-                            <td className="py-4 px-5 text-right">
-                              {isCurrentlyActive ? (
-                                <span className="inline-flex items-center gap-1 bg-amber-500 text-slate-950 font-black text-xs px-3.5 py-2 rounded-xl shadow-xs border border-amber-400">
-                                  Active Target ✓
+                          return (
+                            <tr
+                              key={prop.id}
+                              className={`hover:bg-slate-50/80 transition-colors ${
+                                isCurrentlyActive ? 'bg-amber-50/50 font-semibold' : ''
+                              }`}
+                            >
+                              {/* Unit & Project */}
+                              <td className="py-4 px-5">
+                                <div className="font-black text-slate-900 text-sm">{prop.name}</div>
+                                <div className="text-slate-500 mt-0.5 font-medium">
+                                  Unit: <span className="font-black text-amber-700">{prop.unitNo}</span> ({prop.tower})
+                                </div>
+                              </td>
+
+                              {/* Owner Name */}
+                              <td className="py-4 px-5">
+                                <div className="flex items-center gap-2.5">
+                                  <div className="w-8 h-8 rounded-full bg-amber-500/15 text-amber-900 font-black flex items-center justify-center border border-amber-500/30 text-xs shrink-0">
+                                    {ownerInitials}
+                                  </div>
+                                  <div>
+                                    <div className="font-black text-slate-900">{prop.owner.name}</div>
+                                    <div className="text-[10px] text-slate-400 font-bold">ID: {prop.id}</div>
+                                  </div>
+                                </div>
+                              </td>
+
+                              {/* Contact Info */}
+                              <td className="py-4 px-5">
+                                <div className="font-bold text-slate-800">{prop.owner.email}</div>
+                                <div className="text-[11px] text-slate-500 font-medium">{prop.owner.phone}</div>
+                              </td>
+
+                              {/* Booked Price */}
+                              <td className="py-4 px-5 font-black text-slate-900 text-xs">
+                                ₹{(prop.financials.bookedPrice / 10000000).toFixed(2)} Cr
+                              </td>
+
+                              {/* Resale Market Price */}
+                              <td className="py-4 px-5">
+                                <span className="font-black text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200/80 inline-block text-xs">
+                                  ₹{(prop.financials.resaleMarketPrice / 10000000).toFixed(2)} Cr
                                 </span>
-                              ) : (
-                                <button
-                                  onClick={() => selectPropertyToManage(prop.id, 'progress')}
-                                  className="bg-slate-950 hover:bg-slate-800 text-white font-black text-xs px-3.5 py-2 rounded-xl transition-all shadow-xs flex items-center gap-1.5 ml-auto cursor-pointer"
-                                >
-                                  Select & Manage <ArrowRight size={13} />
-                                </button>
-                              )}
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
+                              </td>
+
+                              {/* Status */}
+                              <td className="py-4 px-5">
+                                <span className={`text-[10px] font-black px-2.5 py-1 rounded-full border ${
+                                  prop.verificationStatus === 'Verified'
+                                    ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                                    : 'bg-amber-50 text-amber-800 border-amber-200'
+                                }`}>
+                                  {prop.verificationStatus}
+                                </span>
+                              </td>
+
+                              {/* Action Button */}
+                              <td className="py-4 px-5 text-right">
+                                {isCurrentlyActive ? (
+                                  <span className="inline-flex items-center gap-1 bg-amber-500 text-slate-950 font-black text-xs px-3.5 py-2 rounded-xl shadow-xs border border-amber-400">
+                                    Active Target ✓
+                                  </span>
+                                ) : (
+                                  <button
+                                    onClick={() => selectPropertyToManage(prop.id, 'progress')}
+                                    className="bg-slate-950 hover:bg-slate-800 text-white font-black text-xs px-3.5 py-2 rounded-xl transition-all shadow-xs flex items-center gap-1.5 ml-auto cursor-pointer"
+                                  >
+                                    Select & Manage <ArrowRight size={13} />
+                                  </button>
+                                )}
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             )}

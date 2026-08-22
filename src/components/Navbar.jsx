@@ -195,101 +195,127 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Drawer Menu */}
+        {/* Full-Screen Animated Mobile Menu Overlay */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.95 }}
+              initial={{ opacity: 0, y: -20, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              className="lg:hidden mt-3 bg-white/95 backdrop-blur-2xl rounded-3xl p-5 shadow-2xl border border-slate-200 text-slate-900 text-xs space-y-4 pointer-events-auto absolute top-16 left-4 right-4 z-50 max-h-[85vh] overflow-y-auto"
+              exit={{ opacity: 0, y: -20, scale: 0.98 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              className="lg:hidden fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-3xl text-white pt-24 pb-10 px-6 flex flex-col justify-between overflow-y-auto pointer-events-auto"
             >
-              <div className="flex justify-between items-center pb-3 border-b border-slate-100">
-                <Logo size="small" />
+              {/* Header inside full-screen menu with prominent Cross / Close button */}
+              <div className="max-w-md mx-auto w-full flex items-center justify-between pt-2 pb-4 border-b border-slate-800">
+                <span className="text-xs font-black text-amber-400 uppercase tracking-widest bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+                  Navigation Menu
+                </span>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-1 rounded-full text-slate-400 hover:text-slate-600 hover:bg-slate-100 cursor-pointer"
+                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white flex items-center justify-center cursor-pointer transition-all active:scale-95 shadow-md"
+                  title="Close Menu"
                 >
-                  <X size={18} />
+                  <X size={20} />
                 </button>
               </div>
 
-              <div className="space-y-1">
-                <Link
-                  to="/"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="w-full text-left p-3 rounded-xl hover:bg-slate-50 font-extrabold flex items-center gap-2"
-                >
-                  <Home size={16} className="text-amber-600" /> Home Page
-                </Link>
-                <button
-                  onClick={() => scrollToSection('how-it-works')}
-                  className="w-full text-left p-3 rounded-xl hover:bg-slate-50 font-extrabold flex items-center gap-2"
-                >
-                  <Layers size={16} className="text-amber-600" /> How It Works
-                </button>
-                <button
-                  onClick={() => scrollToSection('features')}
-                  className="w-full text-left p-3 rounded-xl hover:bg-slate-50 font-extrabold flex items-center gap-2"
-                >
-                  <Sparkles size={16} className="text-amber-600" /> Features
-                </button>
+              {/* Top Navigation Links */}
+              <div className="space-y-6 max-w-md mx-auto w-full pt-4">
+
+                <div className="space-y-2">
+                  <Link
+                    to="/"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="w-full text-left p-4 rounded-2xl hover:bg-white/10 font-black text-base flex items-center gap-3 border border-white/5 transition-all active:scale-98"
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+                      <Home size={18} />
+                    </div>
+                    Home Page
+                  </Link>
+
+                  <button
+                    onClick={() => scrollToSection('how-it-works')}
+                    className="w-full text-left p-4 rounded-2xl hover:bg-white/10 font-black text-base flex items-center gap-3 border border-white/5 transition-all cursor-pointer active:scale-98"
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+                      <Layers size={18} />
+                    </div>
+                    How It Works
+                  </button>
+
+                  <button
+                    onClick={() => scrollToSection('features')}
+                    className="w-full text-left p-4 rounded-2xl hover:bg-white/10 font-black text-base flex items-center gap-3 border border-white/5 transition-all cursor-pointer active:scale-98"
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+                      <Sparkles size={18} />
+                    </div>
+                    Features
+                  </button>
+                </div>
+
+                {/* Account & Action Controls */}
+                <div className="pt-4 border-t border-slate-800 space-y-3">
+                  {!isAuthenticated ? (
+                    <div className="grid grid-cols-1 gap-3">
+                      <Link
+                        to="/login"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="w-full flex items-center justify-between p-4 rounded-2xl bg-slate-900 border border-slate-800 text-white font-black text-sm shadow-md active:scale-98"
+                      >
+                        <span className="flex items-center gap-2">
+                          <User size={18} className="text-amber-400" /> Log In
+                        </span>
+                        <ChevronRight size={18} />
+                      </Link>
+
+                      <Link
+                        to="/signup"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="w-full flex items-center justify-between p-4 rounded-2xl bg-amber-500 text-slate-950 font-black text-sm shadow-lg shadow-amber-500/20 active:scale-98"
+                      >
+                        <span className="flex items-center gap-2">
+                          <UserPlus size={18} /> Sign Up Free
+                        </span>
+                        <ChevronRight size={18} />
+                      </Link>
+                    </div>
+                  ) : (
+                    <div className="space-y-3">
+                      {currentUser && currentUser.isLoggedIn && (
+                        <Link
+                          to="/dashboard"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="flex items-center justify-between p-4 rounded-2xl bg-amber-500 text-slate-950 font-black text-sm shadow-lg active:scale-98"
+                        >
+                          <span className="flex items-center gap-2">
+                            <LayoutDashboard size={18} /> Launch Buyer Dashboard
+                          </span>
+                          <ChevronRight size={18} />
+                        </Link>
+                      )}
+
+                      {isAdminAuthenticated && (
+                        <Link
+                          to="/admin"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="flex items-center justify-between p-4 rounded-2xl bg-slate-900 text-white font-black text-sm border border-slate-800 shadow-md active:scale-98"
+                        >
+                          <span className="flex items-center gap-2">
+                            <Shield size={18} className="text-amber-400" /> Admin Control Panel
+                          </span>
+                          <ChevronRight size={18} />
+                        </Link>
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
 
-              <div className="pt-3 border-t border-slate-100 space-y-2">
-                {!isAuthenticated ? (
-                  <>
-                    <Link
-                      to="/login"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="w-full flex items-center justify-between p-3 rounded-xl bg-slate-950 text-white font-black shadow-sm"
-                    >
-                      <span className="flex items-center gap-2">
-                        <User size={18} /> Log In
-                      </span>
-                      <ChevronRight size={16} />
-                    </Link>
-
-                    <Link
-                      to="/signup"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="w-full flex items-center justify-between p-3 rounded-xl bg-amber-500 text-slate-950 font-black shadow-sm"
-                    >
-                      <span className="flex items-center gap-2">
-                        <UserPlus size={18} /> Sign Up
-                      </span>
-                      <ChevronRight size={16} />
-                    </Link>
-                  </>
-                ) : (
-                  <>
-                    {currentUser && currentUser.isLoggedIn && (
-                      <Link
-                        to="/dashboard"
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="flex items-center justify-between p-3 rounded-xl bg-amber-500 text-slate-950 font-black shadow-sm"
-                      >
-                        <span className="flex items-center gap-2">
-                          <LayoutDashboard size={18} /> My Buyer Dashboard
-                        </span>
-                        <ChevronRight size={16} />
-                      </Link>
-                    )}
-
-                    {isAdminAuthenticated && (
-                      <Link
-                        to="/admin"
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="flex items-center justify-between p-3 rounded-xl bg-slate-900 text-white font-black shadow-sm"
-                      >
-                        <span className="flex items-center gap-2">
-                          <Shield size={18} className="text-amber-400" /> Admin Control Panel
-                        </span>
-                        <ChevronRight size={16} />
-                      </Link>
-                    )}
-                  </>
-                )}
+              {/* Bottom Brand Tagline */}
+              <div className="text-center text-xs text-slate-500 font-bold pt-6 border-t border-slate-900 max-w-md mx-auto w-full">
+                Promohomex &bull; Real-Time Property Tracking Platform
               </div>
             </motion.div>
           )}
