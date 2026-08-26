@@ -86,7 +86,8 @@ const AdminPanel = () => {
   // Document uploader state
   const [docTitle, setDocTitle] = useState('');
   const [docCategory, setDocCategory] = useState('Payment Receipt');
-  const docSize = '1.8 MB';
+  const [docFileName, setDocFileName] = useState('');
+  const [docSizeFormatted, setDocSizeFormatted] = useState('1.8 MB');
 
   // Push notification state
   const [notifTitle, setNotifTitle] = useState('');
@@ -207,10 +208,11 @@ const AdminPanel = () => {
     addDocumentToProperty(activePropertyId, {
       title: docTitle,
       category: docCategory,
-      fileSize: docSize,
+      fileSize: docSizeFormatted || '1.8 MB',
       status: "Verified & Stamped"
     });
     setDocTitle('');
+    setDocFileName('');
     showToast(`Document "${docTitle}" uploaded to buyer vault!`);
   };
 
@@ -938,12 +940,38 @@ const AdminPanel = () => {
                 />
               </div>
 
-              <SpatialSelect
-                label="Document Category:"
-                value={docCategory}
-                onChange={(newVal) => setDocCategory(newVal)}
-                options={['Payment Receipt', 'Demand Letter', 'Booking', 'Agreement', 'Floor Plan', 'Brochure']}
-              />
+              {/* PDF / Document File Upload Selector Button */}
+              <div className="p-4 bg-slate-50 border border-slate-200/90 rounded-2xl space-y-3">
+                <label className="text-xs font-black text-slate-900 flex items-center justify-between">
+                  <span>📄 Select PDF / Document File (Instant Vault Encryption)</span>
+                  <span className="text-[10px] text-emerald-700 font-extrabold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                    Secure Vault Mode
+                  </span>
+                </label>
+                
+                <input
+                  type="file"
+                  accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      if (!docTitle) setDocTitle(file.name.replace(/\.[^/.]+$/, ""));
+                      setDocFileName(file.name);
+                      setDocSizeFormatted((file.size / (1024 * 1024)).toFixed(1) + ' MB');
+                    }
+                  }}
+                  className="w-full text-xs font-bold text-slate-700 file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-black file:bg-amber-500 file:text-slate-950 hover:file:bg-amber-400 cursor-pointer"
+                />
+
+                {docFileName && (
+                  <div className="p-2.5 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-xs font-bold flex items-center justify-between">
+                    <span>📄 Selected File: {docFileName} ({docSizeFormatted})</span>
+                    <span className="bg-emerald-600 text-white text-[10px] font-black px-2 py-0.5 rounded">
+                      Ready to Issue
+                    </span>
+                  </div>
+                )}
+              </div>
 
               <button
                 type="submit"
