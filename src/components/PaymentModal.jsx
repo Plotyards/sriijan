@@ -15,10 +15,13 @@ const PaymentModal = ({ isOpen, onClose, onSuccess, propertyDetails }) => {
     setIsProcessing(true);
 
     try {
-      // 1. Fetch Razorpay Key via Backend API
-      const orderRes = await apiService.createRazorpayOrder(699);
-      const rzpKey = orderRes?.key || "rzp_live_Sz3GfNd3GUm8xR";
+      // 1. Instant Fetch / Fallback for Razorpay Key
+      const orderRes = await Promise.race([
+        apiService.createRazorpayOrder(699),
+        new Promise((resolve) => setTimeout(() => resolve(null), 800))
+      ]);
 
+      const rzpKey = orderRes?.key || "rzp_live_Sz3GfNd3GUm8xR";
       const generatedTxnFallback = 'pay_RZP_' + Math.floor(100000 + Math.random() * 900000);
 
       // 2. Configure Razorpay Standard Options
@@ -41,7 +44,7 @@ const PaymentModal = ({ isOpen, onClose, onSuccess, propertyDetails }) => {
           const finalTxn = response.razorpay_payment_id || generatedTxnFallback;
           setTxnId(finalTxn);
 
-          await apiService.verifyRazorpayPayment({
+          apiService.verifyRazorpayPayment({
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_order_id: response.razorpay_order_id,
             razorpay_signature: response.razorpay_signature
@@ -57,7 +60,7 @@ const PaymentModal = ({ isOpen, onClose, onSuccess, propertyDetails }) => {
               transactionId: finalTxn,
               paymentDate: new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })
             });
-          }, 1200);
+          }, 1000);
         },
         modal: {
           ondismiss: function () {
@@ -73,22 +76,22 @@ const PaymentModal = ({ isOpen, onClose, onSuccess, propertyDetails }) => {
           console.warn('Razorpay payment failed or cancelled:', resp.error);
         });
         rzp.open();
+        // Hide processing spinner as soon as Razorpay modal launches
+        setTimeout(() => setIsProcessing(false), 300);
       } else {
         // Instant Fallback if script loading offline
-        setTimeout(() => {
-          setTxnId(generatedTxnFallback);
-          setIsProcessing(false);
-          setIsSuccess(true);
+        setTxnId(generatedTxnFallback);
+        setIsProcessing(false);
+        setIsSuccess(true);
 
-          setTimeout(() => {
-            onSuccess({
-              amount: 699,
-              paymentStatus: 'Paid',
-              transactionId: generatedTxnFallback,
-              paymentDate: new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })
-            });
-          }, 1200);
-        }, 1500);
+        setTimeout(() => {
+          onSuccess({
+            amount: 699,
+            paymentStatus: 'Paid',
+            transactionId: generatedTxnFallback,
+            paymentDate: new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })
+          });
+        }, 1000);
       }
     } catch (err) {
       console.error("Razorpay Error:", err);

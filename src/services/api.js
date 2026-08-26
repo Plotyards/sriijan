@@ -176,14 +176,20 @@ export const apiService = {
   // Razorpay Gateway API
   createRazorpayOrder: async (amount = 699) => {
     try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 1000); // 1s fast timeout
+
       const res = await fetch(`${API_BASE_URL}/payment/create-razorpay-order`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount })
+        body: JSON.stringify({ amount }),
+        signal: controller.signal
       });
+      clearTimeout(timeoutId);
+      if (!res.ok) throw new Error('API server timeout or error');
       return await res.json();
     } catch (err) {
-      console.warn('Razorpay server endpoint offline, using client fallback order:', err.message);
+      console.warn('Razorpay server endpoint slow/offline, using instant client order:', err.message);
       return {
         success: true,
         order: { id: `order_${Math.random().toString(36).substring(2, 15)}`, amount: amount * 100 },
