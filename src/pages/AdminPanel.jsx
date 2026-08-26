@@ -50,6 +50,38 @@ const AdminPanel = () => {
   const [photoTitle, setPhotoTitle] = useState('');
   const [photoCategory, setPhotoCategory] = useState('External');
   const [photoUrl, setPhotoUrl] = useState('');
+  const [compressionStats, setCompressionStats] = useState(null);
+
+  const compressAndSetPhoto = (file) => {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const MAX_WIDTH = 1000;
+        const scaleSize = MAX_WIDTH / img.width;
+        canvas.width = Math.min(img.width, MAX_WIDTH);
+        canvas.height = Math.min(img.height, scaleSize > 1 ? img.height : img.height * scaleSize);
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        
+        const compressedDataUrl = canvas.toDataURL('image/webp', 0.7);
+        const originalKB = (file.size / 1024).toFixed(0);
+        const compressedKB = Math.round((compressedDataUrl.length * 3) / 4 / 1024);
+        const saved = Math.max(0, (((file.size - (compressedKB * 1024)) / file.size) * 100)).toFixed(1);
+
+        setPhotoUrl(compressedDataUrl);
+        setCompressionStats({
+          original: `${originalKB} KB`,
+          compressed: `${compressedKB} KB`,
+          saved: `${saved}%`
+        });
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
 
   // Document uploader state
   const [docTitle, setDocTitle] = useState('');
@@ -799,12 +831,19 @@ const AdminPanel = () => {
           </div>
         )}
 
-        {/* TAB 3: Photo & Drone Media */}
+        {/* TAB 3: Photo & Drone Media (Ultra-Low Storage Architecture) */}
         {activeAdminTab === 'media' && (
           <div className="space-y-6">
             <div>
-              <h3 className="text-lg font-bold text-slate-900">Upload Site Construction Media</h3>
-              <p className="text-xs text-slate-500">Add high-resolution site progress photos directly to buyer gallery.</p>
+              <div className="flex items-center gap-2">
+                <h3 className="text-lg font-bold text-slate-900">Upload Site Construction Media</h3>
+                <span className="bg-emerald-50 text-emerald-700 text-[10px] font-black px-2.5 py-0.5 rounded-full border border-emerald-200">
+                  Low-Storage Architecture ⚡
+                </span>
+              </div>
+              <p className="text-xs text-slate-500 mt-1">
+                Upload local photos with instant client WebP auto-compression or enter CDN image links to save 95%+ server storage.
+              </p>
             </div>
 
             <form onSubmit={handleAddPhoto} className="space-y-4 max-w-xl">
@@ -826,8 +865,33 @@ const AdminPanel = () => {
                 options={['External', 'Internal', 'Amenities', 'Common Area']}
               />
 
+              {/* Option A: Local File Upload with Auto WebP Compression */}
+              <div className="p-4 bg-amber-50/70 border border-amber-200 rounded-2xl space-y-3">
+                <label className="text-xs font-black text-amber-900 flex items-center justify-between">
+                  <span>📷 Option A: Upload Local Image (Auto-Compressed to WebP)</span>
+                  <span className="text-[10px] text-amber-700 font-extrabold bg-amber-200/60 px-2 py-0.5 rounded">Kam Storage Mode</span>
+                </label>
+                
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => compressAndSetPhoto(e.target.files[0])}
+                  className="w-full text-xs font-bold text-slate-700 file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-black file:bg-slate-950 file:text-white hover:file:bg-slate-800 cursor-pointer"
+                />
+
+                {compressionStats && (
+                  <div className="p-2.5 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-xs font-bold flex items-center justify-between">
+                    <span>📦 Original: {compressionStats.original} ➔ WebP: {compressionStats.compressed}</span>
+                    <span className="bg-emerald-600 text-white text-[10px] font-black px-2 py-0.5 rounded">
+                      {compressionStats.saved} Saved!
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              {/* Option B: Direct CDN Link */}
               <div>
-                <label className="text-xs font-bold text-slate-700">Image URL:</label>
+                <label className="text-xs font-bold text-slate-700">🔗 Option B: Direct Image CDN / Cloud URL:</label>
                 <input
                   type="text"
                   placeholder="https://images.unsplash.com/..."
@@ -837,11 +901,18 @@ const AdminPanel = () => {
                 />
               </div>
 
+              {photoUrl && (
+                <div className="p-2 bg-slate-100 rounded-xl max-w-xs">
+                  <div className="text-[10px] font-bold text-slate-500 mb-1">Image Preview:</div>
+                  <img src={photoUrl} alt="Preview" className="w-full h-32 object-cover rounded-lg" />
+                </div>
+              )}
+
               <button
                 type="submit"
                 className="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-5 py-3 rounded-xl transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
               >
-                <Upload size={15} /> Upload Photo to Gallery
+                <Upload size={15} /> Upload Photo to Buyer Gallery
               </button>
             </form>
           </div>
