@@ -3,14 +3,10 @@ import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { CheckCircle2, ArrowRight, ShieldCheck, Sparkles, UserCheck, Lock, AlertCircle, Building2, LogIn, UserPlus } from 'lucide-react';
-import AuthModal from './AuthModal';
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
   const { addNewPropertyBooking, currentUser } = useApp();
-
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const [authModalTab, setAuthModalTab] = useState('buyer_signup');
   const [formError, setFormError] = useState('');
 
   const [formData, setFormData] = useState({
@@ -53,8 +49,7 @@ const RegistrationForm = () => {
     setFormError('');
 
     if (!currentUser || !currentUser.isLoggedIn) {
-      setAuthModalTab('buyer_signup');
-      setIsAuthModalOpen(true);
+      navigate('/signup');
       return;
     }
 
@@ -132,10 +127,7 @@ const RegistrationForm = () => {
               <div className="flex flex-col sm:flex-row items-center gap-3 pt-2 w-full max-w-sm">
                 <button
                   type="button"
-                  onClick={() => {
-                    setAuthModalTab('buyer_signup');
-                    setIsAuthModalOpen(true);
-                  }}
+                  onClick={() => navigate('/signup')}
                   className="w-full py-3.5 px-5 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 rounded-2xl font-black text-xs sm:text-sm transition-all shadow-lg shadow-amber-500/25 border border-amber-300 flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <UserPlus size={18} /> Sign Up <ArrowRight size={16} />
@@ -143,10 +135,7 @@ const RegistrationForm = () => {
 
                 <button
                   type="button"
-                  onClick={() => {
-                    setAuthModalTab('buyer_login');
-                    setIsAuthModalOpen(true);
-                  }}
+                  onClick={() => navigate('/login')}
                   className="w-full py-3.5 px-5 bg-slate-900 hover:bg-slate-800 text-white rounded-2xl font-black text-xs sm:text-sm transition-all border border-slate-700 flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <LogIn size={18} /> Sign In
@@ -359,13 +348,6 @@ const RegistrationForm = () => {
           </div>
         </motion.div>
       </div>
-
-      {/* Auth Modal for Lock Overlay Action Buttons */}
-      <AuthModal
-        isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-        initialTab={authModalTab}
-      />
     </div>
   );
 };

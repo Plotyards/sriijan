@@ -2,14 +2,12 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Logo from './Logo';
-import AuthModal from './AuthModal';
 import { useApp } from '../context/AppContext';
 import { LayoutDashboard, Shield, ChevronRight, Home, Layers, Sparkles, User, Menu, X, UserPlus, LogOut, UserCheck } from 'lucide-react';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [authModalOpen, setAuthModalOpen] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -321,13 +319,6 @@ const Navbar = () => {
           )}
         </AnimatePresence>
       </motion.header>
-
-      {/* Auth Modal */}
-      <AuthModal
-        isOpen={authModalOpen}
-        onClose={() => setAuthModalOpen(false)}
-        initialTab="buyer_login"
-      />
     </>
   );
 };
