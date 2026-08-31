@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <!-- Transparent Background, Perfect Emerald Circle -->
+  <defs>
+    <radialGradient id="greenGrad" cx="45%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#148046"/>
+      <stop offset="60%" stop-color="#0e6939"/>
+      <stop offset="100%" stop-color="#084d28"/>
+    </radialGradient>
+    <filter id="subtleShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Green Circle -->
+  <circle cx="250" cy="250" r="235" fill="url(#greenGrad)" filter="url(#subtleShadow)" stroke="#1aa359" stroke-width="2"/>
+
+  <!-- Brand Typography: Sriizan -->
+  <g font-family="'Playfair Display', 'Times New Roman', serif" font-weight="700" text-anchor="middle">
+    <!-- "Sr" and "zan" and body of "ii" -->
+    <!-- Using path/text with custom styled gold dots for exact matching -->
+    <text x="250" y="285" font-size="118" fill="#ffffff" letter-spacing="-1px">
+      Sriizan
+    </text>
+  </g>
+
+  <!-- The Two Golden Amber Dots on "ii" -->
+  <!-- Center of word "Sriizan" is at x=250. The "ii" is roughly at x=218 and x=252 -->
+  <!-- Let's cover the default dots with precise radiant golden circles -->
+  <circle cx="218" cy="194" r="11" fill="#f5a623" stroke="#fbbd42" stroke-width="1.5"/>
+  <circle cx="253" cy="194" r="11" fill="#f5a623" stroke="#fbbd42" stroke-width="1.5"/>
+</svg>

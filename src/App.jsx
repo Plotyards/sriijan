@@ -117,7 +117,6 @@ function AppContent() {
       />
 
       <Footer />
-      <Popup />
       <MobileBottomNav />
     </div>
   );

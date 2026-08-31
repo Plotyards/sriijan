@@ -1,42 +1,38 @@
 const Logo = ({ className = "", size = "normal", variant = "light" }) => {
-  // Height sizing
-  const heightClasses = {
-    small: "h-8 sm:h-9",
-    normal: "h-10 sm:h-11",
-    large: "h-14 sm:h-16"
+  const sizeConfig = {
+    small: { img: "w-8 h-8", text: "text-lg", sub: "text-[7.5px]" },
+    normal: { img: "w-10 h-10", text: "text-2xl", sub: "text-[8.5px]" },
+    large: { img: "w-14 h-14", text: "text-3xl", sub: "text-[10px]" },
   };
 
-  const currentHeight = heightClasses[size] || heightClasses.normal;
+  const cfg = sizeConfig[size] || sizeConfig.normal;
+  const isDark = variant === "dark";
 
   return (
-    <div className={`flex items-center select-none group cursor-pointer transition-transform duration-200 hover:scale-[1.02] ${className}`}>
-      {/* Clean, High-Resolution Sriizan Circular Logo */}
-      <img
-        src="/logo.PNG"
-        alt="Sriizan"
-        className={`${currentHeight} w-auto object-contain drop-shadow-sm rounded-full`}
-        onError={(e) => {
-          // Clean fallback if image fails
-          e.target.style.display = 'none';
-          if (e.target.nextSibling) {
-            e.target.nextSibling.style.display = 'flex';
-          }
-        }}
-      />
+    <div className={`flex items-center gap-2.5 select-none ${className}`}>
+      {/* Precision Circular Emblem - Cropped to eliminate black background borders */}
+      <div className={`relative ${cfg.img} rounded-full overflow-hidden shadow-md shadow-emerald-950/20 shrink-0 border border-emerald-500/30`}>
+        <img
+          src="/logo.PNG"
+          alt="Sriizan"
+          className="w-full h-full object-cover scale-[1.07] rounded-full"
+          onError={(e) => {
+            e.target.src = "/logo.svg";
+          }}
+        />
+      </div>
 
-      {/* Pristine Fallback Emblem */}
-      <div className="hidden items-center gap-2">
-        <div className="w-10 h-10 rounded-full bg-emerald-800 flex items-center justify-center text-white font-serif font-bold text-xl shadow-md">
-          S
-        </div>
-        <div className="flex flex-col">
-          <span className={`font-serif font-black text-xl tracking-tight leading-none ${variant === 'dark' ? 'text-white' : 'text-slate-900'}`}>
+      {/* Pristine Luxury Wordmark */}
+      <div className="flex flex-col">
+        <div className="flex items-center gap-1 font-serif">
+          <span className={`font-black tracking-tight ${cfg.text} ${isDark ? 'text-white' : 'text-slate-950'} leading-none`}>
             Sriizan
           </span>
-          <span className="text-[8px] font-extrabold tracking-widest text-emerald-700 uppercase mt-0.5">
-            BUILT • TRACKED • TRADED
-          </span>
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
         </div>
+        <span className={`${cfg.sub} font-black tracking-[0.22em] uppercase text-emerald-800 leading-none mt-1`}>
+          CONSTRUCTION &bull; RESALE
+        </span>
       </div>
     </div>
   );
