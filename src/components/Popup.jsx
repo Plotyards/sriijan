@@ -34,7 +34,7 @@ const Popup = () => {
           className="fixed bottom-24 md:bottom-8 left-4 right-4 md:left-6 md:right-auto z-50 max-w-sm bg-white text-slate-900 rounded-2xl shadow-2xl border border-slate-200 overflow-hidden"
         >
           {/* Top gold accent line */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600"></div>
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-700"></div>
 
           <div className="relative p-5">
             <button
@@ -44,12 +44,12 @@ const Popup = () => {
               <X className="w-4 h-4" />
             </button>
             <div className="flex items-start gap-3 mt-1">
-              <div className="bg-amber-100/80 border border-amber-200 p-2.5 rounded-xl shrink-0 text-amber-700">
+              <div className="bg-emerald-100/80 border border-emerald-200 p-2.5 rounded-xl shrink-0 text-emerald-800">
                 <TrendingUp className="w-5 h-5" />
               </div>
               <div className="pr-4">
                 <h4 className="font-extrabold text-slate-900 text-sm mb-1 leading-tight flex items-center gap-1.5">
-                  <Sparkles size={14} className="text-amber-600" /> Promohomex Live Tracker
+                  <Sparkles size={14} className="text-emerald-700" /> Sriizan Live Tracker
                 </h4>
                 <p className="text-slate-600 font-medium text-xs leading-relaxed">
                   Over 10,000+ homebuyers are tracking construction progress & resale appreciation live!

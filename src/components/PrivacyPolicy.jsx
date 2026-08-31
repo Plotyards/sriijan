@@ -10,7 +10,7 @@ const PrivacyPolicy = () => {
   return (
     <div className="pt-32 pb-24 bg-gray-900 min-h-screen text-gray-300 relative overflow-hidden">
       {/* Decorative background blobs */}
-      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-brand-red/10 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none"></div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
@@ -24,7 +24,7 @@ const PrivacyPolicy = () => {
           <div className="space-y-8 text-base sm:text-lg leading-relaxed font-light">
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">1. Introduction</h2>
-              <p>Welcome to Promohomex. We respect your privacy and are committed to protecting your personal data. This Privacy Policy will inform you as to how we look after your personal data when you visit our website (regardless of where you visit it from) and tell you about your privacy rights and how the law protects you.</p>
+              <p>Welcome to Sriizan. We respect your privacy and are committed to protecting your personal data. This Privacy Policy will inform you as to how we look after your personal data when you visit our website (regardless of where you visit it from) and tell you about your privacy rights and how the law protects you.</p>
             </section>
 
             <section>
@@ -51,7 +51,7 @@ const PrivacyPolicy = () => {
 
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">4. WhatsApp Integration</h2>
-              <p>By registering your phone number with Promohomex, you explicitly consent to receiving automated updates and manual support messages via WhatsApp. We do not sell your phone number to third-party marketers. Your communication with us via WhatsApp is subject to WhatsApp's own privacy policy and terms of service.</p>
+              <p>By registering your phone number with Sriizan, you explicitly consent to receiving automated updates and manual support messages via WhatsApp. We do not sell your phone number to third-party marketers. Your communication with us via WhatsApp is subject to WhatsApp's own privacy policy and terms of service.</p>
             </section>
 
             <section>
@@ -62,7 +62,7 @@ const PrivacyPolicy = () => {
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">6. Contact Us</h2>
               <p>If you have any questions about this privacy policy or our privacy practices, please contact us at:</p>
-              <p className="mt-4 text-brand-yellow font-medium">privacy@promohomex.com</p>
+              <p className="mt-4 text-emerald-400 font-medium">privacy@sriizan.com</p>
             </section>
           </div>
         </motion.div>

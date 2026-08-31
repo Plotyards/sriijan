@@ -42,7 +42,7 @@ const BuyerDashboard = () => {
       <div className="min-h-screen bg-slate-50 flex items-center justify-center pt-28 pb-16 px-4">
         <div className="max-w-md w-full bg-white rounded-3xl p-8 shadow-2xl border border-slate-200 text-slate-900 space-y-6">
           <div className="text-center space-y-2">
-            <div className="w-16 h-16 bg-amber-500 text-slate-950 rounded-2xl flex items-center justify-center mx-auto shadow-lg font-black">
+            <div className="w-16 h-16 bg-emerald-600 text-white rounded-2xl flex items-center justify-center mx-auto shadow-lg font-black">
               <Building2 size={32} />
             </div>
             <h2 className="text-2xl font-black text-slate-900">Buyer Dashboard Login</h2>
@@ -67,7 +67,7 @@ const BuyerDashboard = () => {
                 required
                 value={buyerEmail}
                 onChange={(e) => setBuyerEmail(e.target.value)}
-                className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-amber-500 focus:bg-white"
+                className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-emerald-600 focus:bg-white"
                 placeholder="your.email@example.com"
               />
             </div>
@@ -81,14 +81,14 @@ const BuyerDashboard = () => {
                 required
                 value={buyerPassword}
                 onChange={(e) => setBuyerPassword(e.target.value)}
-                className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-amber-500 focus:bg-white"
+                className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-emerald-600 focus:bg-white"
                 placeholder="••••••••"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black rounded-xl text-xs shadow-lg shadow-amber-500/20 border border-amber-400 flex items-center justify-center gap-2 cursor-pointer transition-all"
+              className="w-full py-3.5 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600 text-white font-black rounded-xl text-xs shadow-lg shadow-emerald-600/20 border border-emerald-500 flex items-center justify-center gap-2 cursor-pointer transition-all"
             >
               Log In To My Dashboard <ArrowRight size={16} />
             </button>
@@ -99,7 +99,7 @@ const BuyerDashboard = () => {
               Don't have an account yet?{' '}
               <button 
                 onClick={() => navigate('/')} 
-                className="font-bold text-amber-600 hover:underline cursor-pointer"
+                className="font-bold text-emerald-600 hover:underline cursor-pointer"
               >
                 Sign Up & Register Property
               </button>
@@ -120,12 +120,12 @@ const BuyerDashboard = () => {
     return (
       <div className="min-h-screen bg-slate-50 pt-28 sm:pt-32 pb-20 px-4 sm:px-6 max-w-3xl mx-auto flex items-center justify-center">
         <div className="bg-white/95 backdrop-blur-2xl rounded-3xl p-8 sm:p-12 shadow-2xl border border-slate-200 text-slate-900 text-center space-y-6 w-full">
-          <div className="w-20 h-20 bg-amber-500/10 text-amber-600 rounded-3xl flex items-center justify-center mx-auto border border-amber-500/20 shadow-md animate-pulse">
+          <div className="w-20 h-20 bg-emerald-500/10 text-emerald-600 rounded-3xl flex items-center justify-center mx-auto border border-emerald-500/20 shadow-md animate-pulse">
             <Building2 size={42} />
           </div>
 
           <div className="space-y-2 max-w-md mx-auto">
-            <span className="inline-flex items-center gap-1.5 text-amber-800 font-black text-[11px] uppercase tracking-widest bg-amber-50 px-3.5 py-1 rounded-full border border-amber-200">
+            <span className="inline-flex items-center gap-1.5 text-emerald-800 font-black text-[11px] uppercase tracking-widest bg-emerald-50 px-3.5 py-1 rounded-full border border-emerald-200">
               <UserCheck size={13} /> Logged In: {currentUser.name}
             </span>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-900">No Booked Property Found</h2>
@@ -146,7 +146,7 @@ const BuyerDashboard = () => {
                   }
                 }, 100);
               }}
-              className="py-3.5 px-6 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 rounded-2xl font-black text-xs sm:text-sm shadow-lg shadow-amber-500/20 border border-amber-300 flex items-center justify-center gap-2 cursor-pointer transition-all"
+              className="py-3.5 px-6 bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-500 hover:to-emerald-400 text-white rounded-2xl font-black text-xs sm:text-sm shadow-lg shadow-emerald-600/20 border border-emerald-400 flex items-center justify-center gap-2 cursor-pointer transition-all"
             >
               <Building2 size={18} /> + Register Your Booked Property <ArrowRight size={16} />
             </button>
@@ -181,7 +181,7 @@ const BuyerDashboard = () => {
       {/* Top Header Card: Spatial Liquid Glass */}
       <div className="liquid-glass-card rounded-3xl p-5 sm:p-7 border border-white/80 flex flex-col md:flex-row md:items-center justify-between gap-5 relative z-30">
         <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500/20 to-amber-600/5 text-amber-600 flex items-center justify-center font-extrabold text-xl border border-amber-500/30 shrink-0 shadow-inner">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/5 text-emerald-600 flex items-center justify-center font-extrabold text-xl border border-emerald-500/30 shrink-0 shadow-inner">
             <Building2 size={28} />
           </div>
           <div>
@@ -190,12 +190,12 @@ const BuyerDashboard = () => {
               <span className="bg-emerald-50/90 text-emerald-700 text-[10px] font-black px-2.5 py-0.5 rounded-full border border-emerald-200 flex items-center gap-1">
                 <ShieldCheck size={12} /> {currentActiveProperty.verificationStatus}
               </span>
-              <span className="bg-amber-50/90 text-amber-800 text-[10px] font-black px-2.5 py-0.5 rounded-full border border-amber-200 flex items-center gap-1">
+              <span className="bg-emerald-50/90 text-emerald-800 text-[10px] font-black px-2.5 py-0.5 rounded-full border border-emerald-200 flex items-center gap-1">
                 <UserCheck size={12} /> Buyer: {currentUser.name || currentActiveProperty.owner.name}
               </span>
             </div>
             <p className="text-xs sm:text-sm text-slate-600 font-medium mt-1">
-              Tower: <span className="font-black text-slate-900">{currentActiveProperty.tower}</span> • Unit: <span className="font-black text-amber-700">{currentActiveProperty.unitNo.replace(/[()]/g, '')}</span> ({currentActiveProperty.type})
+              Tower: <span className="font-black text-slate-900">{currentActiveProperty.tower}</span> • Unit: <span className="font-black text-emerald-700">{currentActiveProperty.unitNo.replace(/[()]/g, '')}</span> ({currentActiveProperty.type})
             </p>
           </div>
         </div>
@@ -219,12 +219,12 @@ const BuyerDashboard = () => {
           {/* Notification Button */}
           <button
             onClick={() => setIsNotifOpen(true)}
-            className="relative p-3 spatial-glass hover:bg-amber-50 text-slate-800 rounded-xl transition-all shadow-xs cursor-pointer border border-white/80"
+            className="relative p-3 spatial-glass hover:bg-emerald-50 text-slate-800 rounded-xl transition-all shadow-xs cursor-pointer border border-white/80"
             title="Notifications"
           >
             <Bell size={18} />
             {unreadCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-amber-500 text-slate-950 text-[10px] font-extrabold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow">
+              <span className="absolute -top-1 -right-1 bg-emerald-600 text-white text-[10px] font-extrabold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow">
                 {unreadCount}
               </span>
             )}
@@ -256,7 +256,7 @@ const BuyerDashboard = () => {
                   : 'text-slate-600 hover:text-slate-950 hover:bg-white/60 font-bold'
               }`}
             >
-              <Icon size={15} className={`shrink-0 ${isActive ? 'text-amber-400' : 'text-slate-500'}`} />
+              <Icon size={15} className={`shrink-0 ${isActive ? 'text-emerald-400' : 'text-slate-500'}`} />
               <span className="truncate">{tab.label}</span>
             </button>
           );

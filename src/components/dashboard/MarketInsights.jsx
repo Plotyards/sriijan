@@ -34,7 +34,7 @@ const MarketInsights = () => {
       }
     ],
     newLaunches: [
-      { name: 'Promohomex Signature Tower', builder: 'Promohomex Realty', price: '₹15,200 / sq.ft' },
+      { name: 'Sriizan Signature Tower', builder: 'Sriizan Realty', price: '₹15,200 / sq.ft' },
       { name: 'Sobha City Sector 108', builder: 'Sobha Group', price: '₹16,200 / sq.ft' },
       { name: 'M3M Crown Sector 111', builder: 'M3M India', price: '₹15,800 / sq.ft' }
     ]
@@ -54,7 +54,7 @@ const MarketInsights = () => {
       <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="bg-amber-50 text-amber-800 text-xs px-2.5 py-0.5 rounded-full font-bold border border-amber-200 flex items-center gap-1">
+            <span className="bg-emerald-50 text-emerald-800 text-xs px-2.5 py-0.5 rounded-full font-bold border border-emerald-200 flex items-center gap-1">
               <Compass size={13} /> Locational Intelligence
             </span>
           </div>
@@ -64,9 +64,9 @@ const MarketInsights = () => {
           </p>
         </div>
 
-        <div className="bg-amber-50 text-slate-900 p-4 rounded-xl text-right border border-amber-200 shadow-xs shrink-0">
-          <div className="text-[11px] text-amber-800 font-extrabold uppercase">Micro-Market Avg Rate</div>
-          <div className="text-xl font-black text-amber-900">{avgSquareFootPrice}</div>
+        <div className="bg-emerald-50 text-slate-900 p-4 rounded-xl text-right border border-emerald-200 shadow-xs shrink-0">
+          <div className="text-[11px] text-emerald-800 font-extrabold uppercase">Micro-Market Avg Rate</div>
+          <div className="text-xl font-black text-emerald-900">{avgSquareFootPrice}</div>
           <div className="text-[11px] text-emerald-700 font-bold">{sectorTrend}</div>
         </div>
       </div>
@@ -74,7 +74,7 @@ const MarketInsights = () => {
       {/* Nearby Infrastructure Developments */}
       <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
         <h3 className="font-bold text-slate-900 text-lg mb-1 flex items-center gap-2">
-          <Navigation size={20} className="text-amber-600" />
+          <Navigation size={20} className="text-emerald-600" />
           Key Nearby Infrastructure Projects
         </h3>
         <p className="text-xs text-slate-500 mb-6">Upcoming public infrastructure directly impacting capital value appreciation</p>
@@ -83,7 +83,7 @@ const MarketInsights = () => {
           {nearbyInfra.map((infra, idx) => (
             <div
               key={idx}
-              className="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-300 transition-all flex flex-col justify-between"
+              className="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-emerald-300 transition-all flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2">
@@ -102,7 +102,7 @@ const MarketInsights = () => {
               <div className="mt-4 pt-3 border-t border-slate-200/60 flex items-center justify-between text-xs text-slate-500">
                 <span>Status:</span>
                 <span className="font-bold text-slate-800 flex items-center gap-1">
-                  <CheckCircle2 size={13} className="text-amber-500" /> {infra.status || 'Active'}
+                  <CheckCircle2 size={13} className="text-emerald-600" /> {infra.status || 'Active'}
                 </span>
               </div>
             </div>
@@ -114,7 +114,7 @@ const MarketInsights = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
           <h3 className="font-bold text-slate-900 text-lg mb-1 flex items-center gap-2">
-            <Building2 size={20} className="text-amber-600" />
+            <Building2 size={20} className="text-emerald-600" />
             New Projects Launched in Vicinity
           </h3>
           <p className="text-xs text-slate-500 mb-5">Compare launch prices of newly launched developments nearby</p>
@@ -133,7 +133,7 @@ const MarketInsights = () => {
                 {newLaunches.map((launch, idx) => (
                   <tr key={idx} className="hover:bg-slate-50/80 transition-colors">
                     <td className="p-3 font-bold text-slate-900 flex items-center gap-2">
-                      <Flame size={14} className="text-amber-500" />
+                      <Flame size={14} className="text-emerald-600" />
                       {launch.name}
                     </td>
                     <td className="p-3 text-slate-600 font-medium">{launch.builder}</td>
@@ -147,20 +147,20 @@ const MarketInsights = () => {
         </div>
 
         {/* Monthly Advisory Card */}
-        <div className="bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl p-6 text-slate-950 shadow-md flex flex-col justify-between">
+        <div className="bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-2xl p-6 text-white shadow-md flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 font-extrabold text-xs uppercase tracking-wider mb-2">
-              <Sparkles size={16} /> Promohomex Monthly Advisory
+              <Sparkles size={16} /> Sriizan Monthly Advisory
             </div>
             <h4 className="text-xl font-extrabold leading-tight">Strong Hold Recommendation</h4>
-            <p className="text-xs text-slate-900/90 font-medium mt-3 leading-relaxed">
+            <p className="text-xs text-white/90 font-medium mt-3 leading-relaxed">
               Based on the imminent opening of Metro Sector 84 and Global City commercial land allotment, market prices in your sector are projected to appreciate by another <span className="font-bold underline">15-18%</span> before possession.
             </p>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-slate-950/20 flex items-center justify-between text-xs font-bold">
+          <div className="mt-6 pt-4 border-t border-white/20 flex items-center justify-between text-xs font-bold">
             <span>Advisor Rating:</span>
-            <span className="bg-slate-950 text-amber-400 px-3 py-1 rounded-full">★ 4.9 Premium Growth</span>
+            <span className="bg-slate-950 text-emerald-400 px-3 py-1 rounded-full">★ 4.9 Premium Growth</span>
           </div>
         </div>
       </div>

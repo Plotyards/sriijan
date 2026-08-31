@@ -29,7 +29,7 @@ const PaymentModal = ({ isOpen, onClose, onSuccess, propertyDetails }) => {
         key: rzpKey,
         amount: 69900,
         currency: "INR",
-        name: "Promohomex Platform",
+        name: "Sriizan Platform",
         description: `₹699 Lifetime Tracking Pass • ${propertyDetails?.projectName || 'Unit Registration'}`,
         image: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?q=80&w=200&auto=format&fit=crop",
         prefill: {
@@ -38,7 +38,7 @@ const PaymentModal = ({ isOpen, onClose, onSuccess, propertyDetails }) => {
           contact: propertyDetails?.mobile || propertyDetails?.phone || "9870534978"
         },
         theme: {
-          color: "#f59e0b"
+          color: "#059669"
         },
         handler: async function (response) {
           const finalTxn = response.razorpay_payment_id || generatedTxnFallback;
@@ -111,14 +111,14 @@ const PaymentModal = ({ isOpen, onClose, onSuccess, propertyDetails }) => {
         >
           {/* Top Bar Header */}
           <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 text-white p-5 px-6 flex items-center justify-between border-b border-white/10 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-48 h-48 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-600/10 rounded-full blur-2xl pointer-events-none"></div>
 
             <div className="flex items-center gap-3 relative z-10">
-              <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center border border-amber-500/40">
+              <div className="w-10 h-10 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center border border-emerald-600/40">
                 <ShieldCheck size={22} />
               </div>
               <div>
-                <span className="text-[10px] font-black text-amber-400 uppercase tracking-widest block flex items-center gap-1">
+                <span className="text-[10px] font-black text-emerald-400 uppercase tracking-widest block flex items-center gap-1">
                   <Zap size={11} /> Razorpay Official Gateway
                 </span>
                 <h3 className="text-base font-black text-white">Property Registration Pass Fee</h3>
@@ -137,7 +137,7 @@ const PaymentModal = ({ isOpen, onClose, onSuccess, propertyDetails }) => {
           {/* Processing / Success Overlay */}
           {isProcessing && (
             <div className="p-10 text-center space-y-4">
-              <RefreshCw size={44} className="mx-auto text-amber-500 animate-spin" />
+              <RefreshCw size={44} className="mx-auto text-emerald-600 animate-spin" />
               <h4 className="text-lg font-black text-slate-900">Connecting to Razorpay Gateway...</h4>
               <p className="text-xs text-slate-500 font-medium max-w-xs mx-auto">
                 Opening Razorpay secure checkout window for ₹699 live property pass verification.
@@ -152,7 +152,7 @@ const PaymentModal = ({ isOpen, onClose, onSuccess, propertyDetails }) => {
               </div>
               <h4 className="text-xl font-black text-slate-900">Razorpay Payment Verified! 🎉</h4>
               <p className="text-xs text-slate-600 font-bold">
-                Razorpay Payment ID: <span className="font-mono text-amber-700">{txnId}</span>
+                Razorpay Payment ID: <span className="font-mono text-emerald-800">{txnId}</span>
               </p>
               <p className="text-xs text-emerald-600 font-bold">
                 ₹699 Tax Invoice recorded in MongoDB Atlas. Redirecting to Dashboard...
@@ -163,18 +163,18 @@ const PaymentModal = ({ isOpen, onClose, onSuccess, propertyDetails }) => {
           {!isProcessing && !isSuccess && (
             <div className="p-4 sm:p-6 space-y-5 overflow-y-auto max-h-[calc(90vh-100px)]">
               {/* Order Amount Summary Card */}
-              <div className="bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-amber-500/10 border border-amber-500/30 p-4 rounded-2xl flex items-center justify-between shadow-xs">
+              <div className="bg-gradient-to-r from-emerald-600/10 via-emerald-600/5 to-emerald-600/10 border border-emerald-600/30 p-4 rounded-2xl flex items-center justify-between shadow-xs">
                 <div>
-                  <span className="text-[10px] font-black text-amber-800 uppercase tracking-wider block">Razorpay Live Pass</span>
+                  <span className="text-[10px] font-black text-emerald-900 uppercase tracking-wider block">Razorpay Live Pass</span>
                   <p className="text-xs font-black text-slate-900 mt-0.5">
-                    {propertyDetails?.projectName || 'Promohomex Property'} • <span className="text-amber-700">{propertyDetails?.unitNumber || 'Unit Registration'}</span>
+                    {propertyDetails?.projectName || 'Sriizan Property'} • <span className="text-emerald-800">{propertyDetails?.unitNumber || 'Unit Registration'}</span>
                   </p>
                   <span className="text-[10px] text-slate-500 font-medium">Includes 18% GST (Base: ₹592.37 + GST: ₹106.63)</span>
                 </div>
 
                 <div className="text-right shrink-0">
                   <span className="text-[10px] text-slate-400 font-bold uppercase block">Total Payable</span>
-                  <div className="text-2xl font-black text-amber-600">₹699</div>
+                  <div className="text-2xl font-black text-emerald-700">₹699</div>
                 </div>
               </div>
 
@@ -192,9 +192,9 @@ const PaymentModal = ({ isOpen, onClose, onSuccess, propertyDetails }) => {
 
                 <button
                   type="submit"
-                  className="w-full py-4 px-6 rounded-2xl font-black text-xs sm:text-sm text-slate-950 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-300 transition-all shadow-lg shadow-amber-500/25 flex items-center justify-center gap-2 cursor-pointer border border-amber-300"
+                  className="w-full py-4 px-6 rounded-2xl font-black text-xs sm:text-sm text-white bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-500 hover:to-emerald-400 transition-all shadow-lg shadow-emerald-600/25 flex items-center justify-center gap-2 cursor-pointer border border-emerald-400"
                 >
-                  <Zap size={18} className="text-slate-950 fill-slate-950" /> Pay ₹699 via Razorpay Gateway <ArrowRight size={16} />
+                  <Zap size={18} className="text-white fill-white" /> Pay ₹699 via Razorpay Gateway <ArrowRight size={16} />
                 </button>
 
                 <div className="flex items-center justify-center gap-4 text-[11px] font-bold text-slate-400">

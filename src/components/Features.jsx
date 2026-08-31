@@ -28,8 +28,8 @@ const Features = () => {
     <div id="features" className="py-24 bg-slate-50 relative overflow-hidden border-b border-slate-200">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <div className="text-center">
-          <span className="text-xs font-extrabold tracking-widest text-amber-600 uppercase bg-amber-100/60 px-3.5 py-1.5 rounded-full border border-amber-200">
-            WHY PROMHOMEX
+          <span className="text-xs font-extrabold tracking-widest text-emerald-700 uppercase bg-emerald-100/60 px-3.5 py-1.5 rounded-full border border-emerald-200">
+            WHY SRIIZAN
           </span>
           <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 mt-4">
             Built for Modern Homebuyers
@@ -45,7 +45,7 @@ const Features = () => {
               key={feature.name}
               className="liquid-glass-card rounded-3xl p-8 border border-white/80 flex items-start gap-6"
             >
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-600 text-slate-950 flex items-center justify-center shrink-0 shadow-[0_10px_25px_rgba(245,158,11,0.3)] border border-amber-300 font-extrabold">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-600 to-emerald-700 text-white flex items-center justify-center shrink-0 shadow-[0_10px_25px_rgba(5,150,105,0.3)] border border-emerald-400 font-extrabold">
                 <feature.icon className="w-8 h-8" />
               </div>
               <div>

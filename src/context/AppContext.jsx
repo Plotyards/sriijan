@@ -6,29 +6,29 @@ const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [properties, setProperties] = useState(() => {
-    const saved = localStorage.getItem('promohomex_properties');
+    const saved = localStorage.getItem('sriizan_properties');
     return saved ? JSON.parse(saved) : INITIAL_PROPERTIES;
   });
 
   const [notifications, setNotifications] = useState(() => {
-    const saved = localStorage.getItem('promohomex_notifications');
+    const saved = localStorage.getItem('sriizan_notifications');
     return saved ? JSON.parse(saved) : INITIAL_NOTIFICATIONS;
   });
 
   // Real Registered Users Database persisted in localStorage & MongoDB Atlas
   const [usersDB, setUsersDB] = useState(() => {
-    const saved = localStorage.getItem('promohomex_users_db');
+    const saved = localStorage.getItem('sriizan_users_db');
     return saved ? JSON.parse(saved) : [];
   });
 
   const [activePropertyId, setActivePropertyId] = useState(() => {
-    return localStorage.getItem('promohomex_active_property_id') || "PH-101";
+    return localStorage.getItem('sriizan_active_property_id') || "PH-101";
   });
   const [userRole, setUserRole] = useState('buyer'); // 'buyer' | 'admin'
 
   // Logged-in User Profile state
   const [currentUser, setCurrentUser] = useState(() => {
-    const savedUser = localStorage.getItem('promohomex_user');
+    const savedUser = localStorage.getItem('sriizan_user');
     return savedUser ? JSON.parse(savedUser) : {
       name: "",
       email: "",
@@ -68,7 +68,7 @@ export const AppProvider = ({ children }) => {
 
   // Admin explicit authentication state
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(() => {
-    return localStorage.getItem('promohomex_admin_auth') === 'true';
+    return localStorage.getItem('sriizan_admin_auth') === 'true';
   });
 
   // Fetch live properties & users from MongoDB Atlas database on mount
@@ -77,7 +77,7 @@ export const AppProvider = ({ children }) => {
       const mongoProps = await apiService.fetchProperties();
       if (mongoProps && Array.isArray(mongoProps) && mongoProps.length > 0) {
         setProperties(mongoProps);
-        const savedActive = localStorage.getItem('promohomex_active_property_id');
+        const savedActive = localStorage.getItem('sriizan_active_property_id');
         if (savedActive && mongoProps.some(p => p.id === savedActive)) {
           setActivePropertyId(savedActive);
         }
@@ -94,28 +94,28 @@ export const AppProvider = ({ children }) => {
 
   useEffect(() => {
     if (activePropertyId) {
-      localStorage.setItem('promohomex_active_property_id', activePropertyId);
+      localStorage.setItem('sriizan_active_property_id', activePropertyId);
     }
   }, [activePropertyId]);
 
   useEffect(() => {
-    localStorage.setItem('promohomex_properties', JSON.stringify(properties));
+    localStorage.setItem('sriizan_properties', JSON.stringify(properties));
   }, [properties]);
 
   useEffect(() => {
-    localStorage.setItem('promohomex_notifications', JSON.stringify(notifications));
+    localStorage.setItem('sriizan_notifications', JSON.stringify(notifications));
   }, [notifications]);
 
   useEffect(() => {
-    localStorage.setItem('promohomex_user', JSON.stringify(currentUser));
+    localStorage.setItem('sriizan_user', JSON.stringify(currentUser));
   }, [currentUser]);
 
   useEffect(() => {
-    localStorage.setItem('promohomex_users_db', JSON.stringify(usersDB));
+    localStorage.setItem('sriizan_users_db', JSON.stringify(usersDB));
   }, [usersDB]);
 
   useEffect(() => {
-    localStorage.setItem('promohomex_admin_auth', isAdminAuthenticated.toString());
+    localStorage.setItem('sriizan_admin_auth', isAdminAuthenticated.toString());
   }, [isAdminAuthenticated]);
 
   const activeProperty = properties.find(p => p.id === activePropertyId) || properties[0];
@@ -151,7 +151,7 @@ export const AppProvider = ({ children }) => {
 
     // Send Push Notification to Mobile/Browser
     triggerSystemNotification(
-      "Promohomex Account Login",
+      "Sriizan Account Login",
       `Welcome back ${userName}! Live construction tracking & document vault are active.`
     );
 
@@ -181,7 +181,7 @@ export const AppProvider = ({ children }) => {
 
     // Send Push Notification to Mobile/Browser
     triggerSystemNotification(
-      "Promohomex Property Access Pass",
+      "Sriizan Property Access Pass",
       `Congratulations ${name}! Your ₹699 lifetime property tracking pass & account are activated.`
     );
 
@@ -190,7 +190,7 @@ export const AppProvider = ({ children }) => {
 
   const logoutUser = () => {
     setCurrentUser({ name: "", email: "", phone: "", isLoggedIn: false });
-    localStorage.removeItem('promohomex_user');
+    localStorage.removeItem('sriizan_user');
   };
 
   // Admin Auth Methods
@@ -199,7 +199,7 @@ export const AppProvider = ({ children }) => {
     if (res && res.success) {
       setIsAdminAuthenticated(true);
       setUserRole('admin');
-      localStorage.setItem('promohomex_admin_auth', 'true');
+      localStorage.setItem('sriizan_admin_auth', 'true');
       return { success: true };
     }
     return { success: false, error: res?.error || "Invalid Admin Credentials! Please check your ID and Password." };
@@ -208,7 +208,7 @@ export const AppProvider = ({ children }) => {
   const logoutAdmin = () => {
     setIsAdminAuthenticated(false);
     setUserRole('buyer');
-    localStorage.removeItem('promohomex_admin_auth');
+    localStorage.removeItem('sriizan_admin_auth');
   };
 
   // Helper to add a notification
@@ -395,8 +395,8 @@ export const AppProvider = ({ children }) => {
 
     const newProp = {
       id: newId,
-      name: `${bookingData.projectName || 'Promohomex Residency'}`,
-      builder: bookingData.builderName || "Promohomex Builders",
+      name: `${bookingData.projectName || 'Sriizan Residency'}`,
+      builder: bookingData.builderName || "Sriizan Builders",
       builderRating: 4.7,
       location: bookingData.location || "Sector 84, Gurugram",
       tower: bookingData.tower || "Tower A",
@@ -539,8 +539,8 @@ export const AppProvider = ({ children }) => {
   };
 
   const resetToDemoData = () => {
-    localStorage.removeItem('promohomex_properties');
-    localStorage.removeItem('promohomex_notifications');
+    localStorage.removeItem('sriizan_properties');
+    localStorage.removeItem('sriizan_notifications');
     setProperties(INITIAL_PROPERTIES);
     setNotifications(INITIAL_NOTIFICATIONS);
     setActivePropertyId("PH-101");

@@ -32,7 +32,7 @@ const MobileBottomNav = () => {
           <button
             onClick={() => navigate('/')}
             className={`flex flex-col items-center justify-center gap-0.5 py-1 px-1 rounded-xl cursor-pointer transition-all w-full overflow-hidden ${
-              location.pathname === '/' ? 'text-amber-400 font-bold bg-white/10' : 'text-slate-400 hover:text-white'
+              location.pathname === '/' ? 'text-emerald-500 font-bold bg-white/10' : 'text-slate-400 hover:text-white'
             }`}
           >
             <Home size={17} className="shrink-0" />
@@ -42,7 +42,7 @@ const MobileBottomNav = () => {
           <button
             onClick={() => navigate('/dashboard')}
             className={`flex flex-col items-center justify-center gap-0.5 py-1 px-1 rounded-xl cursor-pointer transition-all w-full overflow-hidden ${
-              isDashboard ? 'text-amber-400 font-bold bg-white/10' : 'text-slate-400 hover:text-white'
+              isDashboard ? 'text-emerald-500 font-bold bg-white/10' : 'text-slate-400 hover:text-white'
             }`}
           >
             <Layers size={17} className="shrink-0" />
@@ -53,14 +53,14 @@ const MobileBottomNav = () => {
             onClick={() => navigate('/dashboard')}
             className="flex flex-col items-center justify-center gap-0.5 py-1 px-1 rounded-xl cursor-pointer transition-all text-slate-400 hover:text-white w-full overflow-hidden"
           >
-            <Building2 size={17} className="shrink-0 text-amber-500" />
+            <Building2 size={17} className="shrink-0 text-emerald-600" />
             <span className="text-[9px] font-black tracking-tight truncate w-full">Tracker</span>
           </button>
 
           <button
             onClick={() => navigate('/admin')}
             className={`flex flex-col items-center justify-center gap-0.5 py-1 px-1 rounded-xl cursor-pointer transition-all w-full overflow-hidden ${
-              isAdmin ? 'text-amber-400 font-bold bg-white/10' : 'text-slate-400 hover:text-white'
+              isAdmin ? 'text-emerald-500 font-bold bg-white/10' : 'text-slate-400 hover:text-white'
             }`}
           >
             <Shield size={17} className="shrink-0" />
@@ -98,11 +98,11 @@ const MobileBottomNav = () => {
         className="pointer-events-auto relative overflow-hidden flex items-center justify-between w-full max-w-[360px] bg-white text-slate-900 py-3 px-4 rounded-[2rem] shadow-2xl transition-all active:scale-95 group border border-slate-200 cursor-pointer"
       >
         <div className="flex items-center gap-3 relative z-10">
-          <div className="w-11 h-11 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center font-bold shadow-md">
+          <div className="w-11 h-11 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold shadow-md">
             <LayoutDashboard size={20} />
           </div>
           <div className="flex flex-col items-start text-left">
-            <span className="text-[10px] text-amber-700 font-extrabold uppercase tracking-wider">PROMOHOMEX DASHBOARD</span>
+            <span className="text-[10px] text-emerald-800 font-extrabold uppercase tracking-wider">SRIIZAN DASHBOARD</span>
             <span className="text-sm font-black tracking-wide text-slate-900">
               {currentUser && currentUser.isLoggedIn ? `Go To My Dashboard` : 'Launch Buyer Dashboard'}
             </span>
@@ -110,7 +110,7 @@ const MobileBottomNav = () => {
         </div>
         
         <div className="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center relative z-10 border border-slate-200">
-          <ArrowRight className="w-4 h-4 text-amber-600 group-active:translate-x-1 transition-transform" />
+          <ArrowRight className="w-4 h-4 text-emerald-700 group-active:translate-x-1 transition-transform" />
         </div>
       </button>
     </motion.div>

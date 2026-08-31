@@ -86,7 +86,7 @@ const Navbar = () => {
                   className={`px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
                     isActive
                       ? 'bg-white text-slate-900 shadow-xs font-black'
-                      : 'hover:text-amber-700 hover:bg-white/60'
+                      : 'hover:text-emerald-700 hover:bg-white/60'
                   }`}
                 >
                   {link.label}
@@ -102,8 +102,8 @@ const Navbar = () => {
                   to="/dashboard"
                   className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full transition-all ${
                     location.pathname.startsWith('/dashboard')
-                      ? 'bg-amber-600 text-white shadow-xs font-black'
-                      : 'text-amber-800 hover:bg-amber-50 font-extrabold'
+                      ? 'bg-emerald-600 text-white shadow-xs font-black'
+                      : 'text-emerald-800 hover:bg-emerald-50 font-extrabold'
                   }`}
                 >
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -124,7 +124,7 @@ const Navbar = () => {
                       : 'text-slate-700 hover:bg-slate-200/60'
                   }`}
                 >
-                  <Shield size={14} className="text-amber-500" /> Admin Panel
+                  <Shield size={14} className="text-emerald-500" /> Admin Panel
                 </Link>
               </>
             )}
@@ -137,14 +137,14 @@ const Navbar = () => {
               <div className="hidden sm:flex items-center gap-2">
                 <Link
                   to="/login"
-                  className="px-4 py-2 rounded-full text-xs font-black text-slate-800 hover:text-amber-700 hover:bg-slate-100 transition-all flex items-center gap-1.5 cursor-pointer border border-slate-200 whitespace-nowrap shrink-0"
+                  className="px-4 py-2 rounded-full text-xs font-black text-slate-800 hover:text-emerald-700 hover:bg-slate-100 transition-all flex items-center gap-1.5 cursor-pointer border border-slate-200 whitespace-nowrap shrink-0"
                 >
                   <User size={15} /> Log In
                 </Link>
 
                 <Link
                   to="/signup"
-                  className="px-4 py-2 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 rounded-full text-xs font-black transition-all flex items-center gap-1.5 shadow-md shadow-amber-500/20 cursor-pointer border border-amber-300 whitespace-nowrap shrink-0"
+                  className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full text-xs font-black transition-all flex items-center gap-1.5 shadow-md shadow-emerald-600/20 cursor-pointer border border-emerald-500 whitespace-nowrap shrink-0"
                 >
                   <UserPlus size={15} /> Sign Up
                 </Link>
@@ -153,8 +153,8 @@ const Navbar = () => {
               /* AUTHENTICATED STATE: Show Profile / Logout */
               <div className="flex items-center gap-2">
                 {currentUser && currentUser.isLoggedIn && (
-                  <div className="hidden sm:flex items-center gap-2 bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-full text-xs font-bold text-amber-900 shrink-0">
-                    <UserCheck size={14} className="text-amber-600" />
+                  <div className="hidden sm:flex items-center gap-2 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-full text-xs font-bold text-emerald-900 shrink-0">
+                    <UserCheck size={14} className="text-emerald-600" />
                     <span className="whitespace-nowrap">{currentUser.name}</span>
                     <button
                       onClick={logoutUser}
@@ -168,11 +168,11 @@ const Navbar = () => {
 
                 {isAdminAuthenticated && (
                   <div className="hidden sm:flex items-center gap-2 bg-slate-900 text-white border border-slate-800 px-3 py-1.5 rounded-full text-xs font-bold shrink-0">
-                    <Shield size={14} className="text-amber-400" />
+                    <Shield size={14} className="text-emerald-400" />
                     <span className="whitespace-nowrap">Builder Admin</span>
                     <button
                       onClick={logoutAdmin}
-                      className="ml-1 text-slate-400 hover:text-amber-400 p-0.5 cursor-pointer"
+                      className="ml-1 text-slate-400 hover:text-emerald-400 p-0.5 cursor-pointer"
                       title="Log Out Admin"
                     >
                       <LogOut size={13} />
@@ -205,7 +205,7 @@ const Navbar = () => {
             >
               {/* Header inside full-screen menu with prominent Cross / Close button */}
               <div className="max-w-md mx-auto w-full flex items-center justify-between pt-2 pb-4 border-b border-slate-800">
-                <span className="text-xs font-black text-amber-400 uppercase tracking-widest bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+                <span className="text-xs font-black text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
                   Navigation Menu
                 </span>
                 <button
@@ -226,7 +226,7 @@ const Navbar = () => {
                     onClick={() => setMobileMenuOpen(false)}
                     className="w-full text-left p-4 rounded-2xl hover:bg-white/10 font-black text-base flex items-center gap-3 border border-white/5 transition-all active:scale-98"
                   >
-                    <div className="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+                    <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
                       <Home size={18} />
                     </div>
                     Home Page
@@ -236,7 +236,7 @@ const Navbar = () => {
                     onClick={() => scrollToSection('how-it-works')}
                     className="w-full text-left p-4 rounded-2xl hover:bg-white/10 font-black text-base flex items-center gap-3 border border-white/5 transition-all cursor-pointer active:scale-98"
                   >
-                    <div className="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+                    <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
                       <Layers size={18} />
                     </div>
                     How It Works
@@ -246,7 +246,7 @@ const Navbar = () => {
                     onClick={() => scrollToSection('features')}
                     className="w-full text-left p-4 rounded-2xl hover:bg-white/10 font-black text-base flex items-center gap-3 border border-white/5 transition-all cursor-pointer active:scale-98"
                   >
-                    <div className="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+                    <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
                       <Sparkles size={18} />
                     </div>
                     Features
@@ -263,7 +263,7 @@ const Navbar = () => {
                         className="w-full flex items-center justify-between p-4 rounded-2xl bg-slate-900 border border-slate-800 text-white font-black text-sm shadow-md active:scale-98"
                       >
                         <span className="flex items-center gap-2">
-                          <User size={18} className="text-amber-400" /> Log In
+                          <User size={18} className="text-emerald-400" /> Log In
                         </span>
                         <ChevronRight size={18} />
                       </Link>
@@ -271,7 +271,7 @@ const Navbar = () => {
                       <Link
                         to="/signup"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="w-full flex items-center justify-between p-4 rounded-2xl bg-amber-500 text-slate-950 font-black text-sm shadow-lg shadow-amber-500/20 active:scale-98"
+                        className="w-full flex items-center justify-between p-4 rounded-2xl bg-emerald-600 text-white font-black text-sm shadow-lg shadow-emerald-600/20 active:scale-98"
                       >
                         <span className="flex items-center gap-2">
                           <UserPlus size={18} /> Sign Up Free
@@ -285,7 +285,7 @@ const Navbar = () => {
                         <Link
                           to="/dashboard"
                           onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center justify-between p-4 rounded-2xl bg-amber-500 text-slate-950 font-black text-sm shadow-lg active:scale-98"
+                          className="flex items-center justify-between p-4 rounded-2xl bg-emerald-600 text-white font-black text-sm shadow-lg active:scale-98"
                         >
                           <span className="flex items-center gap-2">
                             <LayoutDashboard size={18} /> Launch Buyer Dashboard
@@ -301,7 +301,7 @@ const Navbar = () => {
                           className="flex items-center justify-between p-4 rounded-2xl bg-slate-900 text-white font-black text-sm border border-slate-800 shadow-md active:scale-98"
                         >
                           <span className="flex items-center gap-2">
-                            <Shield size={18} className="text-amber-400" /> Admin Control Panel
+                            <Shield size={18} className="text-emerald-400" /> Admin Control Panel
                           </span>
                           <ChevronRight size={18} />
                         </Link>
@@ -313,7 +313,7 @@ const Navbar = () => {
 
               {/* Bottom Brand Tagline */}
               <div className="text-center text-xs text-slate-500 font-bold pt-6 border-t border-slate-900 max-w-md mx-auto w-full">
-                Promohomex &bull; Real-Time Property Tracking Platform
+                Sriizan &bull; Construction Tracking + Resale Marketplace
               </div>
             </motion.div>
           )}

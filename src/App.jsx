@@ -20,7 +20,16 @@ import AuthPage from './pages/AuthPage';
 
 const Home = ({ scrollToRegistration }) => (
   <main className="flex-grow">
-    <Hero onRegisterClick={scrollToRegistration} />
+    <Hero 
+      onTrackClick={scrollToRegistration} 
+      onSellClick={() => {
+        const el = document.getElementById('register');
+        if (el) {
+          const y = el.getBoundingClientRect().top + window.scrollY - 100;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }} 
+    />
     <HowItWorks />
     <Testimonials />
     <Features />
@@ -54,7 +63,7 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans selection:bg-amber-500/30 pb-20 md:pb-0 w-full max-w-full overflow-x-hidden">
+    <div className="min-h-screen bg-slate-50 flex flex-col font-sans selection:bg-emerald-500/30 pb-20 md:pb-0 w-full max-w-full overflow-x-hidden">
       <Navbar onRegisterClick={scrollToRegistration} />
 
       <Routes>

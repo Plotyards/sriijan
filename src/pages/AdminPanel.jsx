@@ -117,7 +117,7 @@ const AdminPanel = () => {
       <div className="min-h-screen bg-slate-50 flex items-center justify-center pt-24 pb-16 px-4">
         <div className="max-w-md w-full bg-white rounded-3xl p-8 shadow-2xl border border-slate-200 text-slate-900 space-y-6">
           <div className="text-center space-y-2">
-            <div className="w-16 h-16 bg-amber-500 text-slate-950 rounded-2xl flex items-center justify-center mx-auto shadow-lg font-black">
+            <div className="w-16 h-16 bg-emerald-600 text-white rounded-2xl flex items-center justify-center mx-auto shadow-lg font-black">
               <Shield size={32} />
             </div>
             <h2 className="text-2xl font-black text-slate-900">Builder Admin Login</h2>
@@ -142,8 +142,8 @@ const AdminPanel = () => {
                 required
                 value={adminEmail}
                 onChange={(e) => setAdminEmail(e.target.value)}
-                className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-amber-500 focus:bg-white"
-                placeholder="admin@promohomex.com"
+                className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-emerald-600 focus:bg-white"
+                placeholder="admin@sriizan.com"
               />
             </div>
 
@@ -156,14 +156,14 @@ const AdminPanel = () => {
                 required
                 value={adminPassword}
                 onChange={(e) => setAdminPassword(e.target.value)}
-                className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-amber-500 focus:bg-white"
+                className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-emerald-600 focus:bg-white"
                 placeholder="••••••••"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-3.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs rounded-xl transition-colors shadow-md border border-amber-400 flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs rounded-xl transition-colors shadow-md border border-emerald-500 flex items-center justify-center gap-2 cursor-pointer"
             >
               <Lock size={16} /> Authenticate Admin Access
             </button>
@@ -273,8 +273,8 @@ const AdminPanel = () => {
     <div className="min-h-screen bg-slate-50/90 text-slate-900 pt-28 sm:pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-7">
       {/* Toast Banner */}
       {toastMessage && (
-        <div className="fixed top-24 right-6 z-50 bg-slate-950/90 backdrop-blur-2xl text-white px-5 py-3 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-amber-500/40 flex items-center gap-2.5 animate-bounce">
-          <CheckCircle2 size={18} className="text-amber-400" />
+        <div className="fixed top-24 right-6 z-50 bg-slate-950/90 backdrop-blur-2xl text-white px-5 py-3 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-emerald-500/40 flex items-center gap-2.5 animate-bounce">
+          <CheckCircle2 size={18} className="text-emerald-400" />
           <span className="text-xs font-bold">{toastMessage}</span>
         </div>
       )}
@@ -282,18 +282,18 @@ const AdminPanel = () => {
       {/* Hero Banner: Enterprise Administration Header */}
       <div className="relative bg-slate-900 border border-slate-800 text-white rounded-3xl p-6 sm:p-7 shadow-xl overflow-hidden">
         {/* Subtle Ambient Illumination */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
         <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           {/* Left: Branding & Header Info */}
           <div className="space-y-3 max-w-2xl">
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/20 uppercase">
-                <Shield size={13} className="text-amber-400" /> Admin Portal &bull; Spatial Control
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 uppercase">
+                <Shield size={13} className="text-emerald-400" /> Admin Portal &bull; Spatial Control
               </span>
             </div>
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
-              Promohomex Administration
+              Sriizan Administration
             </h1>
             <p className="text-xs sm:text-sm text-slate-400 font-normal leading-relaxed">
               Spatial command center for real-time construction stage tracking, market valuations, site media uploads &amp; homebuyer verification.
@@ -311,7 +311,7 @@ const AdminPanel = () => {
                 {activeProperty.name}
               </p>
               <div className="flex flex-wrap items-center gap-2 text-xs text-slate-300">
-                <span className="bg-slate-700/60 px-2 py-0.5 rounded text-[11px] font-medium text-amber-300 border border-slate-600/50">
+                <span className="bg-slate-700/60 px-2 py-0.5 rounded text-[11px] font-medium text-emerald-300 border border-slate-600/50">
                   Unit {activeProperty.unitNo.replace(/[()]/g, '')}
                 </span>
                 <span className="text-slate-400">&bull;</span>
@@ -325,7 +325,7 @@ const AdminPanel = () => {
             <div className="flex items-center gap-2 w-full sm:w-auto pt-3 sm:pt-0 border-t sm:border-t-0 border-slate-700/60 shrink-0">
               <button
                 onClick={() => setActiveAdminTab('directory')}
-                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-xl transition-colors shadow-md cursor-pointer"
+                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-colors shadow-md cursor-pointer"
                 title="View All Properties Directory"
               >
                 <Search size={14} /> Switch Project
@@ -345,8 +345,8 @@ const AdminPanel = () => {
 
       {/* 4 High-Contrast Mobile-Responsive Stat Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-        <div className="bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-white p-4 sm:p-5 rounded-3xl border border-amber-500/20 shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3">
-          <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center font-black shrink-0 shadow-md">
+        <div className="bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-white p-4 sm:p-5 rounded-3xl border border-emerald-500/20 shadow-sm hover:shadow-md transition-all flex flex-col sm:flex-row items-start sm:items-center gap-3">
+          <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-2xl bg-emerald-600 text-white flex items-center justify-center font-black shrink-0 shadow-md">
             <Building2 size={22} />
           </div>
           <div>
@@ -363,7 +363,7 @@ const AdminPanel = () => {
           <div>
             <div className="text-[10px] sm:text-[11px] font-black text-slate-500 uppercase tracking-wider">Asset Value</div>
             <div className="text-xl sm:text-2xl font-black text-slate-900 mt-0.5">₹{totalAssetValueCr} Cr</div>
-            <div className="text-[10px] text-amber-600 font-bold mt-0.5">Tracked Portfolio</div>
+            <div className="text-[10px] text-emerald-600 font-bold mt-0.5">Tracked Portfolio</div>
           </div>
         </div>
 
@@ -413,7 +413,7 @@ const AdminPanel = () => {
                   : 'text-slate-600 hover:text-slate-950 hover:bg-slate-100 font-bold'
               }`}
             >
-              <Icon size={14} className={`shrink-0 ${isActive ? 'text-amber-400' : 'text-slate-500'}`} />
+              <Icon size={14} className={`shrink-0 ${isActive ? 'text-emerald-400' : 'text-slate-500'}`} />
               <span className="truncate">{tab.label}</span>
             </button>
           );
@@ -451,7 +451,7 @@ const AdminPanel = () => {
                     setCurrentPage(1);
                   }}
                   placeholder="Search by Owner Name, Unit No (e.g. 1402), Project, or Mobile..."
-                  className="w-full bg-slate-50/90 border border-slate-200 text-slate-900 text-xs font-bold pl-11 pr-10 py-3.5 rounded-2xl outline-none focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-500/10 transition-all shadow-xs"
+                  className="w-full bg-slate-50/90 border border-slate-200 text-slate-900 text-xs font-bold pl-11 pr-10 py-3.5 rounded-2xl outline-none focus:border-emerald-600 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 transition-all shadow-xs"
                 />
                 {searchQuery && (
                   <button
@@ -511,14 +511,14 @@ const AdminPanel = () => {
                         key={prop.id}
                         className={`p-5 rounded-3xl border transition-all space-y-4 shadow-sm ${
                           isCurrentlyActive
-                            ? 'bg-amber-500/10 border-amber-500/40 ring-2 ring-amber-500/20'
-                            : 'bg-white border-slate-200 hover:border-amber-400'
+                            ? 'bg-emerald-500/10 border-emerald-500/40 ring-2 ring-emerald-500/20'
+                            : 'bg-white border-slate-200 hover:border-emerald-400'
                         }`}
                       >
                         {/* Header: Name & Status */}
                         <div className="flex items-start justify-between gap-2">
                           <div>
-                            <span className="text-[10px] font-black text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200 uppercase tracking-wider">
+                            <span className="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 uppercase tracking-wider">
                               Tower: {prop.tower} • Unit: {prop.unitNo}
                             </span>
                             <h4 className="text-base font-black text-slate-900 mt-1">{prop.name}</h4>
@@ -536,7 +536,7 @@ const AdminPanel = () => {
                         {/* Owner & Contact Info */}
                         <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-between gap-3">
                           <div className="flex items-center gap-3 min-w-0">
-                            <div className="w-10 h-10 rounded-full bg-amber-500 text-slate-950 font-black flex items-center justify-center border border-amber-400 text-xs shrink-0 shadow-sm">
+                            <div className="w-10 h-10 rounded-full bg-emerald-600 text-white font-black flex items-center justify-center border border-emerald-500 text-xs shrink-0 shadow-sm">
                               {ownerInitials}
                             </div>
                             <div className="min-w-0">
@@ -574,7 +574,7 @@ const AdminPanel = () => {
                         {/* Action Button */}
                         <div className="pt-2">
                           {isCurrentlyActive ? (
-                            <div className="w-full py-3 bg-amber-500 text-slate-950 font-black text-xs rounded-2xl text-center shadow-md border border-amber-400 flex items-center justify-center gap-1.5">
+                            <div className="w-full py-3 bg-emerald-600 text-white font-black text-xs rounded-2xl text-center shadow-md border border-emerald-500 flex items-center justify-center gap-1.5">
                               <CheckCircle2 size={16} /> Active Target Project Selected
                             </div>
                           ) : (
@@ -582,7 +582,7 @@ const AdminPanel = () => {
                               onClick={() => selectPropertyToManage(prop.id, 'progress')}
                               className="w-full py-3 bg-slate-950 hover:bg-slate-800 text-white font-black text-xs rounded-2xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer active:scale-98"
                             >
-                              Select & Manage Property <ArrowRight size={15} className="text-amber-400" />
+                              Select & Manage Property <ArrowRight size={15} className="text-emerald-400" />
                             </button>
                           )}
                         </div>
@@ -615,21 +615,21 @@ const AdminPanel = () => {
                             <tr
                               key={prop.id}
                               className={`hover:bg-slate-50/80 transition-colors ${
-                                isCurrentlyActive ? 'bg-amber-50/50 font-semibold' : ''
+                                isCurrentlyActive ? 'bg-emerald-50/50 font-semibold' : ''
                               }`}
                             >
                               {/* Unit & Project */}
                               <td className="py-4 px-5">
                                 <div className="font-black text-slate-900 text-sm">{prop.name}</div>
                                 <div className="text-slate-500 mt-0.5 font-medium">
-                                  Unit: <span className="font-black text-amber-700">{prop.unitNo}</span> ({prop.tower})
+                                  Unit: <span className="font-black text-emerald-700">{prop.unitNo}</span> ({prop.tower})
                                 </div>
                               </td>
 
                               {/* Owner Name */}
                               <td className="py-4 px-5">
                                 <div className="flex items-center gap-2.5">
-                                  <div className="w-8 h-8 rounded-full bg-amber-500/15 text-amber-900 font-black flex items-center justify-center border border-amber-500/30 text-xs shrink-0">
+                                  <div className="w-8 h-8 rounded-full bg-emerald-500/15 text-emerald-900 font-black flex items-center justify-center border border-emerald-500/30 text-xs shrink-0">
                                     {ownerInitials}
                                   </div>
                                   <div>
@@ -671,7 +671,7 @@ const AdminPanel = () => {
                               {/* Action Button */}
                               <td className="py-4 px-5 text-right">
                                 {isCurrentlyActive ? (
-                                  <span className="inline-flex items-center gap-1 bg-amber-500 text-slate-950 font-black text-xs px-3.5 py-2 rounded-xl shadow-xs border border-amber-400">
+                                  <span className="inline-flex items-center gap-1 bg-emerald-600 text-white font-black text-xs px-3.5 py-2 rounded-xl shadow-xs border border-emerald-500">
                                     Active Target ✓
                                   </span>
                                 ) : (
@@ -718,7 +718,7 @@ const AdminPanel = () => {
                         onClick={() => setCurrentPage(pg)}
                         className={`w-8 h-8 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                           currentPage === pg
-                            ? 'bg-amber-500 text-slate-950 font-black border border-amber-400'
+                            ? 'bg-emerald-600 text-white font-black border border-emerald-500'
                             : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
                         }`}
                       >
@@ -770,7 +770,7 @@ const AdminPanel = () => {
               <div>
                 <label className="text-xs font-bold text-slate-700 flex justify-between">
                   <span>New Stage Percentage (%):</span>
-                  <span className="text-amber-600 font-extrabold text-sm">{stagePercentInput}%</span>
+                  <span className="text-emerald-600 font-extrabold text-sm">{stagePercentInput}%</span>
                 </label>
                 <input
                   type="range"
@@ -778,13 +778,13 @@ const AdminPanel = () => {
                   max="100"
                   value={stagePercentInput}
                   onChange={(e) => setStagePercentInput(Number(e.target.value))}
-                  className="w-full mt-2 accent-amber-500 cursor-pointer"
+                  className="w-full mt-2 accent-emerald-600 cursor-pointer"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs px-5 py-3 rounded-xl transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-5 py-3 rounded-xl transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
               >
                 <RefreshCw size={15} /> Save & Publish Progress Update
               </button>
@@ -807,7 +807,7 @@ const AdminPanel = () => {
                   type="number"
                   value={builderPriceInput}
                   onChange={(e) => setBuilderPriceInput(Number(e.target.value))}
-                  className="w-full mt-1 bg-slate-50 border border-slate-200 text-xs font-bold p-3 rounded-xl focus:outline-none focus:border-amber-500"
+                  className="w-full mt-1 bg-slate-50 border border-slate-200 text-xs font-bold p-3 rounded-xl focus:outline-none focus:border-emerald-600"
                 />
                 <span className="text-[11px] text-slate-400">Equivalent: ₹{(builderPriceInput / 10000000).toFixed(2)} Cr</span>
               </div>
@@ -818,7 +818,7 @@ const AdminPanel = () => {
                   type="number"
                   value={resalePriceInput}
                   onChange={(e) => setResalePriceInput(Number(e.target.value))}
-                  className="w-full mt-1 bg-slate-50 border border-slate-200 text-xs font-bold p-3 rounded-xl focus:outline-none focus:border-amber-500"
+                  className="w-full mt-1 bg-slate-50 border border-slate-200 text-xs font-bold p-3 rounded-xl focus:outline-none focus:border-emerald-600"
                 />
                 <span className="text-[11px] text-slate-400">Equivalent: ₹{(resalePriceInput / 10000000).toFixed(2)} Cr</span>
               </div>
@@ -856,7 +856,7 @@ const AdminPanel = () => {
                   placeholder="e.g. Tower B 14th Floor Plastering Progress"
                   value={photoTitle}
                   onChange={(e) => setPhotoTitle(e.target.value)}
-                  className="w-full mt-1 bg-slate-50 border border-slate-200 text-xs font-bold p-3 rounded-xl focus:outline-none focus:border-amber-500"
+                  className="w-full mt-1 bg-slate-50 border border-slate-200 text-xs font-bold p-3 rounded-xl focus:outline-none focus:border-emerald-600"
                 />
               </div>
 
@@ -868,10 +868,10 @@ const AdminPanel = () => {
               />
 
               {/* Option A: Local File Upload with Auto WebP Compression */}
-              <div className="p-4 bg-amber-50/70 border border-amber-200 rounded-2xl space-y-3">
-                <label className="text-xs font-black text-amber-900 flex items-center justify-between">
+              <div className="p-4 bg-emerald-50/70 border border-emerald-200 rounded-2xl space-y-3">
+                <label className="text-xs font-black text-emerald-900 flex items-center justify-between">
                   <span>📷 Option A: Upload Local Image (Auto-Compressed to WebP)</span>
-                  <span className="text-[10px] text-amber-700 font-extrabold bg-amber-200/60 px-2 py-0.5 rounded">Kam Storage Mode</span>
+                  <span className="text-[10px] text-emerald-700 font-extrabold bg-emerald-200/60 px-2 py-0.5 rounded">Kam Storage Mode</span>
                 </label>
                 
                 <input
@@ -899,7 +899,7 @@ const AdminPanel = () => {
                   placeholder="https://images.unsplash.com/..."
                   value={photoUrl}
                   onChange={(e) => setPhotoUrl(e.target.value)}
-                  className="w-full mt-1 bg-slate-50 border border-slate-200 text-xs font-bold p-3 rounded-xl focus:outline-none focus:border-amber-500"
+                  className="w-full mt-1 bg-slate-50 border border-slate-200 text-xs font-bold p-3 rounded-xl focus:outline-none focus:border-emerald-600"
                 />
               </div>
 
@@ -936,7 +936,7 @@ const AdminPanel = () => {
                   placeholder="e.g. Payment Receipt - Finishing Stage (10%)"
                   value={docTitle}
                   onChange={(e) => setDocTitle(e.target.value)}
-                  className="w-full mt-1 bg-slate-50 border border-slate-200 text-xs font-bold p-3 rounded-xl focus:outline-none focus:border-amber-500"
+                  className="w-full mt-1 bg-slate-50 border border-slate-200 text-xs font-bold p-3 rounded-xl focus:outline-none focus:border-emerald-600"
                 />
               </div>
 
@@ -960,7 +960,7 @@ const AdminPanel = () => {
                       setDocSizeFormatted((file.size / (1024 * 1024)).toFixed(1) + ' MB');
                     }
                   }}
-                  className="w-full text-xs font-bold text-slate-700 file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-black file:bg-amber-500 file:text-slate-950 hover:file:bg-amber-400 cursor-pointer"
+                  className="w-full text-xs font-bold text-slate-700 file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-black file:bg-emerald-600 file:text-white hover:file:bg-emerald-500 cursor-pointer"
                 />
 
                 {docFileName && (
@@ -999,7 +999,7 @@ const AdminPanel = () => {
                   placeholder="e.g. Special Possession Site Visit Invitation"
                   value={notifTitle}
                   onChange={(e) => setNotifTitle(e.target.value)}
-                  className="w-full mt-1 bg-slate-50 border border-slate-200 text-xs font-bold p-3 rounded-xl focus:outline-none focus:border-amber-500"
+                  className="w-full mt-1 bg-slate-50 border border-slate-200 text-xs font-bold p-3 rounded-xl focus:outline-none focus:border-emerald-600"
                 />
               </div>
 
@@ -1017,13 +1017,13 @@ const AdminPanel = () => {
                   placeholder="Write clear update details for the buyer..."
                   value={notifMessage}
                   onChange={(e) => setNotifMessage(e.target.value)}
-                  className="w-full mt-1 bg-slate-50 border border-slate-200 text-xs font-bold p-3 rounded-xl focus:outline-none focus:border-amber-500"
+                  className="w-full mt-1 bg-slate-50 border border-slate-200 text-xs font-bold p-3 rounded-xl focus:outline-none focus:border-emerald-600"
                 ></textarea>
               </div>
 
               <button
                 type="submit"
-                className="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs px-5 py-3 rounded-xl transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-5 py-3 rounded-xl transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Bell size={15} /> Send Push Notification
               </button>

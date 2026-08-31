@@ -34,7 +34,7 @@ const AuthPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Admin Form State
-  const [adminEmail, setAdminEmail] = useState('admin@promohomex.com');
+  const [adminEmail, setAdminEmail] = useState('admin@sriizan.com');
   const [adminPassword, setAdminPassword] = useState('admin123');
   const [adminError, setAdminError] = useState('');
 
@@ -108,7 +108,7 @@ const AuthPage = () => {
       fullName: signUpData.name,
       phone: signUpData.mobile,
       email: signUpData.email,
-      projectName: signUpData.projectName || 'Promohomex Residency',
+      projectName: signUpData.projectName || 'Sriizan Residency',
       tower: signUpData.tower || 'Tower A',
       unitNo: signUpData.unitNumber || '101',
       bookedPrice: signUpData.bookedPrice || '12500000',
@@ -141,11 +141,11 @@ const AuthPage = () => {
         
         {/* Left Side Highlights Panel */}
         <div className="lg:col-span-2 bg-slate-950/90 p-8 sm:p-10 text-white flex flex-col justify-between relative overflow-hidden border-b lg:border-b-0 lg:border-r border-white/10">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-[80px] pointer-events-none"></div>
+          <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-600/10 rounded-full blur-[80px] pointer-events-none"></div>
 
           <div className="relative z-10 space-y-5">
-            <span className="inline-flex items-center gap-1.5 text-amber-400 font-extrabold text-[11px] uppercase tracking-widest bg-amber-500/10 px-3 py-1.5 rounded-full border border-amber-500/30">
-              <Sparkles size={13} /> Promohomex Real Portal
+            <span className="inline-flex items-center gap-1.5 text-emerald-400 font-extrabold text-[11px] uppercase tracking-widest bg-emerald-600/10 px-3 py-1.5 rounded-full border border-emerald-600/30">
+              <Sparkles size={13} /> Sriizan Real Portal
             </span>
 
             <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight">
@@ -160,11 +160,11 @@ const AuthPage = () => {
 
             <div className="space-y-3 pt-2">
               <div className="flex items-center gap-3 bg-slate-900/80 p-3 rounded-2xl border border-slate-800">
-                <CheckCircle2 size={18} className="text-amber-400 shrink-0" />
+                <CheckCircle2 size={18} className="text-emerald-400 shrink-0" />
                 <span className="text-xs font-bold text-slate-200">Razorpay Encrypted ₹699 Pass</span>
               </div>
               <div className="flex items-center gap-3 bg-slate-900/80 p-3 rounded-2xl border border-slate-800">
-                <CheckCircle2 size={18} className="text-amber-400 shrink-0" />
+                <CheckCircle2 size={18} className="text-emerald-400 shrink-0" />
                 <span className="text-xs font-bold text-slate-200">Real-Time MongoDB Cloud Storage</span>
               </div>
             </div>
@@ -185,7 +185,7 @@ const AuthPage = () => {
               onClick={() => setActiveTab('signup')}
               className={`py-2.5 rounded-xl transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
                 activeTab === 'signup'
-                  ? 'bg-amber-500 text-slate-950 font-black shadow-sm'
+                  ? 'bg-emerald-600 text-white font-black shadow-sm'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
@@ -213,7 +213,7 @@ const AuthPage = () => {
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              <Shield size={15} className="text-amber-500" /> Admin
+              <Shield size={15} className="text-emerald-500" /> Admin
             </button>
           </div>
 
@@ -237,7 +237,7 @@ const AuthPage = () => {
                     required
                     value={signUpData.name}
                     onChange={handleSignUpChange}
-                    className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-amber-500 focus:bg-white"
+                    className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-emerald-600 focus:bg-white"
                     placeholder="e.g. Ramesh Kumar"
                   />
                 </div>
@@ -252,7 +252,7 @@ const AuthPage = () => {
                     required
                     value={signUpData.mobile}
                     onChange={handleSignUpChange}
-                    className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-amber-500 focus:bg-white"
+                    className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-emerald-600 focus:bg-white"
                     placeholder="+91 98705 34978"
                   />
                 </div>
@@ -267,7 +267,7 @@ const AuthPage = () => {
                     required
                     value={signUpData.email}
                     onChange={handleSignUpChange}
-                    className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-amber-500 focus:bg-white"
+                    className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-emerald-600 focus:bg-white"
                     placeholder="ramesh@example.com"
                   />
                 </div>
@@ -282,7 +282,7 @@ const AuthPage = () => {
                     required
                     value={signUpData.password}
                     onChange={handleSignUpChange}
-                    className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-amber-500 focus:bg-white"
+                    className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-emerald-600 focus:bg-white"
                     placeholder="••••••••"
                   />
                 </div>
@@ -297,7 +297,7 @@ const AuthPage = () => {
                     required
                     value={signUpData.confirmPassword}
                     onChange={handleSignUpChange}
-                    className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-amber-500 focus:bg-white"
+                    className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-emerald-600 focus:bg-white"
                     placeholder="••••••••"
                   />
                 </div>
@@ -311,8 +311,8 @@ const AuthPage = () => {
                     name="projectName"
                     value={signUpData.projectName}
                     onChange={handleSignUpChange}
-                    className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-amber-500 focus:bg-white"
-                    placeholder="Promohomex Residency"
+                    className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-emerald-600 focus:bg-white"
+                    placeholder="Sriizan Residency"
                   />
                 </div>
 
@@ -325,25 +325,25 @@ const AuthPage = () => {
                     name="unitNumber"
                     value={signUpData.unitNumber}
                     onChange={handleSignUpChange}
-                    className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-amber-500 focus:bg-white"
+                    className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-emerald-600 focus:bg-white"
                     placeholder="Unit 1402"
                   />
                 </div>
               </div>
 
               {/* Fee Pill */}
-              <div className="bg-amber-50 border border-amber-200 p-3 rounded-xl flex items-center justify-between text-xs text-amber-900 font-bold">
+              <div className="bg-emerald-50 border border-emerald-200 p-3 rounded-xl flex items-center justify-between text-xs text-emerald-950 font-bold">
                 <span className="flex items-center gap-1.5">
-                  <Zap size={15} className="text-amber-600 fill-amber-600" />
+                  <Zap size={15} className="text-emerald-700 fill-emerald-700" />
                   One-Time Live Property Tracking Fee:
                 </span>
-                <span className="font-black text-amber-700 text-base">₹699</span>
+                <span className="font-black text-emerald-800 text-base">₹699</span>
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 px-6 rounded-2xl font-black text-xs sm:text-sm text-slate-950 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-300 transition-all shadow-lg shadow-amber-500/25 flex items-center justify-center gap-2 cursor-pointer border border-amber-300 disabled:opacity-50"
+                className="w-full py-4 px-6 rounded-2xl font-black text-xs sm:text-sm text-white bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-500 hover:to-emerald-400 transition-all shadow-lg shadow-emerald-600/25 flex items-center justify-center gap-2 cursor-pointer border border-emerald-400 disabled:opacity-50"
               >
                 <Lock size={16} /> Pay ₹699 & Create Buyer Account <ArrowRight size={16} />
               </button>
@@ -368,7 +368,7 @@ const AuthPage = () => {
                   required
                   value={loginEmail}
                   onChange={(e) => setLoginEmail(e.target.value)}
-                  className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3.5 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-amber-500 focus:bg-white"
+                  className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3.5 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-emerald-600 focus:bg-white"
                   placeholder="nikhil.jangra@example.com"
                 />
               </div>
@@ -382,7 +382,7 @@ const AuthPage = () => {
                   required
                   value={loginPassword}
                   onChange={(e) => setLoginPassword(e.target.value)}
-                  className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3.5 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-amber-500 focus:bg-white"
+                  className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3.5 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-emerald-600 focus:bg-white"
                   placeholder="••••••••"
                 />
               </div>
@@ -400,7 +400,7 @@ const AuthPage = () => {
                   <button
                     type="button"
                     onClick={() => setActiveTab('signup')}
-                    className="font-black text-amber-600 hover:underline cursor-pointer"
+                    className="font-black text-emerald-700 hover:underline cursor-pointer"
                   >
                     Sign Up & Get ₹699 Access Pass
                   </button>
@@ -427,7 +427,7 @@ const AuthPage = () => {
                   required
                   value={adminEmail}
                   onChange={(e) => setAdminEmail(e.target.value)}
-                  className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3.5 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-amber-500 focus:bg-white"
+                  className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3.5 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-emerald-600 focus:bg-white"
                 />
               </div>
 
@@ -440,7 +440,7 @@ const AuthPage = () => {
                   required
                   value={adminPassword}
                   onChange={(e) => setAdminPassword(e.target.value)}
-                  className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3.5 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-amber-500 focus:bg-white"
+                  className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3.5 px-4 text-slate-900 text-xs font-bold placeholder-slate-400 outline-none focus:border-emerald-600 focus:bg-white"
                 />
               </div>
 
@@ -448,7 +448,7 @@ const AuthPage = () => {
                 type="submit"
                 className="w-full py-4 px-6 rounded-2xl font-black text-xs sm:text-sm text-white bg-slate-950 hover:bg-slate-900 transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer"
               >
-                <Shield size={16} className="text-amber-400" /> Authenticate Admin Access <ArrowRight size={16} />
+                <Shield size={16} className="text-emerald-400" /> Authenticate Admin Access <ArrowRight size={16} />
               </button>
             </form>
           )}

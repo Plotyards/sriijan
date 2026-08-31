@@ -122,11 +122,11 @@ const MobileTypeHandlingDashboard = () => {
     <div className="space-y-6 pb-6">
       {/* Mobile Sticky Header Pill / Info Header */}
       <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-white rounded-3xl p-5 sm:p-7 shadow-xl border border-slate-800 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <div className="relative z-10 space-y-3">
           <div className="flex items-center justify-between gap-2 flex-wrap">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-black bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase tracking-wider">
               <Layers size={13} /> Unit Type & Lead Operations
             </span>
             <span className="text-[11px] font-bold text-slate-400 bg-white/10 px-2.5 py-0.5 rounded-full backdrop-blur-md">
@@ -147,7 +147,7 @@ const MobileTypeHandlingDashboard = () => {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3 border-t border-slate-800">
             <div className="bg-white/5 p-3 rounded-2xl border border-white/10">
               <div className="text-[10px] uppercase font-bold text-slate-400">Available Types</div>
-              <div className="text-base font-black text-amber-400">4 Luxury Types</div>
+              <div className="text-base font-black text-emerald-400">4 Luxury Types</div>
             </div>
             <div className="bg-white/5 p-3 rounded-2xl border border-white/10">
               <div className="text-[10px] uppercase font-bold text-slate-400">Selected Type</div>
@@ -159,7 +159,7 @@ const MobileTypeHandlingDashboard = () => {
             </div>
             <div className="bg-white/5 p-3 rounded-2xl border border-white/10">
               <div className="text-[10px] uppercase font-bold text-slate-400">Est. Rental Yield</div>
-              <div className="text-base font-black text-amber-300">{selectedType.rentalYield}</div>
+              <div className="text-base font-black text-emerald-300">{selectedType.rentalYield}</div>
             </div>
           </div>
         </div>
@@ -169,11 +169,11 @@ const MobileTypeHandlingDashboard = () => {
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <label className="text-xs font-black text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
-            <Building2 size={14} className="text-amber-600" /> Select Unit Category:
+            <Building2 size={14} className="text-emerald-600" /> Select Unit Category:
           </label>
           <button
             onClick={() => setIsCompareOpen(true)}
-            className="text-xs font-bold text-amber-800 hover:text-amber-900 flex items-center gap-1 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200 cursor-pointer"
+            className="text-xs font-bold text-emerald-800 hover:text-emerald-900 flex items-center gap-1 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200 cursor-pointer"
           >
             <Scale size={13} /> Compare All Types
           </button>
@@ -193,10 +193,10 @@ const MobileTypeHandlingDashboard = () => {
                 }`}
               >
                 <div className="flex items-center gap-1.5 min-w-0">
-                  <span className={`w-2 h-2 rounded-full shrink-0 ${isSelected ? 'bg-amber-400 animate-pulse' : 'bg-slate-300'}`}></span>
+                  <span className={`w-2 h-2 rounded-full shrink-0 ${isSelected ? 'bg-emerald-400 animate-pulse' : 'bg-slate-300'}`}></span>
                   <span className="truncate">{type.category}</span>
                 </div>
-                <span className={`text-[10px] px-1.5 py-0.5 rounded font-extrabold shrink-0 ${isSelected ? 'bg-amber-400 text-slate-950' : 'bg-slate-100 text-slate-600'}`}>
+                <span className={`text-[10px] px-1.5 py-0.5 rounded font-extrabold shrink-0 ${isSelected ? 'bg-emerald-600 text-white' : 'bg-slate-100 text-slate-600'}`}>
                   {type.availableUnits} left
                 </span>
               </button>
@@ -218,7 +218,7 @@ const MobileTypeHandlingDashboard = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
             
             <div className="absolute top-3 left-3 flex flex-wrap gap-2">
-              <span className="bg-slate-950/90 backdrop-blur-md text-amber-400 text-[10px] font-black px-2.5 py-1 rounded-full border border-amber-400/30 flex items-center gap-1">
+              <span className="bg-slate-950/90 backdrop-blur-md text-emerald-400 text-[10px] font-black px-2.5 py-1 rounded-full border border-emerald-400/30 flex items-center gap-1">
                 <Sparkles size={12} /> {selectedType.category}
               </span>
               <span className="bg-emerald-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full">
@@ -267,7 +267,7 @@ const MobileTypeHandlingDashboard = () => {
               </div>
               <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100">
                 <div className="text-[10px] text-slate-500 uppercase font-bold">Available Inventory</div>
-                <div className="text-xs sm:text-sm font-black text-amber-700">{selectedType.availableUnits} of {selectedType.totalUnits} Units</div>
+                <div className="text-xs sm:text-sm font-black text-emerald-700">{selectedType.availableUnits} of {selectedType.totalUnits} Units</div>
               </div>
               <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100">
                 <div className="text-[10px] text-slate-500 uppercase font-bold">Facing</div>
@@ -280,8 +280,8 @@ const MobileTypeHandlingDashboard = () => {
               <div className="text-xs font-black text-slate-900 mb-2">Key Unit Features:</div>
               <div className="flex flex-wrap gap-2">
                 {selectedType.highlights.map((h, idx) => (
-                  <span key={idx} className="bg-amber-50 text-amber-800 border border-amber-200/80 text-[11px] font-bold px-3 py-1 rounded-xl flex items-center gap-1.5">
-                    <Check size={12} className="text-amber-600" /> {h}
+                  <span key={idx} className="bg-emerald-50 text-emerald-800 border border-emerald-200/80 text-[11px] font-bold px-3 py-1 rounded-xl flex items-center gap-1.5">
+                    <Check size={12} className="text-emerald-600" /> {h}
                   </span>
                 ))}
               </div>
@@ -293,7 +293,7 @@ const MobileTypeHandlingDashboard = () => {
         <div className="pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-3">
           <button
             onClick={() => setIsBookVisitOpen(true)}
-            className="w-full py-3.5 px-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black rounded-2xl text-xs shadow-lg shadow-amber-500/20 border border-amber-400 flex items-center justify-center gap-2 cursor-pointer transition-all active:scale-95"
+            className="w-full py-3.5 px-4 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600 text-white font-black rounded-2xl text-xs shadow-lg shadow-emerald-600/20 border border-emerald-500 flex items-center justify-center gap-2 cursor-pointer transition-all active:scale-95"
           >
             <Calendar size={16} /> Schedule Mobile Site Visit
           </button>
@@ -302,11 +302,11 @@ const MobileTypeHandlingDashboard = () => {
             onClick={handleDownloadBrochure}
             className="w-full py-3.5 px-4 bg-slate-900 hover:bg-slate-800 text-white font-black rounded-2xl text-xs shadow-md border border-slate-800 flex items-center justify-center gap-2 cursor-pointer transition-all active:scale-95"
           >
-            <Download size={16} className="text-amber-400" /> {downloadSuccess ? '✓ Brochure Downloaded!' : 'Download Floor Plan PDF'}
+            <Download size={16} className="text-emerald-400" /> {downloadSuccess ? '✓ Brochure Downloaded!' : 'Download Floor Plan PDF'}
           </button>
 
           <a
-            href="https://wa.me/919876543210?text=Hi%20Promohomex%20Team%2C%20I%20am%20interested%20in%20the%20unit%20type%20details."
+            href="https://wa.me/919876543210?text=Hi%20Sriizan%20Team%2C%20I%20am%20interested%20in%20the%20unit%20type%20details."
             target="_blank"
             rel="noopener noreferrer"
             className="w-full py-3.5 px-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl text-xs shadow-md flex items-center justify-center gap-2 cursor-pointer transition-all active:scale-95"
@@ -321,7 +321,7 @@ const MobileTypeHandlingDashboard = () => {
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-lg font-black text-slate-900 flex items-center gap-2">
-              <UserCheck size={20} className="text-amber-600" /> Buyer Lead & Operations Timeline
+              <UserCheck size={20} className="text-emerald-600" /> Buyer Lead & Operations Timeline
             </h3>
             <p className="text-xs text-slate-500 font-medium">
               Live status of your unit allotment, legal verification, & booking milestone progress.
@@ -374,7 +374,7 @@ const MobileTypeHandlingDashboard = () => {
           <div className="bg-white rounded-3xl p-6 max-w-3xl w-full max-h-[90vh] overflow-y-auto space-y-5 shadow-2xl border border-slate-200">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2">
-                <Scale className="text-amber-600" size={24} />
+                <Scale className="text-emerald-600" size={24} />
                 <h3 className="text-lg font-black text-slate-900">Unit Type Comparison Sheet</h3>
               </div>
               <button
@@ -418,7 +418,7 @@ const MobileTypeHandlingDashboard = () => {
                   </tr>
                   <tr className="bg-slate-50/70">
                     <td className="p-3 font-bold text-slate-900">Inventory Status</td>
-                    {UNIT_TYPES.map(u => <td key={u.id} className="p-3 font-bold text-amber-700">{u.availableUnits} left</td>)}
+                    {UNIT_TYPES.map(u => <td key={u.id} className="p-3 font-bold text-emerald-700">{u.availableUnits} left</td>)}
                   </tr>
                 </tbody>
               </table>
@@ -442,7 +442,7 @@ const MobileTypeHandlingDashboard = () => {
           <div className="bg-white rounded-3xl p-6 max-w-md w-full space-y-4 shadow-2xl border border-slate-200">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2">
-                <Calendar className="text-amber-600" size={22} />
+                <Calendar className="text-emerald-600" size={22} />
                 <h3 className="text-base font-black text-slate-900">Book Mobile Site Visit</h3>
               </div>
               <button
@@ -474,7 +474,7 @@ const MobileTypeHandlingDashboard = () => {
                     required
                     value={visitDate}
                     onChange={(e) => setVisitDate(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-amber-500"
+                    className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-emerald-600"
                   />
                 </div>
 
@@ -485,7 +485,7 @@ const MobileTypeHandlingDashboard = () => {
                   <select
                     value={visitTime}
                     onChange={(e) => setVisitTime(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-amber-500"
+                    className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-emerald-600"
                   >
                     <option>10:00 AM - 11:30 AM</option>
                     <option>11:30 AM - 01:00 PM</option>
@@ -508,7 +508,7 @@ const MobileTypeHandlingDashboard = () => {
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs rounded-xl shadow-lg cursor-pointer transition-all"
+                  className="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs rounded-xl shadow-lg cursor-pointer transition-all"
                 >
                   Confirm Site Visit Request
                 </button>

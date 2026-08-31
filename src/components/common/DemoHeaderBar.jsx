@@ -19,9 +19,9 @@ const DemoHeaderBar = () => {
   return (
     <div className="bg-slate-100 text-slate-800 text-xs py-2 px-3 sm:px-6 border-b border-slate-200 z-50 flex flex-wrap items-center justify-between gap-2">
       <div className="flex items-center gap-3">
-        <span className="flex items-center gap-1.5 font-extrabold tracking-wider bg-amber-500/15 text-amber-800 px-2.5 py-0.5 rounded-full border border-amber-500/30">
-          <Sparkles size={12} className="text-amber-600 animate-pulse" />
-          PROMOHOMEX LIVE DEMO MODE
+        <span className="flex items-center gap-1.5 font-extrabold tracking-wider bg-emerald-500/15 text-emerald-800 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
+          <Sparkles size={12} className="text-emerald-600 animate-pulse" />
+          SRIIZAN LIVE DEMO MODE
         </span>
 
         {/* View mode buttons */}
@@ -29,7 +29,7 @@ const DemoHeaderBar = () => {
           <Link
             to="/"
             className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition-all font-bold ${
-              location.pathname === '/' ? 'bg-amber-500 text-slate-950 shadow-xs' : 'text-slate-600 hover:text-slate-900'
+              location.pathname === '/' ? 'bg-emerald-600 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             <Home size={13} />
@@ -38,7 +38,7 @@ const DemoHeaderBar = () => {
           <Link
             to="/dashboard"
             className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition-all font-bold ${
-              location.pathname.startsWith('/dashboard') ? 'bg-amber-500 text-slate-950 shadow-xs' : 'text-slate-600 hover:text-slate-900'
+              location.pathname.startsWith('/dashboard') ? 'bg-emerald-600 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             <LayoutDashboard size={13} />
@@ -47,7 +47,7 @@ const DemoHeaderBar = () => {
           <Link
             to="/admin"
             className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition-all font-bold ${
-              location.pathname.startsWith('/admin') ? 'bg-slate-900 text-amber-400 shadow-xs' : 'text-slate-600 hover:text-slate-900'
+              location.pathname.startsWith('/admin') ? 'bg-slate-900 text-emerald-400 shadow-xs' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             <Shield size={13} />
@@ -86,7 +86,7 @@ const DemoHeaderBar = () => {
                 navigate('/dashboard');
               }
             }}
-            className="font-extrabold text-amber-700 hover:underline capitalize"
+            className="font-extrabold text-emerald-700 hover:underline capitalize"
           >
             {userRole === 'buyer' ? 'Buyer (Nikhil)' : 'Builder Admin'}
           </button>

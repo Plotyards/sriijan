@@ -34,7 +34,7 @@ const AIToolsIntegrations = () => {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="bg-purple-50 text-purple-700 text-xs px-3 py-0.5 rounded-full font-extrabold border border-purple-200 flex items-center gap-1">
-              <BrainCircuit size={13} /> Powered by Promohomex Neural AI Engine
+              <BrainCircuit size={13} /> Powered by Sriizan Neural AI Engine
             </span>
           </div>
           <h2 className="text-2xl font-black text-slate-900">AI Analytics & Future Value Integrations</h2>

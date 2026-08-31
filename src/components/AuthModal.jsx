@@ -91,7 +91,7 @@ const AuthModal = ({ isOpen, onClose, initialTab = 'buyer_login' }) => {
       fullName: regName,
       phone: regPhone,
       email: regEmail,
-      projectName: 'Promohomex Grand Residency',
+      projectName: 'Sriizan Grand Residency',
       tower: 'Tower A',
       unitNo: 'Unit 101',
       bookedPrice: '12500000',
@@ -131,7 +131,7 @@ const AuthModal = ({ isOpen, onClose, initialTab = 'buyer_login' }) => {
         >
           {/* Header */}
           <div className="bg-slate-950 text-white p-4 sm:p-6 pb-4 relative overflow-hidden shrink-0">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-600/10 rounded-full blur-2xl pointer-events-none"></div>
 
             <button
               type="button"
@@ -143,8 +143,8 @@ const AuthModal = ({ isOpen, onClose, initialTab = 'buyer_login' }) => {
             </button>
 
             <div className="flex items-center gap-2 mb-1 relative z-10">
-              <span className="bg-amber-500/20 text-amber-400 text-[9px] sm:text-[10px] font-black px-2 sm:px-2.5 py-0.5 rounded-full border border-amber-500/30 flex items-center gap-1 uppercase tracking-wider">
-                <Sparkles size={11} /> Promohomex Real Portal Auth
+              <span className="bg-emerald-600/20 text-emerald-400 text-[9px] sm:text-[10px] font-black px-2 sm:px-2.5 py-0.5 rounded-full border border-emerald-600/30 flex items-center gap-1 uppercase tracking-wider">
+                <Sparkles size={11} /> Sriizan Real Portal Auth
               </span>
             </div>
             <h2 className="text-lg sm:text-xl font-black text-white relative z-10 pr-8">
@@ -161,7 +161,7 @@ const AuthModal = ({ isOpen, onClose, initialTab = 'buyer_login' }) => {
                 onClick={() => setActiveTab('buyer_login')}
                 className={`py-1.5 sm:py-2 rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer ${
                   activeTab === 'buyer_login'
-                    ? 'bg-amber-500 text-slate-950 font-black shadow-sm'
+                    ? 'bg-emerald-600 text-white font-black shadow-sm'
                     : 'text-slate-400 hover:text-white'
                 }`}
               >
@@ -173,7 +173,7 @@ const AuthModal = ({ isOpen, onClose, initialTab = 'buyer_login' }) => {
                 onClick={() => setActiveTab('buyer_signup')}
                 className={`py-1.5 sm:py-2 rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer ${
                   activeTab === 'buyer_signup'
-                    ? 'bg-amber-500 text-slate-950 font-black shadow-sm'
+                    ? 'bg-emerald-600 text-white font-black shadow-sm'
                     : 'text-slate-400 hover:text-white'
                 }`}
               >
@@ -189,7 +189,7 @@ const AuthModal = ({ isOpen, onClose, initialTab = 'buyer_login' }) => {
                     : 'text-slate-400 hover:text-white'
                 }`}
               >
-                <Shield size={12} className={activeTab === 'admin_login' ? 'text-amber-600' : ''} /> Admin
+                <Shield size={12} className={activeTab === 'admin_login' ? 'text-emerald-600' : ''} /> Admin
               </button>
             </div>
           </div>
@@ -216,7 +216,7 @@ const AuthModal = ({ isOpen, onClose, initialTab = 'buyer_login' }) => {
                       required
                       value={buyerEmail}
                       onChange={(e) => setBuyerEmail(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-amber-500 focus:bg-white"
+                      className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-emerald-600 focus:bg-white"
                       placeholder="buyer@example.com"
                     />
                   </div>
@@ -230,14 +230,14 @@ const AuthModal = ({ isOpen, onClose, initialTab = 'buyer_login' }) => {
                       required
                       value={buyerPassword}
                       onChange={(e) => setBuyerPassword(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-amber-500 focus:bg-white"
+                      className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-emerald-600 focus:bg-white"
                       placeholder="••••••••"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-xs rounded-xl transition-all shadow-md border border-amber-300 flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-3.5 bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-500 hover:to-emerald-400 text-white font-black text-xs rounded-xl transition-all shadow-md border border-emerald-400 flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <Lock size={15} /> Log In to Buyer Dashboard <ArrowRight size={15} />
                   </button>
@@ -249,7 +249,7 @@ const AuthModal = ({ isOpen, onClose, initialTab = 'buyer_login' }) => {
                     <button
                       type="button"
                       onClick={() => setActiveTab('buyer_signup')}
-                      className="font-black text-amber-600 hover:underline cursor-pointer"
+                      className="font-black text-emerald-700 hover:underline cursor-pointer"
                     >
                       Register Now
                     </button>
@@ -283,7 +283,7 @@ const AuthModal = ({ isOpen, onClose, initialTab = 'buyer_login' }) => {
                       required
                       value={regName}
                       onChange={(e) => setRegName(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-2.5 px-3.5 rounded-xl focus:outline-none focus:border-amber-500 focus:bg-white"
+                      className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-2.5 px-3.5 rounded-xl focus:outline-none focus:border-emerald-600 focus:bg-white"
                       placeholder="e.g. Ramesh Kumar"
                     />
                   </div>
@@ -297,7 +297,7 @@ const AuthModal = ({ isOpen, onClose, initialTab = 'buyer_login' }) => {
                       required
                       value={regEmail}
                       onChange={(e) => setRegEmail(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-2.5 px-3.5 rounded-xl focus:outline-none focus:border-amber-500 focus:bg-white"
+                      className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-2.5 px-3.5 rounded-xl focus:outline-none focus:border-emerald-600 focus:bg-white"
                       placeholder="ramesh@example.com"
                     />
                   </div>
@@ -311,7 +311,7 @@ const AuthModal = ({ isOpen, onClose, initialTab = 'buyer_login' }) => {
                       required
                       value={regPhone}
                       onChange={(e) => setRegPhone(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-2.5 px-3.5 rounded-xl focus:outline-none focus:border-amber-500 focus:bg-white"
+                      className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-2.5 px-3.5 rounded-xl focus:outline-none focus:border-emerald-600 focus:bg-white"
                       placeholder="+91 98765 43210"
                     />
                   </div>
@@ -326,7 +326,7 @@ const AuthModal = ({ isOpen, onClose, initialTab = 'buyer_login' }) => {
                         required
                         value={regPassword}
                         onChange={(e) => setRegPassword(e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-2.5 px-3 rounded-xl focus:outline-none focus:border-amber-500 focus:bg-white"
+                        className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-2.5 px-3 rounded-xl focus:outline-none focus:border-emerald-600 focus:bg-white"
                         placeholder="••••••••"
                       />
                     </div>
@@ -339,24 +339,24 @@ const AuthModal = ({ isOpen, onClose, initialTab = 'buyer_login' }) => {
                         required
                         value={regConfirmPassword}
                         onChange={(e) => setRegConfirmPassword(e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-2.5 px-3 rounded-xl focus:outline-none focus:border-amber-500 focus:bg-white"
+                        className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-2.5 px-3 rounded-xl focus:outline-none focus:border-emerald-600 focus:bg-white"
                         placeholder="••••••••"
                       />
                     </div>
                   </div>
 
                   {/* Fee Highlight Pill */}
-                  <div className="bg-amber-50 border border-amber-200 p-2.5 rounded-xl flex items-center justify-between text-xs text-amber-900 font-bold">
+                  <div className="bg-emerald-50 border border-emerald-200 p-2.5 rounded-xl flex items-center justify-between text-xs text-emerald-950 font-bold">
                     <span className="flex items-center gap-1.5">
-                      <Sparkles size={14} className="text-amber-600 animate-pulse" />
+                      <Sparkles size={14} className="text-emerald-700 animate-pulse" />
                       One-Time Buyer Registration Pass Fee:
                     </span>
-                    <span className="font-black text-amber-700 text-sm">₹699</span>
+                    <span className="font-black text-emerald-800 text-sm">₹699</span>
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-xs rounded-xl transition-all shadow-md border border-amber-300 flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-3.5 bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-500 hover:to-emerald-400 text-white font-black text-xs rounded-xl transition-all shadow-md border border-emerald-400 flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <Lock size={15} /> Pay ₹699 & Complete Sign Up <ArrowRight size={15} />
                   </button>
@@ -368,7 +368,7 @@ const AuthModal = ({ isOpen, onClose, initialTab = 'buyer_login' }) => {
                     <button
                       type="button"
                       onClick={() => setActiveTab('buyer_login')}
-                      className="font-black text-amber-600 hover:underline cursor-pointer"
+                      className="font-black text-emerald-700 hover:underline cursor-pointer"
                     >
                       Log In Here
                     </button>
@@ -396,8 +396,8 @@ const AuthModal = ({ isOpen, onClose, initialTab = 'buyer_login' }) => {
                       required
                       value={adminEmail}
                       onChange={(e) => setAdminEmail(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-amber-500 focus:bg-white"
-                      placeholder="admin@promohomex.com"
+                      className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-emerald-600 focus:bg-white"
+                      placeholder="admin@sriizan.com"
                     />
                   </div>
 
@@ -410,7 +410,7 @@ const AuthModal = ({ isOpen, onClose, initialTab = 'buyer_login' }) => {
                       required
                       value={adminPassword}
                       onChange={(e) => setAdminPassword(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-amber-500 focus:bg-white"
+                      className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-emerald-600 focus:bg-white"
                       placeholder="••••••••"
                     />
                   </div>
@@ -427,13 +427,13 @@ const AuthModal = ({ isOpen, onClose, initialTab = 'buyer_login' }) => {
                   <button
                     type="button"
                     onClick={() => {
-                      loginAdmin("admin@promohomex.com", "admin123");
+                      loginAdmin("admin@sriizan.com", "admin123");
                       onClose();
                       navigate('/admin');
                     }}
-                    className="text-xs font-bold text-amber-700 hover:underline flex items-center justify-center gap-1 mx-auto cursor-pointer"
+                    className="text-xs font-bold text-emerald-800 hover:underline flex items-center justify-center gap-1 mx-auto cursor-pointer"
                   >
-                    <Key size={13} /> Quick Admin Login (admin@promohomex.com / admin123)
+                    <Key size={13} /> Quick Admin Login (admin@sriizan.com / admin123)
                   </button>
                 </div>
               </div>
@@ -451,7 +451,7 @@ const AuthModal = ({ isOpen, onClose, initialTab = 'buyer_login' }) => {
           name: regName,
           email: regEmail,
           mobile: regPhone,
-          projectName: 'Promohomex Grand Residency',
+          projectName: 'Sriizan Grand Residency',
           unitNumber: 'Unit 101'
         }}
       />

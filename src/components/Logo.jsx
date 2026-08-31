@@ -10,8 +10,8 @@ const Logo = ({ className = "", size = "normal" }) => {
     <div className={`flex items-center select-none ${className}`}>
       <img
         src="/logo.PNG"
-        alt="Promohomex - Construction Tracked Live"
-        className={`${heightClasses[size] || heightClasses.normal} w-auto object-contain transition-all duration-300 mix-blend-multiply border-none shadow-none ring-0 outline-none`}
+        alt="Sriizan - Construction Tracking & Resale Marketplace"
+        className={`${heightClasses[size] || heightClasses.normal} w-auto object-contain transition-all duration-300 border-none shadow-none ring-0 outline-none`}
         style={{
           boxShadow: 'none',
           filter: 'none',
@@ -26,11 +26,11 @@ const Logo = ({ className = "", size = "normal" }) => {
         }}
       />
       <div className="hidden flex-col items-start">
-        <span className="font-extrabold text-xl tracking-tight text-amber-600">
-          promo<span className="text-amber-700 uppercase">homeX</span>
+        <span className="font-extrabold text-xl tracking-tight text-emerald-700">
+          Sriizan
         </span>
         <span className="text-[8px] font-bold text-slate-500 tracking-widest uppercase -mt-1">
-          CONSTRUCTION • TRACKED • LIVE
+          BUILT • TRACKED • TRADED
         </span>
       </div>
     </div>

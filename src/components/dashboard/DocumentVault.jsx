@@ -64,7 +64,7 @@ const DocumentVault = () => {
               onClick={() => setSelectedCategory(cat)}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
                 selectedCategory === cat
-                  ? 'bg-amber-500 text-slate-950 font-bold shadow-sm'
+                  ? 'bg-emerald-600 text-white font-bold shadow-sm'
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
               }`}
             >
@@ -81,7 +81,7 @@ const DocumentVault = () => {
             placeholder="Search documents..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-slate-50 border border-slate-200 text-slate-900 pl-9 pr-4 py-1.5 rounded-xl text-xs focus:outline-none focus:border-amber-500 transition-colors"
+            className="w-full bg-slate-50 border border-slate-200 text-slate-900 pl-9 pr-4 py-1.5 rounded-xl text-xs focus:outline-none focus:border-emerald-600 transition-colors"
           />
         </div>
       </div>
@@ -97,7 +97,7 @@ const DocumentVault = () => {
             >
               <div>
                 <div className="flex justify-between items-start mb-3">
-                  <div className="p-2.5 bg-amber-50 text-amber-600 rounded-xl">
+                  <div className="p-2.5 bg-emerald-50 text-emerald-600 rounded-xl">
                     <FileText size={22} />
                   </div>
                   <span className={`text-[10px] font-extrabold px-2.5 py-1 rounded-full border ${
@@ -127,7 +127,7 @@ const DocumentVault = () => {
                     e.preventDefault();
                     alert(`Downloading "${doc.title}" (${doc.fileSize})...`);
                   }}
-                  className="bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold px-3 py-2 rounded-xl transition-colors flex items-center justify-center gap-1 shadow-sm"
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-2 rounded-xl transition-colors flex items-center justify-center gap-1 shadow-sm"
                   title="Download File"
                 >
                   <Download size={14} />
@@ -144,7 +144,7 @@ const DocumentVault = () => {
           <div className="relative max-w-2xl w-full bg-white rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
             <div className="p-4 bg-slate-900 text-white flex justify-between items-center">
               <div className="flex items-center gap-2">
-                <FileCheck className="text-amber-400" size={20} />
+                <FileCheck className="text-emerald-400" size={20} />
                 <div>
                   <h3 className="font-bold text-sm">{activePreviewDoc.title}</h3>
                   <p className="text-xs text-slate-400">{activePreviewDoc.category} • {activePreviewDoc.fileSize}</p>
@@ -162,7 +162,7 @@ const DocumentVault = () => {
             <div className="p-8 bg-slate-50 min-h-[320px] flex flex-col justify-between border-b border-slate-200">
               <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4 text-xs text-slate-700">
                 <div className="flex justify-between items-center border-b pb-3">
-                  <div className="font-extrabold text-amber-600 text-base tracking-widest">PROMOHOMEX OFFICIAL DOCUMENT</div>
+                  <div className="font-extrabold text-emerald-600 text-base tracking-widest">SRIIZAN OFFICIAL DOCUMENT</div>
                   <div className="text-right text-[10px] text-slate-500">Ref ID: {activePreviewDoc.id.toUpperCase()}</div>
                 </div>
 
@@ -173,7 +173,7 @@ const DocumentVault = () => {
                   <p>Status: <span className="font-bold text-emerald-600">{activePreviewDoc.status}</span></p>
                 </div>
 
-                <div className="p-3 bg-amber-50/50 rounded border border-amber-100 text-slate-600 italic">
+                <div className="p-3 bg-emerald-50/50 rounded border border-emerald-100 text-slate-600 italic">
                   "This document has been digitally verified and stamped by builder administration under RERA Haryana registration regulations."
                 </div>
               </div>
@@ -184,7 +184,7 @@ const DocumentVault = () => {
                 </span>
                 <button
                   onClick={() => alert(`Downloading "${activePreviewDoc.title}"...`)}
-                  className="bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold px-4 py-2 rounded-xl transition-colors flex items-center gap-1.5 shadow"
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition-colors flex items-center gap-1.5 shadow"
                 >
                   <Download size={14} /> Download PDF ({activePreviewDoc.fileSize})
                 </button>

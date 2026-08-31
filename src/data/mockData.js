@@ -1,8 +1,8 @@
 export const INITIAL_PROPERTIES = [
   {
     id: "PH-101",
-    name: "Promohomex Grand Residency",
-    builder: "Promohomex Infrastructure & Construction",
+    name: "Sriizan Grand Residency",
+    builder: "Sriizan Infrastructure & Construction",
     builderRating: 4.8,
     location: "Sector 84, Gurugram (Dwarka Expressway)",
     tower: "Tower B",
@@ -150,7 +150,7 @@ export const INITIAL_PROPERTIES = [
       },
       {
         id: "doc-7",
-        title: "Promohomex Grand Residency Official Brochure",
+        title: "Sriizan Grand Residency Official Brochure",
         category: "Brochure",
         fileType: "PDF",
         fileSize: "15.6 MB",
