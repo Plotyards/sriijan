@@ -38,10 +38,10 @@ const Navbar = ({ onRegisterClick, onSellClick }) => {
   };
 
   const navLinks = [
-    { label: 'Track Projects', id: 'projects', isScroll: true, dotColor: 'bg-emerald-500' },
+    { label: 'How It Works', id: 'journey', isScroll: true, dotColor: 'bg-emerald-500' },
     { label: 'Resale Market', id: 'resale', isScroll: true, dotColor: 'bg-amber-400' },
-    { label: 'Field Audits', id: 'updates', isScroll: true, dotColor: 'bg-cyan-400' },
-    { label: 'How It Works', id: 'journey', isScroll: true, dotColor: 'bg-slate-400' },
+    { label: 'Track Construction', id: 'register', isScroll: true, dotColor: 'bg-emerald-600' },
+    { label: 'FAQs', id: 'faqs', isScroll: true, dotColor: 'bg-slate-400' },
   ];
 
   const isAuthenticated = (currentUser && currentUser.isLoggedIn) || isAdminAuthenticated;
@@ -244,13 +244,13 @@ const Navbar = ({ onRegisterClick, onSellClick }) => {
                 </button>
 
                 <button
-                  onClick={() => scrollToSection('projects')}
+                  onClick={() => scrollToSection('journey')}
                   className="w-full text-left p-3.5 rounded-2xl hover:bg-white/10 font-black text-sm flex items-center gap-3 border border-white/5 transition-all cursor-pointer"
                 >
                   <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
                     <Building2 size={18} />
                   </div>
-                  <span>Track Construction Projects</span>
+                  <span>How It Works</span>
                 </button>
 
                 <button
@@ -264,13 +264,13 @@ const Navbar = ({ onRegisterClick, onSellClick }) => {
                 </button>
 
                 <button
-                  onClick={() => scrollToSection('updates')}
+                  onClick={() => scrollToSection('register')}
                   className="w-full text-left p-3.5 rounded-2xl hover:bg-white/10 font-black text-sm flex items-center gap-3 border border-white/5 transition-all cursor-pointer"
                 >
-                  <div className="w-9 h-9 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
-                    <Camera size={18} />
+                  <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                    <ShieldCheck size={18} />
                   </div>
-                  <span>4K Drone Field Audits</span>
+                  <span>Track Construction</span>
                 </button>
 
                 {/* Prominent Sell Button in Mobile */}

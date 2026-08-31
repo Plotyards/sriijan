@@ -3,10 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { AppProvider } from './context/AppContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import DualActionHub from './components/home/DualActionHub';
 import UserJourneyMap from './components/home/UserJourneyMap';
-import FeaturedConstructionProjects from './components/home/FeaturedConstructionProjects';
-import LatestConstructionFeed from './components/home/LatestConstructionFeed';
 import FeaturedResaleMarketplace from './components/home/FeaturedResaleMarketplace';
 import TrustVerificationSection from './components/home/TrustVerificationSection';
 import SellPropertyModal from './components/home/SellPropertyModal';
@@ -16,7 +13,6 @@ import RegistrationForm from './components/RegistrationForm';
 import Footer from './components/Footer';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
-import Popup from './components/Popup';
 import MobileBottomNav from './components/MobileBottomNav';
 
 import BuyerDashboard from './pages/BuyerDashboard';
@@ -26,22 +22,10 @@ import AuthPage from './pages/AuthPage';
 const Home = ({ scrollToRegistration, onOpenSellModal }) => (
   <main className="flex-grow">
     <Hero 
-      onTrackClick={() => {
-        const el = document.getElementById('hub');
-        if (el) {
-          const y = el.getBoundingClientRect().top + window.scrollY - 100;
-          window.scrollTo({ top: y, behavior: 'smooth' });
-        }
-      }} 
+      onTrackClick={scrollToRegistration} 
       onSellClick={onOpenSellModal} 
     />
-    {/* Dedicated Transition Hub */}
-    <div id="hub" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 mb-14 relative z-20">
-      <DualActionHub onOpenSellModal={onOpenSellModal} />
-    </div>
     <UserJourneyMap />
-    <FeaturedConstructionProjects />
-    <LatestConstructionFeed />
     <FeaturedResaleMarketplace onOpenSellModal={onOpenSellModal} />
     <TrustVerificationSection />
     <Testimonials />
