@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { AppProvider } from './context/AppContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import DualActionHub from './components/home/DualActionHub';
 import UserJourneyMap from './components/home/UserJourneyMap';
 import FeaturedConstructionProjects from './components/home/FeaturedConstructionProjects';
 import LatestConstructionFeed from './components/home/LatestConstructionFeed';
@@ -26,7 +27,7 @@ const Home = ({ scrollToRegistration, onOpenSellModal }) => (
   <main className="flex-grow">
     <Hero 
       onTrackClick={() => {
-        const el = document.getElementById('projects');
+        const el = document.getElementById('hub');
         if (el) {
           const y = el.getBoundingClientRect().top + window.scrollY - 100;
           window.scrollTo({ top: y, behavior: 'smooth' });
@@ -34,6 +35,10 @@ const Home = ({ scrollToRegistration, onOpenSellModal }) => (
       }} 
       onSellClick={onOpenSellModal} 
     />
+    {/* Dedicated Transition Hub */}
+    <div id="hub" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 mb-14 relative z-20">
+      <DualActionHub onOpenSellModal={onOpenSellModal} />
+    </div>
     <UserJourneyMap />
     <FeaturedConstructionProjects />
     <LatestConstructionFeed />

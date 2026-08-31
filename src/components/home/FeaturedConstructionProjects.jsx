@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Building2, Video, Calendar, ArrowRight, Sparkles, MapPin, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { Building2, Video, Calendar, ArrowRight, Sparkles, MapPin, CheckCircle2, ShieldCheck, Lock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { INITIAL_PROPERTIES } from '../../data/mockData';
 
@@ -123,10 +123,10 @@ const FeaturedConstructionProjects = () => {
                   <span>RERA VERIFIED</span>
                 </div>
 
-                {/* Drone Badge Top Right */}
-                <div className="absolute top-3.5 right-3.5 flex items-center gap-1.5 bg-emerald-600 text-white text-[10px] font-black px-2.5 py-1 rounded-lg shadow-md">
-                  <Video size={12} />
-                  <span>4K DRONE AUDIT</span>
+                {/* Drone Badge Top Right (Owner Locked Indicator) */}
+                <div className="absolute top-3.5 right-3.5 flex items-center gap-1 bg-slate-950/85 backdrop-blur-md text-emerald-400 text-[10px] font-black px-2.5 py-1 rounded-lg border border-emerald-500/30">
+                  <Lock size={11} />
+                  <span>4K DRONE AUDIT (OWNER)</span>
                 </div>
 
                 {/* Bottom Image Info */}
