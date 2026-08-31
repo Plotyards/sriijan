@@ -71,8 +71,11 @@ const FeaturedResaleMarketplace = ({ onOpenSellModal }) => {
   };
 
   return (
-    <section id="resale" className="py-16 sm:py-24 bg-white relative overflow-hidden border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="resale" className="py-16 sm:py-24 bg-white relative overflow-hidden border-b border-slate-200 architectural-grid">
+      {/* Warm Gold Ambient Light Orb */}
+      <div className="absolute top-10 right-10 w-96 h-96 bg-amber-300/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="space-y-2 max-w-2xl">

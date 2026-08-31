@@ -64,11 +64,11 @@ const DualActionHub = ({ onOpenSellModal, onTrackSelect }) => {
             onClick={() => setActiveTab('sell')}
             className={`py-3 px-3 sm:px-5 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
               activeTab === 'sell'
-                ? 'bg-slate-900 text-white shadow-md shadow-slate-950/25 font-black scale-[1.01]'
+                ? 'bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 text-slate-950 shadow-md shadow-amber-500/25 font-black scale-[1.01] border border-amber-400'
                 : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
             }`}
           >
-            <TrendingUp size={18} className={activeTab === 'sell' ? 'text-emerald-400' : ''} />
+            <TrendingUp size={18} className={activeTab === 'sell' ? 'text-slate-950 stroke-[2.5]' : ''} />
             <span>Sell My Property</span>
           </button>
         </div>
@@ -241,10 +241,10 @@ const DualActionHub = ({ onOpenSellModal, onTrackSelect }) => {
               <button
                 type="button"
                 onClick={onOpenSellModal}
-                className="w-full sm:w-auto py-3.5 px-6 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-slate-950 font-black text-xs sm:text-sm rounded-xl transition-all shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 cursor-pointer border border-emerald-400 shrink-0"
+                className="w-full sm:w-auto py-3.5 px-6 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl transition-all shadow-lg shadow-amber-500/25 flex items-center justify-center gap-2 cursor-pointer border border-amber-400 shrink-0"
               >
                 <span>List My Property for Resale</span>
-                <ChevronRight size={16} />
+                <ChevronRight size={16} className="text-slate-950 stroke-[2.5]" />
               </button>
             </div>
 

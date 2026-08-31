@@ -53,12 +53,12 @@ const LatestConstructionFeed = () => {
   ];
 
   return (
-    <section id="updates" className="py-16 sm:py-24 bg-slate-50 relative overflow-hidden border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="updates" className="py-16 sm:py-24 bg-slate-50 relative overflow-hidden border-b border-slate-200 architectural-grid">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
-          <div className="inline-flex items-center gap-1.5 text-emerald-800 text-xs font-black uppercase tracking-wider bg-emerald-100 px-3 py-1 rounded-full border border-emerald-300">
-            <Camera size={13} /> Field Audits & Drone Media
+          <div className="inline-flex items-center gap-1.5 text-cyan-900 text-xs font-black uppercase tracking-wider bg-cyan-100 px-3 py-1 rounded-full border border-cyan-300">
+            <Camera size={13} className="text-cyan-700" /> Field Audits & Drone Media
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
             Latest Construction Updates Feed
@@ -77,7 +77,7 @@ const LatestConstructionFeed = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between group cursor-pointer"
+              className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer hover:border-cyan-500"
               onClick={() => setSelectedPhoto(item)}
             >
               {/* Photo */}
@@ -89,9 +89,13 @@ const LatestConstructionFeed = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
 
-                {/* Type Tag */}
-                <div className="absolute top-3 left-3 flex items-center gap-1 bg-slate-950/80 text-white text-[10px] font-black px-2 py-0.5 rounded-lg border border-white/20">
-                  {item.type === 'Drone Survey' ? <Video size={11} className="text-emerald-400" /> : <Camera size={11} className="text-amber-400" />}
+                {/* Type Tag (Cyan for Drone, Gold for Site Photo) */}
+                <div className={`absolute top-3 left-3 flex items-center gap-1.5 text-[10px] font-black px-2.5 py-1 rounded-lg border backdrop-blur-md ${
+                  item.type === 'Drone Survey'
+                    ? 'bg-cyan-950/85 text-cyan-300 border-cyan-500/40 shadow-sm shadow-cyan-900/30'
+                    : 'bg-slate-950/85 text-amber-300 border-amber-500/40 shadow-sm'
+                }`}>
+                  {item.type === 'Drone Survey' ? <Video size={11} className="text-cyan-400" /> : <Camera size={11} className="text-amber-400" />}
                   <span>{item.type.toUpperCase()}</span>
                 </div>
 
