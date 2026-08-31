@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 import { useApp } from '../context/AppContext';
-import { LayoutDashboard, Shield, ChevronRight, Home, Layers, Sparkles, User, Menu, X, UserPlus, LogOut, UserCheck } from 'lucide-react';
+import { LayoutDashboard, Shield, ChevronRight, Home, Layers, Sparkles, User, Menu, X, UserPlus, LogOut, UserCheck, TrendingUp, Building2 } from 'lucide-react';
 
 const Navbar = ({ onRegisterClick, onSellClick }) => {
   const [scrolled, setScrolled] = useState(false);
