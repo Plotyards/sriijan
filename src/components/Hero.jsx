@@ -1,6 +1,7 @@
 import { ArrowRight, ShieldCheck, Sparkles, Building2, TrendingUp } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Logo from './Logo';
+import DualActionHub from './home/DualActionHub';
 
 const Hero = ({ onTrackClick, onSellClick }) => {
   return (
@@ -132,6 +133,11 @@ const Hero = ({ onTrackClick, onSellClick }) => {
             </motion.div>
           </div>
         </motion.div>
+      </div>
+
+      {/* Interactive Dual Action Command Hub (Track Construction + Sell My Property) */}
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 w-full">
+        <DualActionHub onOpenSellModal={onSellClick} onTrackSelect={onTrackClick} />
       </div>
     </div>
   );

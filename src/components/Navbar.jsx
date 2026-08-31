@@ -5,7 +5,7 @@ import Logo from './Logo';
 import { useApp } from '../context/AppContext';
 import { LayoutDashboard, Shield, ChevronRight, Home, Layers, Sparkles, User, Menu, X, UserPlus, LogOut, UserCheck } from 'lucide-react';
 
-const Navbar = () => {
+const Navbar = ({ onRegisterClick, onSellClick }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -36,9 +36,10 @@ const Navbar = () => {
 
   const navLinks = [
     { label: 'Home', path: '/', isScroll: false },
-    { label: 'How It Works', id: 'how-it-works', isScroll: true },
-    { label: 'Features', id: 'features', isScroll: true },
-    { label: 'FAQs', id: 'faqs', isScroll: true },
+    { label: 'Track Projects', id: 'projects', isScroll: true },
+    { label: 'Resale Marketplace', id: 'resale', isScroll: true },
+    { label: 'Field Audits', id: 'updates', isScroll: true },
+    { label: 'How It Works', id: 'journey', isScroll: true },
   ];
 
   const isAuthenticated = (currentUser && currentUser.isLoggedIn) || isAdminAuthenticated;
@@ -132,6 +133,16 @@ const Navbar = () => {
 
           {/* Right: Actions */}
           <div className="flex items-center gap-2">
+            {/* Quick Sell Property Trigger */}
+            <button
+              type="button"
+              onClick={onSellClick}
+              className="hidden md:flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-black text-slate-900 bg-amber-400 hover:bg-amber-300 transition-all shadow-xs cursor-pointer border border-amber-500 whitespace-nowrap shrink-0"
+            >
+              <TrendingUp size={13} className="text-slate-950" />
+              <span>Sell Property</span>
+            </button>
+
             {/* UNAUTHENTICATED STATE: Show Dedicated Login & Sign Up Links (Desktop / Tablet) */}
             {!isAuthenticated ? (
               <div className="hidden sm:flex items-center gap-2">
@@ -229,27 +240,50 @@ const Navbar = () => {
                     <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
                       <Home size={18} />
                     </div>
-                    Home Page
+                    Home
                   </Link>
 
                   <button
-                    onClick={() => scrollToSection('how-it-works')}
-                    className="w-full text-left p-4 rounded-2xl hover:bg-white/10 font-black text-base flex items-center gap-3 border border-white/5 transition-all cursor-pointer active:scale-98"
+                    onClick={() => scrollToSection('projects')}
+                    className="w-full text-left p-3.5 rounded-2xl hover:bg-white/10 font-black text-sm flex items-center gap-3 border border-white/5 transition-all cursor-pointer active:scale-98"
                   >
                     <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
-                      <Layers size={18} />
+                      <Building2 size={18} />
                     </div>
-                    How It Works
+                    Track Construction
                   </button>
 
                   <button
-                    onClick={() => scrollToSection('features')}
-                    className="w-full text-left p-4 rounded-2xl hover:bg-white/10 font-black text-base flex items-center gap-3 border border-white/5 transition-all cursor-pointer active:scale-98"
+                    onClick={() => scrollToSection('resale')}
+                    className="w-full text-left p-3.5 rounded-2xl hover:bg-white/10 font-black text-sm flex items-center gap-3 border border-white/5 transition-all cursor-pointer active:scale-98"
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                      <TrendingUp size={18} />
+                    </div>
+                    Resale Marketplace
+                  </button>
+
+                  <button
+                    onClick={() => scrollToSection('updates')}
+                    className="w-full text-left p-3.5 rounded-2xl hover:bg-white/10 font-black text-sm flex items-center gap-3 border border-white/5 transition-all cursor-pointer active:scale-98"
                   >
                     <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
                       <Sparkles size={18} />
                     </div>
-                    Features
+                    Field Audits & Drone Media
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      if (onSellClick) onSellClick();
+                    }}
+                    className="w-full text-left p-3.5 rounded-2xl bg-amber-400 text-slate-950 font-black text-sm flex items-center gap-3 transition-all cursor-pointer active:scale-98 shadow-md"
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-slate-950 text-amber-400 flex items-center justify-center">
+                      <TrendingUp size={18} />
+                    </div>
+                    Sell My Property (List Free)
                   </button>
                 </div>
 

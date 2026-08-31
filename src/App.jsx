@@ -1,10 +1,14 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AppProvider } from './context/AppContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import HowItWorks from './components/HowItWorks';
-import Features from './components/Features';
+import UserJourneyMap from './components/home/UserJourneyMap';
+import FeaturedConstructionProjects from './components/home/FeaturedConstructionProjects';
+import LatestConstructionFeed from './components/home/LatestConstructionFeed';
+import FeaturedResaleMarketplace from './components/home/FeaturedResaleMarketplace';
+import TrustVerificationSection from './components/home/TrustVerificationSection';
+import SellPropertyModal from './components/home/SellPropertyModal';
 import Testimonials from './components/Testimonials';
 import FAQs from './components/FAQs';
 import RegistrationForm from './components/RegistrationForm';
@@ -18,21 +22,24 @@ import BuyerDashboard from './pages/BuyerDashboard';
 import AdminPanel from './pages/AdminPanel';
 import AuthPage from './pages/AuthPage';
 
-const Home = ({ scrollToRegistration }) => (
+const Home = ({ scrollToRegistration, onOpenSellModal }) => (
   <main className="flex-grow">
     <Hero 
-      onTrackClick={scrollToRegistration} 
-      onSellClick={() => {
-        const el = document.getElementById('register');
+      onTrackClick={() => {
+        const el = document.getElementById('projects');
         if (el) {
           const y = el.getBoundingClientRect().top + window.scrollY - 100;
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
       }} 
+      onSellClick={onOpenSellModal} 
     />
-    <HowItWorks />
+    <UserJourneyMap />
+    <FeaturedConstructionProjects />
+    <LatestConstructionFeed />
+    <FeaturedResaleMarketplace onOpenSellModal={onOpenSellModal} />
+    <TrustVerificationSection />
     <Testimonials />
-    <Features />
     <FAQs />
     <RegistrationForm />
   </main>
@@ -40,6 +47,7 @@ const Home = ({ scrollToRegistration }) => (
 
 function AppContent() {
   const location = useLocation();
+  const [isSellModalOpen, setIsSellModalOpen] = useState(false);
 
   useEffect(() => {
     if (location.state && location.state.scrollTo) {
@@ -64,10 +72,21 @@ function AppContent() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans selection:bg-emerald-500/30 pb-20 md:pb-0 w-full max-w-full overflow-x-hidden">
-      <Navbar onRegisterClick={scrollToRegistration} />
+      <Navbar 
+        onRegisterClick={scrollToRegistration} 
+        onSellClick={() => setIsSellModalOpen(true)}
+      />
 
       <Routes>
-        <Route path="/" element={<Home scrollToRegistration={scrollToRegistration} />} />
+        <Route 
+          path="/" 
+          element={
+            <Home 
+              scrollToRegistration={scrollToRegistration} 
+              onOpenSellModal={() => setIsSellModalOpen(true)} 
+            />
+          } 
+        />
         <Route path="/login" element={<AuthPage />} />
         <Route path="/signup" element={<AuthPage />} />
         <Route path="/auth" element={<AuthPage />} />
@@ -75,8 +94,22 @@ function AppContent() {
         <Route path="/admin/*" element={<AdminPanel />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<TermsOfService />} />
-        <Route path="*" element={<Home scrollToRegistration={scrollToRegistration} />} />
+        <Route 
+          path="*" 
+          element={
+            <Home 
+              scrollToRegistration={scrollToRegistration} 
+              onOpenSellModal={() => setIsSellModalOpen(true)} 
+            />
+          } 
+        />
       </Routes>
+
+      {/* Global Sell My Property Listing Modal */}
+      <SellPropertyModal 
+        isOpen={isSellModalOpen} 
+        onClose={() => setIsSellModalOpen(false)} 
+      />
 
       <Footer />
       <Popup />
