@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { INITIAL_PROPERTIES, INITIAL_NOTIFICATIONS } from '../data/mockData';
 import { apiService } from '../services/api';
+import { sanitizeNotificationText } from '../utils/privacy';
 
 const AppContext = createContext();
 
@@ -37,13 +38,16 @@ export const AppProvider = ({ children }) => {
     };
   });
 
-  // Native Mobile / Browser Push Notification helper
+  // Native Mobile / Browser Push Notification helper (Sanitized so phone numbers never leak)
   const triggerSystemNotification = (title, body) => {
+    const safeTitle = sanitizeNotificationText(title);
+    const safeBody = sanitizeNotificationText(body);
+
     if ('Notification' in window) {
       if (Notification.permission === 'granted') {
         try {
-          new Notification(title, {
-            body,
+          new Notification(safeTitle, {
+            body: safeBody,
             icon: 'https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?q=80&w=200&auto=format&fit=crop'
           });
         } catch (e) {
@@ -53,8 +57,8 @@ export const AppProvider = ({ children }) => {
         Notification.requestPermission().then(permission => {
           if (permission === 'granted') {
             try {
-              new Notification(title, {
-                body,
+              new Notification(safeTitle, {
+                body: safeBody,
                 icon: 'https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?q=80&w=200&auto=format&fit=crop'
               });
             } catch {
@@ -211,13 +215,16 @@ export const AppProvider = ({ children }) => {
     localStorage.removeItem('sriizan_admin_auth');
   };
 
-  // Helper to add a notification
+  // Helper to add a notification (Privacy Sanitized: Phone numbers are never exposed)
   const addNotification = (notif) => {
+    const safeTitle = sanitizeNotificationText(notif.title);
+    const safeMessage = sanitizeNotificationText(notif.message);
+
     const newNotif = {
       id: `notif-${Date.now()}`,
       propertyId: notif.propertyId || activePropertyId,
-      title: notif.title,
-      message: notif.message,
+      title: safeTitle,
+      message: safeMessage,
       category: notif.category || 'Milestone',
       timestamp: new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }),
       read: false,

@@ -501,9 +501,14 @@ app.post('/api/payment/verify-razorpay-payment', async (req, res) => {
 });
 
 // Start Server & Connect MongoDB Atlas
-connectDB().then(() => {
-  seedInitialData();
-  app.listen(PORT, () => {
-    console.log(`🚀 Secure Promohomex MongoDB Backend Server running on http://localhost:${PORT}`);
+if (process.env.NODE_ENV !== 'test') {
+  connectDB().then(() => {
+    seedInitialData();
+    app.listen(PORT, () => {
+      console.log(`🚀 Secure Promohomex MongoDB Backend Server running on http://localhost:${PORT}`);
+    });
   });
-});
+}
+
+export { app, seedInitialData, sanitizeUser };
+

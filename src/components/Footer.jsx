@@ -39,6 +39,7 @@ const Footer = () => {
           <div className="space-y-3">
             <h3 className="text-xs font-black text-emerald-500 tracking-widest uppercase">Platform</h3>
             <ul className="space-y-2.5 text-xs sm:text-sm font-bold">
+              <li><Link to="/resale" className="text-amber-400 hover:text-amber-300 transition-colors font-black flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>Resale Properties</Link></li>
               <li><a href="#how-it-works" onClick={(e) => scrollToSection(e, 'how-it-works')} className="text-slate-300 hover:text-emerald-500 transition-colors">How it Works</a></li>
               <li><a href="#features" onClick={(e) => scrollToSection(e, 'features')} className="text-slate-300 hover:text-emerald-500 transition-colors">Features</a></li>
               <li><a href="#testimonials" onClick={(e) => scrollToSection(e, 'testimonials')} className="text-slate-300 hover:text-emerald-500 transition-colors">Testimonials</a></li>

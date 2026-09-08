@@ -39,7 +39,6 @@ const Navbar = ({ onRegisterClick, onSellClick }) => {
 
   const navLinks = [
     { label: 'How It Works', id: 'journey', isScroll: true, dotColor: 'bg-emerald-500' },
-    { label: 'Resale Market', id: 'resale', isScroll: true, dotColor: 'bg-amber-400' },
     { label: 'Track Construction', id: 'register', isScroll: true, dotColor: 'bg-emerald-600' },
     { label: 'FAQs', id: 'faqs', isScroll: true, dotColor: 'bg-slate-400' },
   ];
@@ -84,16 +83,42 @@ const Navbar = ({ onRegisterClick, onSellClick }) => {
               Home
             </button>
 
-            {navLinks.map((link) => (
-              <button
-                key={link.label}
-                onClick={() => scrollToSection(link.id)}
-                className="px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer hover:bg-white/70 hover:text-slate-950 flex items-center gap-1.5"
-              >
-                <span className={`w-1.5 h-1.5 rounded-full ${link.dotColor}`}></span>
-                <span>{link.label}</span>
-              </button>
-            ))}
+            <button
+              onClick={() => scrollToSection('journey')}
+              className="px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer hover:bg-white/70 hover:text-slate-950 flex items-center gap-1.5"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              <span>How It Works</span>
+            </button>
+
+            {/* Dedicated Resale Properties Page Link */}
+            <Link
+              to="/resale"
+              className={`px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
+                location.pathname.startsWith('/resale')
+                  ? 'bg-amber-400 text-slate-950 shadow-xs font-black'
+                  : 'hover:bg-white/70 hover:text-slate-950 font-extrabold text-slate-800'
+              }`}
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+              <span>Resale Properties</span>
+            </Link>
+
+            <button
+              onClick={() => scrollToSection('register')}
+              className="px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer hover:bg-white/70 hover:text-slate-950 flex items-center gap-1.5"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+              <span>Track Construction</span>
+            </button>
+
+            <button
+              onClick={() => scrollToSection('faqs')}
+              className="px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer hover:bg-white/70 hover:text-slate-950 flex items-center gap-1.5"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+              <span>FAQs</span>
+            </button>
 
             {/* If Authenticated as Buyer */}
             {currentUser && currentUser.isLoggedIn && (
@@ -253,15 +278,22 @@ const Navbar = ({ onRegisterClick, onSellClick }) => {
                   <span>How It Works</span>
                 </button>
 
-                <button
-                  onClick={() => scrollToSection('resale')}
-                  className="w-full text-left p-3.5 rounded-2xl hover:bg-white/10 font-black text-sm flex items-center gap-3 border border-white/5 transition-all cursor-pointer"
+                <Link
+                  to="/resale"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`w-full text-left p-3.5 rounded-2xl font-black text-sm flex items-center gap-3 border transition-all cursor-pointer ${
+                    location.pathname.startsWith('/resale')
+                      ? 'bg-amber-400 text-slate-950 border-amber-300'
+                      : 'hover:bg-white/10 text-white border-white/5'
+                  }`}
                 >
-                  <div className="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${
+                    location.pathname.startsWith('/resale') ? 'bg-slate-950 text-amber-400' : 'bg-amber-500/20 text-amber-400'
+                  }`}>
                     <TrendingUp size={18} />
                   </div>
-                  <span>Resale Marketplace</span>
-                </button>
+                  <span>Resale Properties (All Units)</span>
+                </Link>
 
                 <button
                   onClick={() => scrollToSection('register')}

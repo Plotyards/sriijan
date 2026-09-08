@@ -44,6 +44,8 @@ const SellPropertyModal = ({ isOpen, onClose }) => {
       addNewPropertyBooking({
         fullName: formData.ownerName || 'Property Owner',
         phone: formData.ownerPhone || '+91 98705 34978',
+        ownerName: formData.ownerName || 'Property Owner',
+        ownerPhone: formData.ownerPhone || '+91 98705 34978',
         email: formData.ownerEmail || 'owner@example.com',
         projectName: formData.projectName || 'Sriizan Premium Residency',
         tower: formData.tower || 'Tower A',

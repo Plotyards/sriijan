@@ -18,6 +18,7 @@ import MobileBottomNav from './components/MobileBottomNav';
 import BuyerDashboard from './pages/BuyerDashboard';
 import AdminPanel from './pages/AdminPanel';
 import AuthPage from './pages/AuthPage';
+import ResalePropertiesPage from './pages/ResalePropertiesPage';
 
 const Home = ({ scrollToRegistration, onOpenSellModal }) => (
   <main className="flex-grow">
@@ -75,6 +76,14 @@ function AppContent() {
               onOpenSellModal={() => setIsSellModalOpen(true)} 
             />
           } 
+        />
+        <Route 
+          path="/resale" 
+          element={<ResalePropertiesPage onOpenSellModal={() => setIsSellModalOpen(true)} />} 
+        />
+        <Route 
+          path="/resale-properties" 
+          element={<ResalePropertiesPage onOpenSellModal={() => setIsSellModalOpen(true)} />} 
         />
         <Route path="/login" element={<AuthPage />} />
         <Route path="/signup" element={<AuthPage />} />
