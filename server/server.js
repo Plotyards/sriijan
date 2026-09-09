@@ -75,7 +75,8 @@ const seedInitialData = async () => {
       await User.insertMany([
         { name: 'Nikhil Jangra', email: 'nikhil.jangra@example.com', phone: '+91 98705 34978', password: hashedBuyerPassword, role: 'buyer' },
         { name: 'Priya Sharma', email: 'priya.sharma@example.com', phone: '+91 98123 45678', password: hashedBuyerPassword, role: 'buyer' },
-        { name: 'Builder Admin', email: 'admin@promohomex.com', phone: '+91 98705 34978', password: hashedAdminPassword, role: 'admin' }
+        { name: 'Builder Admin', email: 'admin@sriizan.com', phone: '+91 98705 34978', password: hashedAdminPassword, role: 'admin' },
+        { name: 'Legacy Admin', email: 'admin@promohomex.com', phone: '+91 98705 34978', password: hashedAdminPassword, role: 'admin' }
       ]);
       console.log('✅ Secure demo users seeded successfully!');
     }
@@ -178,12 +179,12 @@ app.post('/api/auth/admin-login', async (req, res) => {
 
     let adminUser = await User.findOne({ email: lowerEmail, role: 'admin' });
 
-    if (!adminUser && lowerEmail === 'admin@promohomex.com') {
+    if (!adminUser && (lowerEmail === 'admin@sriizan.com' || lowerEmail === 'admin@promohomex.com')) {
       // If admin user missing from DB, create hashed admin account
       const hashedPassword = await bcrypt.hash('admin123', 10);
       adminUser = new User({
         name: 'Builder Admin',
-        email: 'admin@promohomex.com',
+        email: lowerEmail,
         phone: '+91 98705 34978',
         password: hashedPassword,
         role: 'admin'
@@ -210,7 +211,7 @@ app.post('/api/auth/admin-login', async (req, res) => {
       }
     }
 
-    res.status(401).json({ success: false, error: 'Invalid Admin Credentials! Use admin@promohomex.com / admin123' });
+    res.status(401).json({ success: false, error: 'Invalid Admin Credentials! Use admin@sriizan.com / admin123' });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }
@@ -237,8 +238,8 @@ app.post('/api/properties', verifyToken, async (req, res) => {
 
     const newProp = new Property({
       id: newId,
-      name: bookingData.projectName || 'Promohomex Residency',
-      builder: bookingData.builderName || 'Promohomex Builders',
+      name: bookingData.projectName || 'Sriizan Residency',
+      builder: bookingData.builderName || 'Sriizan Builders',
       tower: bookingData.tower || 'Tower A',
       unitNo: bookingData.unitNo || '101',
       type: bookingData.bhkType || '3 BHK Luxury',
@@ -505,7 +506,7 @@ if (process.env.NODE_ENV !== 'test') {
   connectDB().then(() => {
     seedInitialData();
     app.listen(PORT, () => {
-      console.log(`🚀 Secure Promohomex MongoDB Backend Server running on http://localhost:${PORT}`);
+      console.log(`🚀 Secure Sriizan MongoDB Backend Server running on http://localhost:${PORT}`);
     });
   });
 }

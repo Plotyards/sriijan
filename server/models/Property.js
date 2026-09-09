@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const propertySchema = new mongoose.Schema({
   id: { type: String, required: true, unique: true },
   name: { type: String, required: true },
-  builder: { type: String, default: 'Promohomex Builders' },
+  builder: { type: String, default: 'Sriizan Builders' },
   builderRating: { type: Number, default: 4.7 },
   location: { type: String, default: 'Sector 84, Gurugram' },
   tower: { type: String, required: true },

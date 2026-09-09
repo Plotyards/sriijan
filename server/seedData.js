@@ -1,8 +1,8 @@
 export const SEED_PROPERTIES = [
   {
     id: "PH-101",
-    name: "Promohomex Grand Residency",
-    builder: "Promohomex Infrastructure & Construction",
+    name: "Sriizan Grand Residency",
+    builder: "Sriizan Infrastructure & Construction",
     builderRating: 4.8,
     location: "Sector 84, Gurugram (Dwarka Expressway)",
     tower: "Tower B",
