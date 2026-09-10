@@ -61,7 +61,7 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans selection:bg-emerald-500/30 pb-20 md:pb-0 w-full max-w-full overflow-x-hidden">
+    <div className="min-h-screen bg-slate-50 flex flex-col font-sans selection:bg-emerald-500/30 w-full max-w-full overflow-x-hidden">
       <Navbar 
         onRegisterClick={scrollToRegistration} 
         onSellClick={() => setIsSellModalOpen(true)}

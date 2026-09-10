@@ -29,11 +29,13 @@ const Navbar = ({ onRegisterClick, onSellClick }) => {
     if (location.pathname !== '/') {
       navigate('/', { state: { scrollTo: id } });
     } else {
-      const element = document.getElementById(id);
-      if (element) {
-        const y = element.getBoundingClientRect().top + window.scrollY - 100;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      }
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          const y = element.getBoundingClientRect().top + window.scrollY - 90;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 100);
     }
   };
 
@@ -228,139 +230,245 @@ const Navbar = ({ onRegisterClick, onSellClick }) => {
             </button>
           </div>
         </div>
+      </motion.header>
 
-        {/* Full-Screen Animated Mobile Menu Overlay with Architectural Grid */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-              className="fixed inset-0 z-50 bg-slate-950/98 backdrop-blur-3xl p-5 flex flex-col justify-between overflow-y-auto text-white architectural-grid-dark"
-            >
-              {/* Top Header Row with Close Cross Button */}
-              <div className="flex items-center justify-between pb-4 border-b border-white/10 max-w-md mx-auto w-full">
+      {/* Full-Screen Animated Mobile Menu Overlay with Architectural Grid */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.96 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="pointer-events-auto fixed inset-0 z-50 bg-slate-950/98 backdrop-blur-3xl p-5 flex flex-col justify-between overflow-y-auto text-white architectural-grid-dark"
+          >
+            {/* Top Header Row with Close Cross Button */}
+            <div className="flex items-center justify-between pb-4 border-b border-white/10 max-w-md mx-auto w-full">
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  if (location.pathname !== '/') navigate('/');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="flex items-center gap-2 cursor-pointer text-left"
+              >
                 <Logo variant="dark" size="normal" />
+              </button>
 
-                <button
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-colors cursor-pointer"
-                  aria-label="Close menu"
-                >
-                  <X size={20} />
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-colors cursor-pointer"
+                aria-label="Close menu"
+              >
+                <X size={20} />
+              </button>
+            </div>
 
-              {/* Navigation Links Group */}
-              <div className="py-4 space-y-3 max-w-md mx-auto w-full">
-                <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    if (location.pathname !== '/') navigate('/');
-                    else window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                  className="w-full text-left p-3.5 rounded-2xl hover:bg-white/10 font-black text-sm flex items-center gap-3 border border-white/5 transition-all cursor-pointer"
-                >
-                  <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
-                    <Home size={18} />
-                  </div>
-                  <span>Home</span>
-                </button>
+            {/* Navigation Links Group */}
+            <div className="py-4 space-y-2.5 max-w-md mx-auto w-full">
+              {/* Home */}
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  if (location.pathname !== '/') {
+                    navigate('/');
+                  }
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className={`w-full text-left p-3.5 rounded-2xl font-black text-sm flex items-center gap-3 border transition-all cursor-pointer ${
+                  location.pathname === '/'
+                    ? 'bg-white/15 border-white/20 text-emerald-400'
+                    : 'hover:bg-white/10 text-white border-white/5'
+                }`}
+              >
+                <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                  <Home size={18} />
+                </div>
+                <span>Home</span>
+              </button>
 
-                <button
-                  onClick={() => scrollToSection('journey')}
-                  className="w-full text-left p-3.5 rounded-2xl hover:bg-white/10 font-black text-sm flex items-center gap-3 border border-white/5 transition-all cursor-pointer"
-                >
-                  <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
-                    <Building2 size={18} />
-                  </div>
-                  <span>How It Works</span>
-                </button>
+              {/* How It Works */}
+              <button
+                type="button"
+                onClick={() => scrollToSection('journey')}
+                className="w-full text-left p-3.5 rounded-2xl hover:bg-white/10 font-black text-sm flex items-center gap-3 border border-white/5 transition-all cursor-pointer"
+              >
+                <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                  <Building2 size={18} />
+                </div>
+                <span>How It Works</span>
+              </button>
 
-                <Link
-                  to="/resale"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`w-full text-left p-3.5 rounded-2xl font-black text-sm flex items-center gap-3 border transition-all cursor-pointer ${
-                    location.pathname.startsWith('/resale')
-                      ? 'bg-amber-400 text-slate-950 border-amber-300'
-                      : 'hover:bg-white/10 text-white border-white/5'
-                  }`}
-                >
-                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${
-                    location.pathname.startsWith('/resale') ? 'bg-slate-950 text-amber-400' : 'bg-amber-500/20 text-amber-400'
-                  }`}>
+              {/* Resale Properties */}
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  navigate('/resale');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className={`w-full text-left p-3.5 rounded-2xl font-black text-sm flex items-center gap-3 border transition-all cursor-pointer ${
+                  location.pathname.startsWith('/resale')
+                    ? 'bg-amber-400 text-slate-950 border-amber-300'
+                    : 'hover:bg-white/10 text-white border-white/5'
+                }`}
+              >
+                <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
+                  location.pathname.startsWith('/resale') ? 'bg-slate-950 text-amber-400' : 'bg-amber-500/20 text-amber-400'
+                }`}>
+                  <TrendingUp size={18} />
+                </div>
+                <span>Resale Properties (All Units)</span>
+              </button>
+
+              {/* Track Construction */}
+              <button
+                type="button"
+                onClick={() => scrollToSection('register')}
+                className="w-full text-left p-3.5 rounded-2xl hover:bg-white/10 font-black text-sm flex items-center gap-3 border border-white/5 transition-all cursor-pointer"
+              >
+                <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                  <ShieldCheck size={18} />
+                </div>
+                <span>Track Construction</span>
+              </button>
+
+              {/* FAQs */}
+              <button
+                type="button"
+                onClick={() => scrollToSection('faqs')}
+                className="w-full text-left p-3.5 rounded-2xl hover:bg-white/10 font-black text-sm flex items-center gap-3 border border-white/5 transition-all cursor-pointer"
+              >
+                <div className="w-9 h-9 rounded-xl bg-slate-500/20 text-slate-300 flex items-center justify-center shrink-0">
+                  <Sparkles size={18} />
+                </div>
+                <span>FAQs</span>
+              </button>
+
+              {/* Prominent Sell Button in Mobile */}
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  if (onSellClick) onSellClick();
+                }}
+                className="w-full text-left p-3.5 rounded-2xl bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black text-sm flex items-center justify-between transition-all cursor-pointer shadow-lg shadow-amber-500/20 hover:brightness-105 active:scale-[0.99]"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-slate-950 text-amber-400 flex items-center justify-center shrink-0">
                     <TrendingUp size={18} />
                   </div>
-                  <span>Resale Properties (All Units)</span>
-                </Link>
-
-                <button
-                  onClick={() => scrollToSection('register')}
-                  className="w-full text-left p-3.5 rounded-2xl hover:bg-white/10 font-black text-sm flex items-center gap-3 border border-white/5 transition-all cursor-pointer"
-                >
-                  <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
-                    <ShieldCheck size={18} />
-                  </div>
-                  <span>Track Construction</span>
-                </button>
-
-                {/* Prominent Sell Button in Mobile */}
-                <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    if (onSellClick) onSellClick();
-                  }}
-                  className="w-full text-left p-3.5 rounded-2xl bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black text-sm flex items-center justify-between transition-all cursor-pointer shadow-lg shadow-amber-500/20"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-xl bg-slate-950 text-amber-400 flex items-center justify-center">
-                      <TrendingUp size={18} />
-                    </div>
-                    <span>Sell My Property (List Free)</span>
-                  </div>
-                  <ChevronRight size={18} />
-                </button>
-              </div>
-
-              {/* Bottom Auth & Info */}
-              <div className="pt-4 border-t border-slate-800 space-y-3 max-w-md mx-auto w-full">
-                {!isAuthenticated ? (
-                  <div className="grid grid-cols-2 gap-2.5">
-                    <Link
-                      to="/login"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 text-white font-black text-xs text-center"
-                    >
-                      Log In
-                    </Link>
-                    <Link
-                      to="/signup"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="p-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs text-center shadow-md shadow-emerald-700/30"
-                    >
-                      Sign Up Free
-                    </Link>
-                  </div>
-                ) : (
-                  <Link
-                    to="/dashboard"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="w-full p-3.5 rounded-xl bg-emerald-700 text-white font-black text-xs flex items-center justify-between"
-                  >
-                    <span>Launch Buyer Dashboard</span>
-                    <ChevronRight size={16} />
-                  </Link>
-                )}
-
-                <div className="text-center text-[10px] text-slate-500 font-bold pt-2">
-                  Sriizan &bull; Built • Tracked • Traded
+                  <span>Sell My Property (List Free)</span>
                 </div>
+                <ChevronRight size={18} />
+              </button>
+            </div>
+
+            {/* Bottom Auth & Info */}
+            <div className="pt-4 border-t border-slate-800 space-y-2.5 max-w-md mx-auto w-full">
+              {!isAuthenticated ? (
+                <div className="grid grid-cols-2 gap-2.5">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate('/login');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="p-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-white font-black text-xs text-center cursor-pointer flex items-center justify-center gap-1.5 transition-colors"
+                  >
+                    <User size={14} /> Log In
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      navigate('/signup');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="p-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs text-center shadow-md shadow-emerald-700/30 cursor-pointer flex items-center justify-center gap-1.5 transition-colors"
+                  >
+                    <UserPlus size={14} /> Sign Up Free
+                  </button>
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  {currentUser && currentUser.isLoggedIn && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          navigate('/dashboard');
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                        className="w-full p-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-black text-xs flex items-center justify-between cursor-pointer transition-colors shadow-md"
+                      >
+                        <div className="flex items-center gap-2">
+                          <LayoutDashboard size={16} />
+                          <span>Buyer Dashboard ({currentUser.name})</span>
+                        </div>
+                        <ChevronRight size={16} />
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          logoutUser();
+                        }}
+                        className="w-full p-2.5 rounded-xl bg-slate-900/90 hover:bg-red-950/40 border border-slate-800 hover:border-red-500/40 text-slate-300 hover:text-red-400 font-bold text-xs flex items-center justify-center gap-2 cursor-pointer transition-all"
+                      >
+                        <LogOut size={14} />
+                        <span>Log Out ({currentUser.name})</span>
+                      </button>
+                    </>
+                  )}
+
+                  {isAdminAuthenticated && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          navigate('/admin');
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                        className="w-full p-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-white font-black text-xs flex items-center justify-between cursor-pointer transition-colors"
+                      >
+                        <div className="flex items-center gap-2">
+                          <Shield size={16} className="text-amber-400" />
+                          <span>Builder Admin Panel</span>
+                        </div>
+                        <ChevronRight size={16} />
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          logoutAdmin();
+                        }}
+                        className="w-full p-2.5 rounded-xl bg-slate-900/90 hover:bg-red-950/40 border border-slate-800 hover:border-red-500/40 text-slate-300 hover:text-red-400 font-bold text-xs flex items-center justify-center gap-2 cursor-pointer transition-all"
+                      >
+                        <LogOut size={14} />
+                        <span>Log Out Admin</span>
+                      </button>
+                    </>
+                  )}
+                </div>
+              )}
+
+              <div className="text-center text-[10px] text-slate-500 font-bold pt-1">
+                Sriizan &bull; Built • Tracked • Traded
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.header>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

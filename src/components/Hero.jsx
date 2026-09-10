@@ -82,12 +82,12 @@ const Hero = ({ onTrackClick, onSellClick }) => {
           </div>
         </motion.div>
 
-        {/* Right Column: Pristine, Razor-Sharp iPhone 16 Pro Mockup (5 cols) */}
+        {/* Right Column: Pristine, Razor-Sharp iPhone 16 Pro Mockup (5 cols) - Hidden on mobile */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.15 }}
-          className="lg:col-span-5 flex items-center justify-center"
+          className="hidden lg:flex lg:col-span-5 items-center justify-center"
         >
           {/* True-Scale iPhone 16 Pro Frame (Upright, Clean, Retina-Crisp) */}
           <div className="w-[300px] sm:w-[315px] bg-slate-950 rounded-[50px] p-3 shadow-[0_25px_70px_rgba(0,0,0,0.28)] border-[5px] border-slate-700/80 ring-1 ring-white/20 select-none relative">
