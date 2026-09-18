@@ -15,7 +15,7 @@ export const INITIAL_PROPERTIES = [
     owner: {
       name: "Nikhil Jangra",
       email: "nikhil.jangra@example.com",
-      phone: "+91 98705 34978"
+      phone: "+91 85273 16865"
     },
     progress: {
       overallPercentage: 68,

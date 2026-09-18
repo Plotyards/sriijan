@@ -10,7 +10,7 @@ import NotificationsModal from '../components/dashboard/NotificationsModal';
 
 import SpatialSelect from '../components/common/SpatialSelect';
 
-import { Building2, TrendingUp, FileText, Compass, Bell, ShieldCheck, User, Lock, LogOut, UserCheck, AlertCircle, ArrowRight, Layers } from 'lucide-react';
+import { Building2, TrendingUp, FileText, Compass, Bell, ShieldCheck, User, Lock, LogOut, UserCheck, AlertCircle, ArrowRight, Layers, Camera, Grid } from 'lucide-react';
 
 const BuyerDashboard = () => {
   const navigate = useNavigate();
@@ -94,16 +94,24 @@ const BuyerDashboard = () => {
             </button>
           </form>
           
-          <div className="text-center pt-2 border-t border-slate-100">
+          <div className="text-center pt-2 border-t border-slate-100 space-y-2">
             <p className="text-xs text-slate-500 font-medium">
               Don't have an account yet?{' '}
               <button 
-                onClick={() => navigate('/')} 
+                type="button"
+                onClick={() => navigate('/signup')} 
                 className="font-bold text-emerald-600 hover:underline cursor-pointer"
               >
-                Sign Up & Register Property
+                Sign Up Free
               </button>
             </p>
+            <button
+              type="button"
+              onClick={() => navigate('/')}
+              className="text-xs text-slate-400 hover:text-slate-600 font-semibold cursor-pointer"
+            >
+              ← Back to Home
+            </button>
           </div>
         </div>
       </div>
@@ -114,6 +122,65 @@ const BuyerDashboard = () => {
   const buyerProperties = properties.filter((p) => {
     return p.owner && p.owner.email && p.owner.email.toLowerCase() === currentUser.email.toLowerCase();
   });
+
+  // If user is a Freelancer/Creator and has no booked properties, show clear Freelancer Portal Guidance
+  if (buyerProperties.length === 0 && currentUser?.role === 'freelancer') {
+    return (
+      <div className="min-h-screen bg-slate-50 pt-28 sm:pt-32 pb-20 px-4 sm:px-6 max-w-3xl mx-auto flex items-center justify-center">
+        <div className="bg-white/95 backdrop-blur-2xl rounded-3xl p-8 sm:p-12 shadow-2xl border border-purple-200 text-slate-900 text-center space-y-6 w-full">
+          <div className="w-20 h-20 bg-purple-500/10 text-purple-600 rounded-3xl flex items-center justify-center mx-auto border border-purple-500/20 shadow-md">
+            <Camera size={40} />
+          </div>
+
+          <div className="space-y-2 max-w-md mx-auto">
+            <span className="inline-flex items-center gap-1.5 text-purple-800 font-black text-[11px] uppercase tracking-widest bg-purple-50 px-3.5 py-1 rounded-full border border-purple-200">
+              <UserCheck size={13} /> Verified Creator Account: {currentUser.name}
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900">Looking For Your Freelancer Dashboard?</h2>
+            <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">
+              You are logged in as a verified Real Estate Creator / Freelancer (<span className="font-bold text-slate-900">{currentUser.email}</span>). 
+              Your client inquiries, custom packages, and Instagram-style profile are managed in the <span className="font-bold text-purple-700">Creator Hub</span>.
+            </p>
+          </div>
+
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <button
+              onClick={() => navigate('/provider-dashboard')}
+              className="py-3.5 px-6 bg-gradient-to-r from-purple-600 via-purple-500 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white rounded-2xl font-black text-xs sm:text-sm shadow-lg shadow-purple-600/20 border border-purple-400 flex items-center justify-center gap-2 cursor-pointer transition-all"
+            >
+              <Grid size={18} /> Open Freelancer Dashboard & Inquiries <ArrowRight size={16} />
+            </button>
+
+            <button
+              onClick={() => navigate(`/freelancer/${currentUser.providerId || 'SZ-ED-1001'}`)}
+              className="py-3.5 px-5 bg-purple-50 hover:bg-purple-100 text-purple-900 rounded-2xl font-bold text-xs flex items-center justify-center gap-1.5 cursor-pointer transition-all border border-purple-200"
+            >
+              <Camera size={16} /> View My Public Profile
+            </button>
+          </div>
+
+          <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+            <span>Also own a booked property?</span>
+            <button
+              onClick={() => {
+                navigate('/');
+                setTimeout(() => {
+                  const element = document.getElementById('register');
+                  if (element) {
+                    const y = element.getBoundingClientRect().top + window.scrollY - 100;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                  }
+                }, 100);
+              }}
+              className="font-bold text-emerald-600 hover:underline cursor-pointer"
+            >
+              + Register Booked Property
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // Empty state when logged-in buyer has no properties registered yet
   if (buyerProperties.length === 0) {

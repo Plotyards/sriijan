@@ -5,6 +5,7 @@ import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
+import mongoose from 'mongoose';
 import { connectDB } from './db.js';
 import { User } from './models/User.js';
 import { Property } from './models/Property.js';
@@ -26,10 +27,17 @@ const allowedOrigins = process.env.CLIENT_URL
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin) || allowedOrigins.includes('*')) {
-      callback(null, true);
-    } else {
-      callback(new Error(`CORS policy: Origin ${origin} is not allowed`));
+      return callback(null, true);
     }
+    try {
+      const hostname = new URL(origin).hostname;
+      if (hostname.endsWith('.vercel.app') || hostname.endsWith('.netlify.app')) {
+        return callback(null, true);
+      }
+    } catch {
+      // ignore URL parse errors
+    }
+    return callback(new Error(`CORS policy: Origin ${origin} is not allowed`));
   },
   credentials: true
 }));
@@ -73,10 +81,10 @@ const seedInitialData = async () => {
       const hashedAdminPassword = await bcrypt.hash('admin123', 10);
 
       await User.insertMany([
-        { name: 'Nikhil Jangra', email: 'nikhil.jangra@example.com', phone: '+91 98705 34978', password: hashedBuyerPassword, role: 'buyer' },
+        { name: 'Nikhil Jangra', email: 'nikhil.jangra@example.com', phone: '+91 85273 16865', password: hashedBuyerPassword, role: 'buyer' },
         { name: 'Priya Sharma', email: 'priya.sharma@example.com', phone: '+91 98123 45678', password: hashedBuyerPassword, role: 'buyer' },
-        { name: 'Builder Admin', email: 'admin@sriizan.com', phone: '+91 98705 34978', password: hashedAdminPassword, role: 'admin' },
-        { name: 'Legacy Admin', email: 'admin@promohomex.com', phone: '+91 98705 34978', password: hashedAdminPassword, role: 'admin' }
+        { name: 'Builder Admin', email: 'admin@sriizan.com', phone: '+91 85273 16865', password: hashedAdminPassword, role: 'admin' },
+        { name: 'Legacy Admin', email: 'admin@promohomex.com', phone: '+91 85273 16865', password: hashedAdminPassword, role: 'admin' }
       ]);
       console.log('✅ Secure demo users seeded successfully!');
     }
@@ -185,7 +193,7 @@ app.post('/api/auth/admin-login', async (req, res) => {
       adminUser = new User({
         name: 'Builder Admin',
         email: lowerEmail,
-        phone: '+91 98705 34978',
+        phone: '+91 85273 16865',
         password: hashedPassword,
         role: 'admin'
       });
@@ -246,7 +254,7 @@ app.post('/api/properties', verifyToken, async (req, res) => {
       owner: {
         name: bookingData.fullName || 'Valued Buyer',
         email: (bookingData.email || 'buyer@example.com').toLowerCase(),
-        phone: bookingData.phone || '+91 98705 34978'
+        phone: bookingData.phone || '+91 85273 16865'
       },
       verificationStatus: 'Pending Verification',
       financials: {
@@ -501,15 +509,63 @@ app.post('/api/payment/verify-razorpay-payment', async (req, res) => {
   }
 });
 
+// GET /api/health - Production Health Check
+app.get('/api/health', (req, res) => {
+  const isDbConnected = mongoose.connection.readyState === 1;
+  res.status(isDbConnected ? 200 : 503).json({
+    status: isDbConnected ? 'UP' : 'DEGRADED',
+    timestamp: new Date().toISOString(),
+    uptime: Math.floor(process.uptime()),
+    database: {
+      status: isDbConnected ? 'connected' : 'disconnected',
+      readyState: mongoose.connection.readyState
+    },
+    version: '1.0.0'
+  });
+});
+
+// Centralized Express Error Handling Middleware
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
+  console.error('Unhandled API Error:', err);
+  const isProd = process.env.NODE_ENV === 'production';
+  res.status(err.status || 500).json({
+    success: false,
+    error: isProd ? 'Internal Server Error' : (err.message || 'Unknown Server Error'),
+    ...(isProd ? {} : { stack: err.stack })
+  });
+});
+
 // Start Server & Connect MongoDB Atlas
+let serverInstance;
 if (process.env.NODE_ENV !== 'test') {
   connectDB().then(() => {
     seedInitialData();
-    app.listen(PORT, () => {
+    serverInstance = app.listen(PORT, () => {
       console.log(`🚀 Secure Sriizan MongoDB Backend Server running on http://localhost:${PORT}`);
     });
   });
 }
 
+// Graceful Shutdown Handler
+const gracefulShutdown = (signal) => {
+  console.log(`\n🛑 Received ${signal}. Starting graceful shutdown...`);
+  if (serverInstance) {
+    serverInstance.close(() => {
+      console.log('HTTP server closed.');
+      mongoose.connection.close(false).then(() => {
+        console.log('MongoDB connection closed.');
+        process.exit(0);
+      }).catch(() => process.exit(0));
+    });
+  } else {
+    process.exit(0);
+  }
+};
+
+process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+
 export { app, seedInitialData, sanitizeUser };
+
 

@@ -4,7 +4,7 @@
  * in message notifications, FCM pushes, or public property listings.
  */
 
-// Masks phone number (e.g. "+91 98705 34978" -> "+91 98******78", "9870534978" -> "98******78")
+// Masks phone number (e.g. "+91 85273 16865" -> "+91 85******65", "8527316865" -> "85******65")
 export const maskPhoneNumber = (phone) => {
   if (!phone || typeof phone !== 'string') return '';
   const trimmed = phone.trim();

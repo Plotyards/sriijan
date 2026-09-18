@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Search, Building2, TrendingUp, Sparkles, Video, Calendar, ArrowRight, ShieldCheck, CheckCircle2, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { INITIAL_PROPERTIES } from '../../data/mockData';
+import SpatialSelect from '../common/SpatialSelect';
 
 const DualActionHub = ({ onOpenSellModal, onTrackSelect }) => {
   const navigate = useNavigate();
@@ -193,34 +194,34 @@ const DualActionHub = ({ onOpenSellModal, onTrackSelect }) => {
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-[11px] font-black text-slate-700 uppercase tracking-wider mb-1">
-                  Select Unit Type
-                </label>
-                <select
+                <SpatialSelect
+                  label="Select Unit Type"
                   value={sellUnitType}
-                  onChange={(e) => setSellUnitType(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 text-xs font-bold p-3 rounded-xl focus:outline-none focus:border-emerald-600 focus:bg-white"
-                >
-                  <option value="2 BHK Luxury">2 BHK Luxury (1250 sq.ft)</option>
-                  <option value="3 BHK Premium">3 BHK Premium (1850 sq.ft)</option>
-                  <option value="4 BHK Ultra Luxury">4 BHK Ultra Luxury (2700 sq.ft)</option>
-                  <option value="Penthouse">Sky Villa / Penthouse</option>
-                </select>
+                  onChange={(val) => setSellUnitType(val)}
+                  size="sm"
+                  colorScheme="emerald"
+                  options={[
+                    { value: '2 BHK Luxury', label: '2 BHK Luxury', subtext: '1250 sq.ft', icon: '🏠' },
+                    { value: '3 BHK Premium', label: '3 BHK Premium', subtext: '1850 sq.ft', icon: '✨' },
+                    { value: '4 BHK Ultra Luxury', label: '4 BHK Ultra Luxury', subtext: '2700 sq.ft', icon: '🏰' },
+                    { value: 'Penthouse', label: 'Sky Villa / Penthouse', subtext: 'Top Floor', icon: '💎' }
+                  ]}
+                />
               </div>
 
               <div>
-                <label className="block text-[11px] font-black text-slate-700 uppercase tracking-wider mb-1">
-                  Year of Booking
-                </label>
-                <select
+                <SpatialSelect
+                  label="Year of Booking"
                   value={sellBookedYear}
-                  onChange={(e) => setSellBookedYear(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 text-xs font-bold p-3 rounded-xl focus:outline-none focus:border-emerald-600 focus:bg-white"
-                >
-                  <option value="2025">2025 (Recent Allotment)</option>
-                  <option value="2024">2024 (~2 Years Under Construction)</option>
-                  <option value="2023">2023 (~3 Years Nearing Possession)</option>
-                </select>
+                  onChange={(val) => setSellBookedYear(val)}
+                  size="sm"
+                  colorScheme="emerald"
+                  options={[
+                    { value: '2025', label: '2025', subtext: 'Recent Allotment', icon: '📅' },
+                    { value: '2024', label: '2024', subtext: '~2 Yrs Under Construction', icon: '🏗️' },
+                    { value: '2023', label: '2023', subtext: '~3 Yrs Nearing Possession', icon: '🔑' }
+                  ]}
+                />
               </div>
             </div>
 

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, CheckCircle2, ArrowRight, Building2, ShieldCheck, Sparkles } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
+import SpatialSelect from '../common/SpatialSelect';
 
 const SellPropertyModal = ({ isOpen, onClose }) => {
   const { addNewPropertyBooking, currentUser } = useApp();
@@ -43,9 +44,9 @@ const SellPropertyModal = ({ isOpen, onClose }) => {
     setTimeout(() => {
       addNewPropertyBooking({
         fullName: formData.ownerName || 'Property Owner',
-        phone: formData.ownerPhone || '+91 98705 34978',
+        phone: formData.ownerPhone || '+91 85273 16865',
         ownerName: formData.ownerName || 'Property Owner',
-        ownerPhone: formData.ownerPhone || '+91 98705 34978',
+        ownerPhone: formData.ownerPhone || '+91 85273 16865',
         email: formData.ownerEmail || 'owner@example.com',
         projectName: formData.projectName || 'Sriizan Premium Residency',
         tower: formData.tower || 'Tower A',
@@ -195,21 +196,21 @@ const SellPropertyModal = ({ isOpen, onClose }) => {
 
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-[11px] font-black text-slate-700 uppercase tracking-wider mb-1">
-                        Unit Configuration
-                      </label>
-                      <select
+                      <SpatialSelect
+                        label="Unit Configuration"
                         name="type"
                         value={formData.type}
-                        onChange={handleChange}
-                        className="w-full bg-slate-50 border border-slate-200 text-xs font-bold p-3 rounded-xl focus:outline-none focus:border-emerald-500 focus:bg-white"
-                      >
-                        <option value="2 BHK Luxury">2 BHK Luxury</option>
-                        <option value="2.5 BHK Golf Facing">2.5 BHK Golf Facing</option>
-                        <option value="3 BHK Premium">3 BHK Premium + Servant</option>
-                        <option value="4 BHK Ultra Luxury">4 BHK Ultra Luxury</option>
-                        <option value="Penthouse">Sky Villa / Penthouse</option>
-                      </select>
+                        onChange={(val) => setFormData(prev => ({ ...prev, type: val }))}
+                        size="sm"
+                        colorScheme="emerald"
+                        options={[
+                          { value: '2 BHK Luxury', label: '2 BHK Luxury', icon: '🏠' },
+                          { value: '2.5 BHK Golf Facing', label: '2.5 BHK Golf Facing', icon: '⛳' },
+                          { value: '3 BHK Premium', label: '3 BHK Premium + Servant', icon: '✨' },
+                          { value: '4 BHK Ultra Luxury', label: '4 BHK Ultra Luxury', icon: '🏰' },
+                          { value: 'Penthouse', label: 'Sky Villa / Penthouse', icon: '💎' }
+                        ]}
+                      />
                     </div>
                     <div>
                       <label className="block text-[11px] font-black text-slate-700 uppercase tracking-wider mb-1">
@@ -269,20 +270,20 @@ const SellPropertyModal = ({ isOpen, onClose }) => {
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-black text-slate-700 uppercase tracking-wider mb-1">
-                      Current Construction / Possession Status
-                    </label>
-                    <select
+                    <SpatialSelect
+                      label="Current Construction / Possession Status"
                       name="possessionStatus"
                       value={formData.possessionStatus}
-                      onChange={handleChange}
-                      className="w-full bg-slate-50 border border-slate-200 text-xs font-bold p-3 rounded-xl focus:outline-none focus:border-emerald-500 focus:bg-white"
-                    >
-                      <option value="Under Construction (Possession Dec 2026)">Under Construction (Possession Dec 2026)</option>
-                      <option value="Structure Complete (Possession Jun 2027)">Structure Complete (Possession Jun 2027)</option>
-                      <option value="Finishing & Fitouts (Possession Late 2026)">Finishing & Fitouts (Possession Late 2026)</option>
-                      <option value="Ready to Move / OC Received">Ready to Move / OC Received</option>
-                    </select>
+                      onChange={(val) => setFormData(prev => ({ ...prev, possessionStatus: val }))}
+                      size="sm"
+                      colorScheme="emerald"
+                      options={[
+                        { value: 'Under Construction (Possession Dec 2026)', label: 'Under Construction (Possession Dec 2026)', icon: '🏗️' },
+                        { value: 'Structure Complete (Possession Jun 2027)', label: 'Structure Complete (Possession Jun 2027)', icon: '🏢' },
+                        { value: 'Finishing & Fitouts (Possession Late 2026)', label: 'Finishing & Fitouts (Possession Late 2026)', icon: '🎨' },
+                        { value: 'Ready to Move / OC Received', label: 'Ready to Move / OC Received', icon: '🔑' }
+                      ]}
+                    />
                   </div>
                 </div>
               )}
@@ -316,7 +317,7 @@ const SellPropertyModal = ({ isOpen, onClose }) => {
                         required
                         value={formData.ownerPhone}
                         onChange={handleChange}
-                        placeholder="+91 98705 34978"
+                        placeholder="+91 85273 16865"
                         className="w-full bg-slate-50 border border-slate-200 text-xs font-bold p-3 rounded-xl focus:outline-none focus:border-emerald-500 focus:bg-white"
                       />
                     </div>

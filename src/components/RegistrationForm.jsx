@@ -87,6 +87,68 @@ const RegistrationForm = () => {
     }, 400);
   };
 
+  if (!currentUser || !currentUser.isLoggedIn) {
+    return (
+      <div id="register" className="bg-slate-50 py-14 sm:py-18 border-b border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-3xl p-8 sm:p-12 text-center border border-slate-200 shadow-sm relative overflow-hidden">
+            <div className="max-w-2xl mx-auto space-y-4 relative z-10">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold tracking-wide">
+                <Sparkles size={13} className="text-emerald-600" />
+                <span>Real-Time Homebuyer Tracker</span>
+              </span>
+
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Ready to Track Your Booked Property?
+              </h2>
+
+              <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed max-w-xl mx-auto">
+                Access stage-wise civil engineering audit scores, monthly 4K drone flyovers, and your encrypted document vault in real-time.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => navigate('/signup')}
+                  className="w-full sm:w-auto px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs sm:text-sm transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <UserPlus size={16} />
+                  <span>Create Free Account</span>
+                  <ArrowRight size={15} />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => navigate('/login')}
+                  className="w-full sm:w-auto px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl font-bold text-xs sm:text-sm transition-all border border-slate-200 flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <LogIn size={16} />
+                  <span>Sign In to Existing Unit</span>
+                </button>
+              </div>
+
+              {/* Minimalist Trust Features */}
+              <div className="pt-6 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500 font-medium border-t border-slate-100 mt-6">
+                <div className="flex items-center gap-1.5">
+                  <ShieldCheck size={14} className="text-emerald-600" />
+                  <span>100% RERA Verified</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <Lock size={13} className="text-emerald-600" />
+                  <span>256-Bit Encrypted Vault</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 size={14} className="text-emerald-600" />
+                  <span>Direct WhatsApp Sync</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div id="register" className="bg-slate-50 py-16 sm:py-24 relative overflow-hidden border-b border-slate-200">
       {/* Soft Ambient Light */}
@@ -105,44 +167,6 @@ const RegistrationForm = () => {
           viewport={{ once: true }}
           className="w-full bg-white/90 backdrop-blur-3xl rounded-3xl shadow-[0_30px_90px_rgba(0,0,0,0.12)] overflow-hidden border border-white/90 relative"
         >
-          {/* Frosted Glass Lock Overlay when User is NOT Logged In */}
-          {(!currentUser || !currentUser.isLoggedIn) && (
-            <div className="absolute inset-0 z-40 bg-slate-950/85 backdrop-blur-xl p-4 sm:p-8 flex flex-col items-center justify-center text-center text-white border border-white/10 space-y-4 sm:space-y-5 transition-all overflow-y-auto">
-              <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-emerald-600/30 to-emerald-700/10 text-emerald-400 border border-emerald-600/40 flex items-center justify-center shadow-[0_0_50px_rgba(5,150,105,0.25)] animate-pulse">
-                <Lock size={38} />
-              </div>
-
-              <div className="max-w-md space-y-2">
-                <span className="inline-flex items-center gap-1.5 text-emerald-400 font-extrabold text-[11px] uppercase tracking-widest bg-emerald-600/10 px-3.5 py-1 rounded-full border border-emerald-600/30">
-                  <ShieldCheck size={13} /> Authentication Required
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-                  Sign Up Before Registering Property
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-300 font-medium leading-relaxed">
-                  Please create a buyer account or sign in first to link and register your booked property to your personal dashboard.
-                </p>
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-center gap-3 pt-2 w-full max-w-sm">
-                <button
-                  type="button"
-                  onClick={() => navigate('/signup')}
-                  className="w-full py-3.5 px-5 bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-500 hover:to-emerald-400 text-white rounded-2xl font-black text-xs sm:text-sm transition-all shadow-lg shadow-emerald-600/25 border border-emerald-400 flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <UserPlus size={18} /> Sign Up <ArrowRight size={16} />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => navigate('/login')}
-                  className="w-full py-3.5 px-5 bg-slate-900 hover:bg-slate-800 text-white rounded-2xl font-black text-xs sm:text-sm transition-all border border-slate-700 flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <LogIn size={18} /> Sign In
-                </button>
-              </div>
-            </div>
-          )}
 
           <div className="grid grid-cols-1 lg:grid-cols-5 h-full">
             {/* Left Info Panel (Spatial Dark Glass Panel) */}
@@ -241,7 +265,7 @@ const RegistrationForm = () => {
                       value={formData.mobile}
                       onChange={handleChange}
                       className="w-full rounded-xl bg-slate-50 border border-slate-200 py-3 px-4 text-slate-900 text-xs font-semibold placeholder-slate-400 outline-none focus:border-emerald-600 focus:bg-white focus:ring-2 focus:ring-emerald-600/20 transition-all"
-                      placeholder="+91 98705 34978"
+                      placeholder="+91 85273 16865"
                     />
                   </div>
 

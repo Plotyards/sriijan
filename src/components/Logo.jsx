@@ -1,8 +1,8 @@
 const Logo = ({ className = "", size = "normal", variant = "light" }) => {
   const sizeConfig = {
-    small: { img: "w-8 h-8", text: "text-lg", sub: "text-[7.5px]" },
-    normal: { img: "w-10 h-10", text: "text-2xl", sub: "text-[8.5px]" },
-    large: { img: "w-14 h-14", text: "text-3xl", sub: "text-[10px]" },
+    small: { img: "w-8 h-8", text: "text-lg", sub: "text-[7px]" },
+    normal: { img: "w-10 h-10", text: "text-2xl", sub: "text-[8px]" },
+    large: { img: "w-14 h-14", text: "text-3xl", sub: "text-[9.5px]" },
   };
 
   const cfg = sizeConfig[size] || sizeConfig.normal;
@@ -30,8 +30,8 @@ const Logo = ({ className = "", size = "normal", variant = "light" }) => {
           </span>
           <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
         </div>
-        <span className={`${cfg.sub} font-black tracking-[0.22em] uppercase text-emerald-800 leading-none mt-1`}>
-          CONSTRUCTION &bull; RESALE
+        <span className={`${cfg.sub} font-black tracking-[0.16em] uppercase ${isDark ? 'text-emerald-400' : 'text-emerald-800'} leading-none mt-1`}>
+          Real Estate, Simplified
         </span>
       </div>
     </div>

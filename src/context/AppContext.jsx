@@ -1,7 +1,9 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { INITIAL_PROPERTIES, INITIAL_NOTIFICATIONS } from '../data/mockData';
+import { INITIAL_SERVICE_PROVIDERS } from '../data/serviceProvidersData';
 import { apiService } from '../services/api';
 import { sanitizeNotificationText } from '../utils/privacy';
+import { webrtcSync } from '../services/webrtcSync';
 
 const AppContext = createContext();
 
@@ -14,6 +16,26 @@ export const AppProvider = ({ children }) => {
   const [notifications, setNotifications] = useState(() => {
     const saved = localStorage.getItem('sriizan_notifications');
     return saved ? JSON.parse(saved) : INITIAL_NOTIFICATIONS;
+  });
+
+  // Service Providers database (Editor, Videographer, Digital Marketing, Graphic Designer)
+  const [serviceProviders, setServiceProviders] = useState(() => {
+    try {
+      const saved = localStorage.getItem('sriizan_service_providers_v3');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.some(p => p.id === 'SZ-ED-1001')) {
+          return parsed;
+        }
+      }
+    } catch (e) {
+      console.warn("Could not parse saved service providers:", e);
+    }
+    return INITIAL_SERVICE_PROVIDERS;
+  });
+
+  const [activeProviderId, setActiveProviderId] = useState(() => {
+    return localStorage.getItem('sriizan_active_provider_id') || "SZ-ED-1001";
   });
 
   // Real Registered Users Database persisted in localStorage & MongoDB Atlas
@@ -96,6 +118,90 @@ export const AppProvider = ({ children }) => {
     syncMongoData();
   }, [isAdminAuthenticated]);
 
+  // WebRTC Live Peer Connection status
+  const [liveSyncStatus, setLiveSyncStatus] = useState({ 
+    isConnected: true, 
+    transport: 'webrtc-ready', 
+    activePeers: 0 
+  });
+
+  // WebRTC Reactive Listener across tabs/devices
+  useEffect(() => {
+    const unsubStatus = webrtcSync.onStatusChange((status) => {
+      setLiveSyncStatus(status);
+    });
+
+    const unsubMessages = webrtcSync.subscribe((msg) => {
+      const { type, payload } = msg || {};
+      if (!type) return;
+
+      if (type === 'STAGE_PROGRESS_UPDATED') {
+        const { propertyId, stageKey, newPercentage } = payload;
+        setProperties(prevProps => prevProps.map(prop => {
+          if (prop.id !== propertyId) return prop;
+          const updatedStages = prop.progress.stages.map(stg => {
+            if (stg.key === stageKey) {
+              const pct = Math.min(100, Math.max(0, Number(newPercentage)));
+              let status = pct === 100 ? "Completed" : (pct > 0 ? "In Progress" : "Upcoming");
+              return { ...stg, percentage: pct, status };
+            }
+            return stg;
+          });
+          const totalPct = updatedStages.reduce((acc, curr) => acc + curr.percentage, 0);
+          const overallPercentage = Math.round(totalPct / updatedStages.length);
+          return {
+            ...prop,
+            progress: {
+              ...prop.progress,
+              overallPercentage,
+              lastUpdated: "Just Now (WebRTC Live)",
+              stages: updatedStages
+            }
+          };
+        }));
+      } else if (type === 'PRICE_UPDATED') {
+        const { propertyId, newBuilderPriceRupees, newResalePriceRupees } = payload;
+        setProperties(prevProps => prevProps.map(prop => {
+          if (prop.id !== propertyId) return prop;
+          const bPrice = Number(newBuilderPriceRupees);
+          const rPrice = Number(newResalePriceRupees);
+          const appreciation = rPrice - prop.financials.bookedPrice;
+          const appPct = Number(((appreciation / prop.financials.bookedPrice) * 100).toFixed(1));
+          return {
+            ...prop,
+            financials: {
+              ...prop.financials,
+              builderCurrentPrice: bPrice,
+              resaleMarketPrice: rPrice,
+              estimatedAppreciation: appreciation,
+              appreciationPercentage: appPct
+            }
+          };
+        }));
+      } else if (type === 'NOTIFICATION_ADDED') {
+        setNotifications(prev => [payload, ...prev]);
+      } else if (type === 'PROPERTY_BOOKED') {
+        setProperties(prev => [payload, ...prev]);
+      } else if (type === 'PROVIDER_UPDATED') {
+        const { providerId, updatedFields } = payload;
+        setServiceProviders(prev => prev.map(p => p.id === providerId ? { ...p, ...updatedFields } : p));
+      } else if (type === 'PORTFOLIO_ITEM_ADDED') {
+        const { providerId, item } = payload;
+        setServiceProviders(prev => prev.map(p => {
+          if (p.id === providerId) {
+            return { ...p, portfolioItems: [item, ...(p.portfolioItems || [])] };
+          }
+          return p;
+        }));
+      }
+    });
+
+    return () => {
+      unsubStatus();
+      unsubMessages();
+    };
+  }, []);
+
   useEffect(() => {
     if (activePropertyId) {
       localStorage.setItem('sriizan_active_property_id', activePropertyId);
@@ -124,30 +230,75 @@ export const AppProvider = ({ children }) => {
 
   const activeProperty = properties.find(p => p.id === activePropertyId) || properties[0];
 
-  // User Auth Methods (Real DB Validation)
-  const loginUser = (email, password, name = "", phone = "") => {
-    if (!email) return { success: false, error: "Please enter your registered email address." };
+  // User & Freelancer Auth Methods (Real DB Validation)
+  const loginUser = (emailOrId, password, name = "", phone = "") => {
+    if (!emailOrId) return { success: false, error: "Please enter your registered email address or Partner ID." };
 
-    const lowerEmail = email.toLowerCase().trim();
-    const foundUser = usersDB.find(u => u.email.toLowerCase() === lowerEmail);
+    const cleanInput = emailOrId.trim();
+    const lowerInput = cleanInput.toLowerCase();
 
-    // Validate password if user exists in database
+    // 1) Check if logging in as an existing service provider / freelancer (by Partner ID or name/phone)
+    const matchedProvider = serviceProviders.find(p => 
+      (p.id && p.id.toLowerCase() === lowerInput) ||
+      (p.partnerId && p.partnerId.toLowerCase() === lowerInput) ||
+      (p.phone && p.phone.replace(/\D/g, '') === cleanInput.replace(/\D/g, '')) ||
+      (p.email && p.email.toLowerCase() === lowerInput) ||
+      (p.name && p.name.toLowerCase() === lowerInput)
+    );
+
+    const foundUser = usersDB.find(u => u.email.toLowerCase() === lowerInput);
+
+    // If freelancer account found
+    if (matchedProvider || (foundUser && foundUser.accountType === 'freelancer')) {
+      const providerObj = matchedProvider || serviceProviders.find(p => p.id === foundUser.providerId) || serviceProviders[0];
+      const userName = foundUser?.name || providerObj.name;
+      const userPhone = foundUser?.phone || providerObj.phone;
+      const userEmail = foundUser?.email || `${providerObj.id.toLowerCase()}@sriizan.com`;
+
+      const freelancerSession = {
+        name: userName,
+        email: userEmail,
+        phone: userPhone,
+        role: 'freelancer',
+        providerId: providerObj.id,
+        isLoggedIn: true
+      };
+
+      setCurrentUser(freelancerSession);
+      setUserRole('freelancer');
+      setActiveProviderId(providerObj.id);
+
+      triggerSystemNotification(
+        "Freelancer Portal Login",
+        `Welcome back ${userName}! Your verified dashboard and client inquiries are open.`
+      );
+
+      return { success: true, user: freelancerSession, role: 'freelancer' };
+    }
+
+    // Validate standard buyer/user password if user exists in database
     if (foundUser) {
       if (password && foundUser.password && password !== foundUser.password) {
         return { success: false, error: "Incorrect password! Please enter your registered account password." };
       }
     } else {
-      return { success: false, error: "No account found with this email. Please Sign Up first." };
+      return { success: false, error: "No account found with this email or Partner ID. Please Sign Up first." };
     }
 
     // Match property for this email
-    const matchedProp = properties.find(p => p.owner && p.owner.email.toLowerCase() === lowerEmail);
-    const userName = name || foundUser.name || lowerEmail.split('@')[0];
+    const matchedProp = properties.find(p => p.owner && p.owner.email.toLowerCase() === lowerInput);
+    const userName = name || foundUser.name || lowerInput.split('@')[0];
     const userPhone = phone || foundUser.phone || "+91 98000 00000";
 
-    const userSession = { name: userName, email: lowerEmail, phone: userPhone, isLoggedIn: true };
+    const userSession = { 
+      name: userName, 
+      email: lowerInput, 
+      phone: userPhone, 
+      role: foundUser.accountType || 'buyer',
+      isLoggedIn: true 
+    };
     setCurrentUser(userSession);
-    setUserRole('buyer');
+    setUserRole(foundUser.accountType || 'buyer');
 
     if (matchedProp) {
       setActivePropertyId(matchedProp.id);
@@ -159,10 +310,14 @@ export const AppProvider = ({ children }) => {
       `Welcome back ${userName}! Live construction tracking & document vault are active.`
     );
 
-    return { success: true, user: userSession };
+    return { success: true, user: userSession, role: userSession.role };
   };
 
-  const registerUser = async (name, phone, email, password) => {
+  const loginFreelancer = (identifier, password) => {
+    return loginUser(identifier, password);
+  };
+
+  const registerUser = async (name, phone, email, password, accountType = 'buyer', extraData = {}) => {
     if (!email || !name) return { success: false, error: "Full Name and Email are required for registration." };
 
     const lowerEmail = email.toLowerCase().trim();
@@ -174,26 +329,100 @@ export const AppProvider = ({ children }) => {
     }
 
     // Persist to MongoDB Atlas backend
-    await apiService.registerUser(name, phone, lowerEmail, password);
+    try {
+      await apiService.registerUser(name, phone, lowerEmail, password);
+    } catch {
+      // Offline / dev fallback
+    }
 
-    const newUserObj = { name, phone: phone || "+91 98000 00000", email: lowerEmail, password: password || "" };
+    let providerId = null;
+
+    // If signing up as a Freelancer, create their public provider card
+    if (accountType === 'freelancer') {
+      const category = extraData.category || 'Editor';
+      const prefixMap = {
+        'Editor': 'SZ-ED',
+        'Videographer': 'SZ-VG',
+        'Digital Marketing': 'SZ-DM',
+        'Graphic Designer': 'SZ-GD'
+      };
+      const prefix = prefixMap[category] || 'SZ-FR';
+      const randomIdNum = Math.floor(1000 + Math.random() * 9000);
+      const generatedPartnerId = `${prefix}-${randomIdNum}`;
+
+      const newProvider = {
+        id: generatedPartnerId,
+        partnerId: generatedPartnerId,
+        name: name.trim(),
+        role: extraData.role || `${category} Specialist`,
+        category: category,
+        subcategory: extraData.subcategory || `${category} & Content Services`,
+        city: extraData.city || 'Delhi NCR & Remote',
+        rating: 5.0,
+        reviewsCount: 1,
+        verified: true,
+        badge: 'Sriizan Verified Freelancer',
+        experience: extraData.experience || '2+ Years',
+        yearsExp: extraData.experience || '2+',
+        projectsCompleted: '10+',
+        happyClients: '5+',
+        startingPrice: extraData.startingPrice || '₹799',
+        priceUnit: 'per project',
+        phone: phone || '+91 85273 16865',
+        whatsapp: phone || '+91 85273 16865',
+        email: lowerEmail,
+        avatar: extraData.avatar || `https://images.unsplash.com/photo-${1507003211169 + Math.floor(Math.random()*1000)}?q=80&w=600&auto=format&fit=crop`,
+        bannerImage: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1200&auto=format&fit=crop',
+        bio: extraData.bio || `Verified freelance ${category} specialist on Sriizan marketplace. Delivering high-impact visual & marketing assets.`,
+        skills: extraData.skills && Array.isArray(extraData.skills) ? extraData.skills : (extraData.skills ? extraData.skills.split(',').map(s => s.trim()) : ['Verified Freelancer', category]),
+        servicesPricing: [
+          { name: extraData.role || `${category} Deliverable`, price: extraData.startingPrice || '₹799' }
+        ],
+        createdAt: new Date().toISOString()
+      };
+
+      setServiceProviders(prev => {
+        const updated = [newProvider, ...prev];
+        localStorage.setItem('sriizan_service_providers_v3', JSON.stringify(updated));
+        return updated;
+      });
+
+      providerId = newProvider.id;
+      setActiveProviderId(newProvider.id);
+    }
+
+    const newUserObj = { 
+      name, 
+      phone: phone || "+91 98000 00000", 
+      email: lowerEmail, 
+      password: password || "",
+      accountType: accountType,
+      providerId: providerId
+    };
     setUsersDB(prev => [...prev, newUserObj]);
 
-    const userSession = { name, phone: newUserObj.phone, email: lowerEmail, isLoggedIn: true };
+    const userSession = { 
+      name, 
+      phone: newUserObj.phone, 
+      email: lowerEmail, 
+      role: accountType,
+      providerId: providerId,
+      isLoggedIn: true 
+    };
     setCurrentUser(userSession);
-    setUserRole('buyer');
+    setUserRole(accountType);
 
     // Send Push Notification to Mobile/Browser
     triggerSystemNotification(
-      "Sriizan Property Access Pass",
-      `Congratulations ${name}! Your ₹699 lifetime property tracking pass & account are activated.`
+      accountType === 'freelancer' ? "Sriizan Freelancer Account Activated" : "Sriizan Access Pass",
+      `Congratulations ${name}! Your account is activated.`
     );
 
-    return { success: true, isNew: true, user: userSession };
+    return { success: true, isNew: true, user: userSession, providerId };
   };
 
   const logoutUser = () => {
-    setCurrentUser({ name: "", email: "", phone: "", isLoggedIn: false });
+    setCurrentUser({ name: "", email: "", phone: "", role: "buyer", providerId: null, isLoggedIn: false });
     localStorage.removeItem('sriizan_user');
   };
 
@@ -275,6 +504,9 @@ export const AppProvider = ({ children }) => {
     // Persist to MongoDB
     await apiService.updateStageProgress(propertyId, stageKey, newPercentage);
 
+    // Broadcast live change across WebRTC DataChannels
+    webrtcSync.broadcast('STAGE_PROGRESS_UPDATED', { propertyId, stageKey, newPercentage });
+
     const stageObj = activeProperty?.progress?.stages?.find(s => s.key === stageKey);
     addNotification({
       propertyId,
@@ -320,6 +552,9 @@ export const AppProvider = ({ children }) => {
 
     // Persist to MongoDB
     await apiService.updatePropertyPrices(propertyId, newBuilderPriceRupees, newResalePriceRupees);
+
+    // Broadcast live change across WebRTC DataChannels
+    webrtcSync.broadcast('PRICE_UPDATED', { propertyId, newBuilderPriceRupees, newResalePriceRupees });
 
     addNotification({
       propertyId,
@@ -511,7 +746,7 @@ export const AppProvider = ({ children }) => {
       setCurrentUser({
         name: bookingData.fullName,
         email: bookingData.email || "buyer@example.com",
-        phone: bookingData.phone || "+91 98705 34978",
+        phone: bookingData.phone || "+91 85273 16865",
         isLoggedIn: true
       });
     }
@@ -545,18 +780,102 @@ export const AppProvider = ({ children }) => {
     });
   };
 
-  const resetToDemoData = () => {
-    localStorage.removeItem('sriizan_properties');
-    localStorage.removeItem('sriizan_notifications');
-    setProperties(INITIAL_PROPERTIES);
-    setNotifications(INITIAL_NOTIFICATIONS);
-    setActivePropertyId("PH-101");
+  const addNewServiceProvider = (providerData) => {
+    const newProvider = {
+      id: "PRO-" + Date.now().toString().slice(-4),
+      name: providerData.name || "Real Estate Professional",
+      role: providerData.role || "Specialist",
+      category: providerData.category || "Video Editors",
+      subcategory: providerData.subcategory || providerData.skills?.[0] || "Professional Service",
+      city: providerData.city || "Delhi NCR",
+      rating: 5.0,
+      reviewsCount: 1,
+      verified: true,
+      badge: "Verified ₹699 Lifetime Pass",
+      experience: providerData.experience || "3+ Years",
+      startingPrice: providerData.startingPrice || "₹1,499",
+      priceUnit: providerData.priceUnit || "per project",
+      phone: providerData.phone || "+91 85273 16865",
+      whatsapp: providerData.whatsapp || providerData.phone || "+91 85273 16865",
+      avatar: providerData.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop",
+      bio: providerData.bio || "Verified professional listed on Sriizan Real Estate Marketplace.",
+      skills: Array.isArray(providerData.skills) ? providerData.skills : (providerData.skills ? providerData.skills.split(',').map(s => s.trim()) : ["Verified Pro"]),
+      portfolioItems: providerData.portfolioItems || [
+        {
+          title: "Verified Portfolio Work",
+          type: "Recent Project",
+          metrics: "100% Client Satisfaction",
+          image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600&auto=format&fit=crop"
+        }
+      ],
+      servicesOffered: providerData.servicesOffered || [
+        { name: "Standard Project Consultation & Execution", price: providerData.startingPrice || "₹1,499" }
+      ],
+      createdAt: new Date().toISOString()
+    };
+
+    setServiceProviders(prev => {
+      const updated = [newProvider, ...prev];
+      localStorage.setItem('sriizan_service_providers_v3', JSON.stringify(updated));
+      return updated;
+    });
+
+    triggerSystemNotification(
+      "Profile Listed on Sriizan!",
+      `${newProvider.name} is now live with ₹699 Lifetime Membership.`
+    );
+
+    return newProvider;
+  };
+
+  const updateServiceProvider = (providerId, updatedFields) => {
+    setServiceProviders(prev => {
+      const updated = prev.map(p => p.id === providerId ? { ...p, ...updatedFields } : p);
+      localStorage.setItem('sriizan_service_providers_v3', JSON.stringify(updated));
+      return updated;
+    });
+
+    // Broadcast across WebRTC peers
+    webrtcSync.broadcast('PROVIDER_UPDATED', {
+      providerId,
+      updatedFields
+    });
+  };
+
+  const addProviderPortfolioItem = (providerId, item) => {
+    setServiceProviders(prev => {
+      const updated = prev.map(p => {
+        if (p.id === providerId) {
+          const items = p.portfolioItems || [];
+          return {
+            ...p,
+            portfolioItems: [item, ...items]
+          };
+        }
+        return p;
+      });
+      localStorage.setItem('sriizan_service_providers_v3', JSON.stringify(updated));
+      return updated;
+    });
+
+    // Broadcast across WebRTC peers
+    webrtcSync.broadcast('PORTFOLIO_ITEM_ADDED', {
+      providerId,
+      item
+    });
   };
 
   return (
     <AppContext.Provider
       value={{
         properties,
+        liveSyncStatus,
+        serviceProviders,
+        activeProviderId,
+        setActiveProviderId,
+        addNewServiceProvider,
+        updateServiceProvider,
+        addProviderPortfolioItem,
         usersDB,
         activePropertyId,
         setActivePropertyId,
@@ -566,6 +885,7 @@ export const AppProvider = ({ children }) => {
         currentUser,
         setCurrentUser,
         loginUser,
+        loginFreelancer,
         registerUser,
         logoutUser,
         isAdminAuthenticated,
@@ -580,8 +900,7 @@ export const AppProvider = ({ children }) => {
         addDocumentToProperty,
         addPhotoToProperty,
         addNewPropertyBooking,
-        approveBuyerProperty,
-        resetToDemoData
+        approveBuyerProperty
       }}
     >
       {children}

@@ -30,8 +30,8 @@ const Footer = () => {
               <Logo variant="dark" size="normal" />
             </Link>
             <p className="text-slate-400 text-xs sm:text-sm font-medium leading-relaxed">
-              Know What's Being Built. Know What's Available.<br />
-              Bharat's Premier Property Construction & Investment Tracking Platform.
+              Real Estate, Simplified.<br />
+              Bharat's Premier Property Construction & Resale Marketplace.
             </p>
           </div>
 
@@ -51,7 +51,7 @@ const Footer = () => {
             <h3 className="text-xs font-black text-emerald-500 tracking-widest uppercase">Support & WhatsApp</h3>
             <ul className="space-y-2.5 text-xs sm:text-sm font-bold">
               <li><a href="#register" onClick={(e) => scrollToSection(e, 'register')} className="text-slate-300 hover:text-emerald-500 transition-colors">Register Property</a></li>
-              <li><a href="https://wa.me/919870534978" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-emerald-500 transition-colors">WhatsApp Concierge (+91 98705 34978)</a></li>
+              <li><a href="https://wa.me/918527316865" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-emerald-500 transition-colors">WhatsApp Concierge (+91 85273 16865)</a></li>
               <li><a href="#faqs" onClick={(e) => scrollToSection(e, 'faqs')} className="text-slate-300 hover:text-emerald-500 transition-colors">FAQs</a></li>
             </ul>
           </div>

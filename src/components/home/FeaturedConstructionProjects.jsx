@@ -62,7 +62,7 @@ const FeaturedConstructionProjects = () => {
   ];
 
   return (
-    <section id="projects" className="py-16 sm:py-24 bg-white relative overflow-hidden border-b border-slate-200 architectural-grid">
+    <section id="tracking-section" className="py-16 sm:py-24 bg-white relative overflow-hidden border-b border-slate-200 architectural-grid">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Title & Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
@@ -78,7 +78,7 @@ const FeaturedConstructionProjects = () => {
             </p>
           </div>
 
-          {/* Location Filters */}
+          {/* Location Filters & Action */}
           <div className="flex items-center gap-2 overflow-x-auto pb-1">
             {locations.map((loc) => (
               <button
@@ -99,7 +99,7 @@ const FeaturedConstructionProjects = () => {
 
         {/* Project Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, idx) => (
+          {(activeFilter === 'All' ? projects : projects.filter(p => p.location.toLowerCase().includes(activeFilter.toLowerCase()))).map((project, idx) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 20 }}

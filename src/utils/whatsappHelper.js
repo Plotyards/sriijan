@@ -3,14 +3,14 @@
  * Directly connects buyers with the specific property owner who posted the listing.
  */
 
-// Cleans phone numbers to international WhatsApp format (e.g. "+91 98705 34978" -> "919870534978")
+// Cleans phone numbers to international WhatsApp format (e.g. "+91 85273 16865" -> "918527316865")
 export const cleanPhoneNumber = (phone) => {
-  if (!phone || typeof phone !== 'string') return '919870534978';
+  if (!phone || typeof phone !== 'string') return '918527316865';
   let digits = phone.replace(/\D/g, '');
   if (digits.length === 10) {
     digits = '91' + digits;
   }
-  return digits || '919870534978';
+  return digits || '918527316865';
 };
 
 /**
@@ -49,3 +49,26 @@ export const generateSiteVisitMessage = (property, visitorDetails = {}) => {
 
   return `Namaste! 🙏\n\nI would like to schedule a Site Visit for your property listed on Sriizan:\n\n🏢 Property: ${projectName}\n📍 Unit: ${unitNumber} (${propType})\n💰 Asking Price: ${price}\n\n👤 Visitor Name: ${visitorName || 'Interested Buyer'}\n📞 Mobile: ${visitorPhone || 'Not provided'}\n📅 Preferred Date: ${visitDate || 'As soon as possible'}\n⏰ Preferred Slot: ${visitTimeSlot || 'Morning'}\n\nPlease confirm if this date and time works for you. Looking forward to your response!`;
 };
+
+/**
+ * Generates custom WhatsApp message for Real Estate Service Providers (Editors, Marketers, Realtors, Interior, Astrology)
+ */
+export const generateServiceInquiryMessage = (provider, userDetails = {}) => {
+  if (!provider) return "Hi, I found your profile on Sriizan Real Estate Marketplace.";
+
+  const providerName = provider.name || 'Professional';
+  const role = provider.role || provider.category || 'Service';
+  const starting = provider.startingPrice || '';
+
+  return `Namaste ${providerName}! 🙏\n\nI found your verified profile on Sriizan Real Estate Marketplace:\n\n🎯 Role: ${role}\n🏷️ Category: ${provider.category || 'Services'}\n💼 Starting Rate: ${starting}\n\nI have a requirement for real estate project / service and would like to discuss deliverables and quote. Please share your availability. Thank you!`;
+};
+
+/**
+ * Helper to generate clean tel: link for instant calling
+ */
+export const getDirectCallUrl = (phone) => {
+  if (!phone) return 'tel:+918527316865';
+  const digits = phone.replace(/[^\d+]/g, '');
+  return `tel:${digits}`;
+};
+

@@ -28,7 +28,7 @@ export const INITIAL_RESALE_PROPERTIES = [
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop"
     ],
     ownerName: "Nikhil Jangra",
-    ownerPhone: "+91 98705 34978",
+    ownerPhone: "+91 85273 16865",
     ownerType: "Direct First Allottee",
     verifiedDocs: [
       "Builder Buyer Agreement (BBA)",

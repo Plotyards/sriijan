@@ -5,6 +5,7 @@ import {
   Sparkles, Download, Compass, ShieldCheck, HelpCircle, UserCheck,
   Zap, Clock, FileText, ChevronRight, X, Scale, MessageSquare, Check, ArrowUpRight
 } from 'lucide-react';
+import SpatialSelect from '../common/SpatialSelect';
 
 const UNIT_TYPES = [
   {
@@ -479,19 +480,19 @@ const MobileTypeHandlingDashboard = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-black text-slate-700 uppercase tracking-wider mb-1">
-                    Preferred Time Slot
-                  </label>
-                  <select
+                  <SpatialSelect
+                    label="Preferred Time Slot"
                     value={visitTime}
-                    onChange={(e) => setVisitTime(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold py-3 px-4 rounded-xl focus:outline-none focus:border-emerald-600"
-                  >
-                    <option>10:00 AM - 11:30 AM</option>
-                    <option>11:30 AM - 01:00 PM</option>
-                    <option>02:30 PM - 04:00 PM</option>
-                    <option>04:00 PM - 05:30 PM</option>
-                  </select>
+                    onChange={(val) => setVisitTime(val)}
+                    size="sm"
+                    colorScheme="emerald"
+                    options={[
+                      { value: '10:00 AM - 11:30 AM', label: '10:00 AM - 11:30 AM (Morning)', icon: '🌅' },
+                      { value: '11:30 AM - 01:00 PM', label: '11:30 AM - 01:00 PM (Noon)', icon: '☀️' },
+                      { value: '02:30 PM - 04:00 PM', label: '02:30 PM - 04:00 PM (Afternoon)', icon: '🌤️' },
+                      { value: '04:00 PM - 05:30 PM', label: '04:00 PM - 05:30 PM (Evening)', icon: '🌇' }
+                    ]}
+                  />
                 </div>
 
                 <div>

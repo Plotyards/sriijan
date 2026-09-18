@@ -9,6 +9,7 @@ import {
 import { useApp } from '../context/AppContext';
 import { INITIAL_RESALE_PROPERTIES } from '../data/resalePropertiesData';
 import { createWhatsAppUrl, generateGeneralInquiryMessage, generateSiteVisitMessage } from '../utils/whatsappHelper';
+import SpatialSelect from '../components/common/SpatialSelect';
 
 const ResalePropertiesPage = ({ onOpenSellModal }) => {
   const { properties } = useApp();
@@ -68,7 +69,7 @@ const ResalePropertiesPage = ({ onOpenSellModal }) => {
             'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop'
           ],
           ownerName: p.owner?.name || p.fullName || 'Property Owner',
-          ownerPhone: p.owner?.phone || p.phone || p.ownerPhone || '+91 98705 34978',
+          ownerPhone: p.owner?.phone || p.phone || p.ownerPhone || '+91 85273 16865',
           ownerType: 'Direct First Allottee',
           verifiedDocs: [
             'Allotment Letter Submitted',
@@ -153,7 +154,7 @@ const ResalePropertiesPage = ({ onOpenSellModal }) => {
       visitTimeSlot
     });
 
-    const targetPhone = siteVisitProperty.ownerPhone || '919870534978';
+    const targetPhone = siteVisitProperty.ownerPhone || '918527316865';
     const waUrl = createWhatsAppUrl(targetPhone, customMessage);
 
     // Open direct WhatsApp chat with the property owner
@@ -187,96 +188,75 @@ const ResalePropertiesPage = ({ onOpenSellModal }) => {
       <div className="fixed bottom-20 left-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-8">
-        
-        {/* Breadcrumbs */}
-        <div className="flex items-center gap-2 text-xs font-bold text-slate-500">
-          <Link to="/" className="hover:text-emerald-700 transition-colors">Home</Link>
-          <ChevronRight size={14} className="text-slate-400" />
-          <span className="text-emerald-800 font-extrabold">Resale Marketplace</span>
-        </div>
+        {/* Top Breadcrumb & Page Banner */}
+        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
+          <div className="space-y-2 z-10 max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold">
+              <ShieldCheck size={14} />
+              <span>Direct Resale Marketplace • 0% Brokerage</span>
+            </div>
+            <h1 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight font-serif">
+              Audited Resale Properties
+            </h1>
+            <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">
+              Browse authentic resale units directly from allottee owners with verified allotment letters, construction stage logs, and zero brokerage fee.
+            </p>
+          </div>
 
-        {/* Page Hero Header */}
-        <div className="bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 text-white rounded-3xl p-6 sm:p-10 border border-emerald-500/20 shadow-xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none"></div>
-          <div className="absolute bottom-0 left-1/3 w-60 h-60 bg-amber-400/10 rounded-full blur-2xl pointer-events-none"></div>
+          <div className="flex flex-wrap items-center gap-3 z-10">
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                onClick={onOpenSellModal}
+                className="py-2.5 px-5 rounded-xl font-bold text-xs sm:text-sm text-white bg-slate-900 hover:bg-slate-800 transition-all shadow-sm flex items-center gap-2 cursor-pointer"
+              >
+                <TrendingUp size={15} className="text-emerald-400" />
+                <span>List Unit for Resale</span>
+              </button>
 
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-8 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-black uppercase tracking-wider">
-                <ShieldCheck size={14} className="text-emerald-400" />
-                <span>100% Direct First-Allottee Verified Inventory</span>
+              <a
+                href="https://wa.me/918527316865?text=Hi%20Sriizan%2C%20I%20am%20looking%20for%20verified%20resale%20units%20in%20Gurugram.%20Please%20share%20the%20complete%20audited%20portfolio."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-2.5 px-5 rounded-xl font-bold text-xs sm:text-sm text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all border border-slate-200 flex items-center gap-2 cursor-pointer"
+              >
+                <MessageCircle size={15} className="text-emerald-600" />
+                <span>Resale Concierge (WhatsApp)</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Minimalist Horizontal Stats Strip */}
+          <div className="mt-8 pt-6 border-t border-slate-100 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+            <div>
+              <div className="text-2xl font-black text-slate-900 tracking-tight">
+                {allResaleUnits.length}
               </div>
-
-              <h1 className="text-3xl sm:text-5xl font-black tracking-tight font-serif text-white">
-                Verified Resale Properties <br />
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 via-emerald-300 to-teal-200">
-                  & Direct Allottee Apartments
-                </span>
-              </h1>
-
-              <p className="text-xs sm:text-sm text-slate-300 font-medium max-w-2xl leading-relaxed">
-                Connect directly with property owners and original allottees. Inquire and schedule verified site visits with customized WhatsApp messages sent directly to whoever posted the listing.
-              </p>
-
-              {/* Action Buttons in Hero */}
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <button
-                  type="button"
-                  onClick={onOpenSellModal}
-                  className="py-3 px-6 rounded-2xl font-black text-xs sm:text-sm text-slate-950 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 transition-all shadow-md shadow-amber-500/20 flex items-center gap-2 cursor-pointer border border-amber-400"
-                >
-                  <TrendingUp size={16} />
-                  <span>List Your Unit For Resale</span>
-                </button>
-
-                <a
-                  href="https://wa.me/919870534978?text=Hi%20Sriizan%2C%20I%20am%20looking%20for%20verified%20resale%20units%20in%20Gurugram.%20Please%20share%20the%20complete%20audited%20portfolio."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="py-3 px-6 rounded-2xl font-black text-xs sm:text-sm text-white bg-emerald-800 hover:bg-emerald-700 transition-all shadow-md border border-emerald-600 flex items-center gap-2 cursor-pointer"
-                >
-                  <MessageCircle size={16} className="text-emerald-300" />
-                  <span>Resale Concierge (WhatsApp)</span>
-                </a>
+              <div className="text-xs font-semibold text-slate-500 mt-0.5">
+                Active Listings
               </div>
             </div>
-
-            {/* Quick Metrics Cards (4 cols) */}
-            <div className="lg:col-span-4 grid grid-cols-2 gap-3.5">
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10 text-center">
-                <div className="text-2xl sm:text-3xl font-black text-amber-300">
-                  {allResaleUnits.length}
-                </div>
-                <div className="text-[11px] font-bold text-slate-300 mt-1">
-                  Active Units Listed
-                </div>
+            <div>
+              <div className="text-2xl font-black text-emerald-600 tracking-tight">
+                +27.4%
               </div>
-
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10 text-center">
-                <div className="text-2xl sm:text-3xl font-black text-emerald-400">
-                  +27.4%
-                </div>
-                <div className="text-[11px] font-bold text-slate-300 mt-1">
-                  Avg Capital Gain
-                </div>
+              <div className="text-xs font-semibold text-slate-500 mt-0.5">
+                Avg Capital Gain
               </div>
-
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10 text-center">
-                <div className="text-2xl sm:text-3xl font-black text-white">
-                  100%
-                </div>
-                <div className="text-[11px] font-bold text-slate-300 mt-1">
-                  Audited NOC & BBA
-                </div>
+            </div>
+            <div>
+              <div className="text-2xl font-black text-slate-900 tracking-tight">
+                100%
               </div>
-
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10 text-center">
-                <div className="text-2xl sm:text-3xl font-black text-amber-300">
-                  Direct
-                </div>
-                <div className="text-[11px] font-bold text-slate-300 mt-1">
-                  Owner WhatsApp
-                </div>
+              <div className="text-xs font-semibold text-slate-500 mt-0.5">
+                Audited NOC & BBA
+              </div>
+            </div>
+            <div>
+              <div className="text-2xl font-black text-slate-900 tracking-tight">
+                Direct
+              </div>
+              <div className="text-xs font-semibold text-slate-500 mt-0.5">
+                Owner WhatsApp
               </div>
             </div>
           </div>
@@ -306,20 +286,20 @@ const ResalePropertiesPage = ({ onOpenSellModal }) => {
             </div>
 
             {/* Sort Dropdown */}
-            <div className="flex items-center gap-2 shrink-0">
-              <span className="text-xs font-black text-slate-500 uppercase tracking-wider flex items-center gap-1">
-                <ArrowUpDown size={14} /> Sort:
-              </span>
-              <select
+            <div className="w-full sm:w-56 shrink-0">
+              <SpatialSelect
                 value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-800 focus:outline-none focus:border-emerald-600 cursor-pointer"
-              >
-                <option value="featured">Featured First</option>
-                <option value="price_asc">Price: Low to High</option>
-                <option value="price_desc">Price: High to Low</option>
-                <option value="appreciation">Highest Appreciation %</option>
-              </select>
+                onChange={(val) => setSortBy(val)}
+                icon={ArrowUpDown}
+                size="sm"
+                colorScheme="emerald"
+                options={[
+                  { value: 'featured', label: 'Featured First', icon: '⭐' },
+                  { value: 'price_asc', label: 'Price: Low to High', icon: '📈' },
+                  { value: 'price_desc', label: 'Price: High to Low', icon: '💎' },
+                  { value: 'appreciation', label: 'Highest Appreciation %', icon: '🚀' }
+                ]}
+              />
             </div>
           </div>
 
@@ -666,7 +646,7 @@ const ResalePropertiesPage = ({ onOpenSellModal }) => {
                       required
                       value={visitorPhone}
                       onChange={(e) => setVisitorPhone(e.target.value)}
-                      placeholder="+91 98705 34978"
+                      placeholder="+91 85273 16865"
                       className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold focus:outline-none focus:border-emerald-600 focus:bg-white"
                     />
                   </div>
@@ -686,19 +666,19 @@ const ResalePropertiesPage = ({ onOpenSellModal }) => {
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-black text-slate-700 uppercase mb-1">
-                        Time Slot
-                      </label>
-                      <select
+                      <SpatialSelect
+                        label="Time Slot"
                         value={visitTimeSlot}
-                        onChange={(e) => setVisitTimeSlot(e.target.value)}
-                        className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold focus:outline-none focus:border-emerald-600 focus:bg-white cursor-pointer"
-                      >
-                        <option>10:00 AM - 12:00 PM</option>
-                        <option>12:00 PM - 02:00 PM</option>
-                        <option>02:00 PM - 04:00 PM</option>
-                        <option>04:00 PM - 06:00 PM</option>
-                      </select>
+                        onChange={(val) => setVisitTimeSlot(val)}
+                        size="sm"
+                        colorScheme="emerald"
+                        options={[
+                          { value: '10:00 AM - 12:00 PM', label: '10:00 AM - 12:00 PM (Morning)' },
+                          { value: '12:00 PM - 02:00 PM', label: '12:00 PM - 02:00 PM (Noon)' },
+                          { value: '02:00 PM - 04:00 PM', label: '02:00 PM - 04:00 PM (Afternoon)' },
+                          { value: '04:00 PM - 06:00 PM', label: '04:00 PM - 06:00 PM (Evening)' }
+                        ]}
+                      />
                     </div>
                   </div>
 

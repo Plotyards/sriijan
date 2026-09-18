@@ -35,7 +35,7 @@ const PaymentModal = ({ isOpen, onClose, onSuccess, propertyDetails }) => {
         prefill: {
           name: propertyDetails?.name || propertyDetails?.fullName || "Valued Buyer",
           email: propertyDetails?.email || "buyer@example.com",
-          contact: propertyDetails?.mobile || propertyDetails?.phone || "9870534978"
+          contact: propertyDetails?.mobile || propertyDetails?.phone || "8527316865"
         },
         theme: {
           color: "#059669"

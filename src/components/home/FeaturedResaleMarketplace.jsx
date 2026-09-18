@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { TrendingUp, MapPin, CheckCircle2, ArrowRight, ShieldCheck, Phone, Calendar, Sparkles, MessageCircle, X } from 'lucide-react';
 import { INITIAL_RESALE_PROPERTIES } from '../../data/resalePropertiesData';
 import { createWhatsAppUrl, generateGeneralInquiryMessage, generateSiteVisitMessage } from '../../utils/whatsappHelper';
+import SpatialSelect from '../common/SpatialSelect';
 
 const FeaturedResaleMarketplace = ({ onOpenSellModal }) => {
   const [inquiryModalProperty, setInquiryModalProperty] = useState(null);
@@ -28,7 +29,7 @@ const FeaturedResaleMarketplace = ({ onOpenSellModal }) => {
       visitTimeSlot
     });
 
-    const targetPhone = inquiryModalProperty.ownerPhone || '919870534978';
+    const targetPhone = inquiryModalProperty.ownerPhone || '918527316865';
     const waUrl = createWhatsAppUrl(targetPhone, customMessage);
 
     // Open direct WhatsApp chat with the property owner
@@ -46,7 +47,7 @@ const FeaturedResaleMarketplace = ({ onOpenSellModal }) => {
   };
 
   return (
-    <section id="resale" className="py-16 sm:py-24 bg-white relative overflow-hidden border-b border-slate-200 architectural-grid">
+    <section id="resale-section" className="py-16 sm:py-24 bg-white relative overflow-hidden border-b border-slate-200 architectural-grid">
       {/* Warm Gold Ambient Light Orb */}
       <div className="absolute top-10 right-10 w-96 h-96 bg-amber-300/10 rounded-full blur-[120px] pointer-events-none"></div>
 
@@ -279,7 +280,7 @@ const FeaturedResaleMarketplace = ({ onOpenSellModal }) => {
                     required
                     value={buyerPhone}
                     onChange={(e) => setBuyerPhone(e.target.value)}
-                    placeholder="+91 98705 34978"
+                    placeholder="+91 85273 16865"
                     className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold focus:outline-none focus:border-emerald-600 focus:bg-white"
                   />
                 </div>
@@ -297,17 +298,19 @@ const FeaturedResaleMarketplace = ({ onOpenSellModal }) => {
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-black text-slate-700 uppercase mb-1">Time Slot</label>
-                    <select
+                    <SpatialSelect
+                      label="Time Slot"
                       value={visitTimeSlot}
-                      onChange={(e) => setVisitTimeSlot(e.target.value)}
-                      className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold focus:outline-none focus:border-emerald-600 focus:bg-white cursor-pointer"
-                    >
-                      <option>10:00 AM - 12:00 PM</option>
-                      <option>12:00 PM - 02:00 PM</option>
-                      <option>02:00 PM - 04:00 PM</option>
-                      <option>04:00 PM - 06:00 PM</option>
-                    </select>
+                      onChange={(val) => setVisitTimeSlot(val)}
+                      size="sm"
+                      colorScheme="emerald"
+                      options={[
+                        { value: '10:00 AM - 12:00 PM', label: '10:00 AM - 12:00 PM (Morning)' },
+                        { value: '12:00 PM - 02:00 PM', label: '12:00 PM - 02:00 PM (Noon)' },
+                        { value: '02:00 PM - 04:00 PM', label: '02:00 PM - 04:00 PM (Afternoon)' },
+                        { value: '04:00 PM - 06:00 PM', label: '04:00 PM - 06:00 PM (Evening)' }
+                      ]}
+                    />
                   </div>
                 </div>
 

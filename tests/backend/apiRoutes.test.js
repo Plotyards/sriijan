@@ -103,7 +103,7 @@ describe('Backend API Routes & Edge Cases', () => {
         .send({
           name: 'Nikhil Jangra',
           email: '  Nikhil.Jangra@Example.COM  ',
-          phone: '+91 98705 34978',
+          phone: '+91 85273 16865',
           password: 'securePassword123'
         });
 

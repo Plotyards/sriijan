@@ -16,7 +16,7 @@ const propertySchema = new mongoose.Schema({
   owner: {
     name: { type: String, required: true },
     email: { type: String, required: true, lowercase: true, trim: true },
-    phone: { type: String, default: '+91 98705 34978' }
+    phone: { type: String, default: '+91 85273 16865' }
   },
   progress: {
     overallPercentage: { type: Number, default: 15 },
